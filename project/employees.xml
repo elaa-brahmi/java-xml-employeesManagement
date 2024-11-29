@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<employees>
+    <employee>
+        <certifications>Waste Management Certification</certifications>
+        <idEmployee>1</idEmployee>
+        <id_user>user001</id_user>
+        <role>Employee</role>
+        <skills>Waste Management</skills>
+        <speciality>Sorting Specialist</speciality>
+        <status>busy</status>
+    </employee>
+    <employee>
+        <certifications>Recycling Process Certification</certifications>
+        <idEmployee>2</idEmployee>
+        <id_user>user002</id_user>
+        <role>Employee</role>
+        <skills>Sorting</skills>
+        <speciality>Sorting Specialist</speciality>
+        <status>available</status>
+    </employee>
+    <employee>
+        <certifications>Logistics Management</certifications>
+        <idEmployee>3</idEmployee>
+        <id_user>user005</id_user>
+        <role>Employee</role>
+        <skills>Logistics</skills>
+        <speciality>Logistics Coordinator</speciality>
+        <status>busy</status>
+    </employee>
+    <employee>
+        <certifications>Recycling Process Certification</certifications>
+        <idEmployee>4</idEmployee>
+        <id_user>user006</id_user>
+        <role>Employee</role>
+        <skills>Teamwork</skills>
+        <speciality>Sorting Specialist</speciality>
+        <status>available</status>
+    </employee>
+    <employee>
+        <certifications>Waste Management Certification</certifications>
+        <idEmployee>5</idEmployee>
+        <id_user>user009</id_user>
+        <role>Employee</role>
+        <skills>Waste Management</skills>
+        <skills>Customer Service</skills>
+        <speciality>Sorting Specialist</speciality>
+        <status>available</status>
+    </employee>
+    <employee>
+        <certifications>Recycling Process Certification</certifications>
+        <idEmployee>6</idEmployee>
+        <id_user>user010</id_user>
+        <role>Employee</role>
+        <skills>Recycling</skills>
+        <speciality>Recycling Specialist</speciality>
+        <status>busy</status>
+    </employee>
+    <employee>
+        <certifications>Safety Management</certifications>
+        <idEmployee>7</idEmployee>
+        <id_user>user011</id_user>
+        <role>Employee</role>
+        <skills>Safety</skills>
+        <speciality>Sorting Specialist</speciality>
+        <status>available</status>
+    </employee>
+    <employee>
+        <certifications>Waste Management Certification</certifications>
+        <idEmployee>8</idEmployee>
+        <id_user>user012</id_user>
+        <role>Employee</role>
+        <skills>Customer Service</skills>
+        <speciality>Recycling Specialist</speciality>
+        <status>busy</status>
+    </employee>
+    <employee>
+        <certifications>Recycling Process Certification</certifications>
+        <idEmployee>9</idEmployee>
+        <id_user>user013</id_user>
+        <role>Employee</role>
+        <skills>Sorting</skills>
+        <speciality>Sorting Specialist</speciality>
+        <status>available</status>
+    </employee>
+    <employee>
+        <certifications>Waste Management Certification</certifications>
+        <idEmployee>10</idEmployee>
+        <id_user>user014</id_user>
+        <role>Employee</role>
+        <skills>Waste Management</skills>
+        <speciality>Sorting Specialist</speciality>
+        <status>busy</status>
+    </employee>
+    <employee>
+        <certifications>Electrical Maintenance Certification</certifications>
+        <idEmployee>11</idEmployee>
+        <id_user>user007</id_user>
+        <role>Maintenance Technician</role>
+        <skills>Equipment Maintenance</skills>
+        <speciality>Equipment Technician</speciality>
+        <status>available</status>
+    </employee>
+    <employee>
+        <certifications>Mechanical Repairs Certification</certifications>
+        <idEmployee>12</idEmployee>
+        <id_user>user008</id_user>
+        <role>Maintenance Technician</role>
+        <skills>Electrical Repairs</skills>
+        <speciality>Equipment Technician</speciality>
+        <status>busy</status>
+    </employee>
+    <employee>
+        <certifications>Electrical Systems Certification</certifications>
+        <idEmployee>13</idEmployee>
+        <id_user>user004</id_user>
+        <role>Maintenance Technician</role>
+        <skills>Machine Operation</skills>
+        <speciality>Electrical Technician</speciality>
+        <status>available</status>
+    </employee>
+    <employee>
+        <certifications>Machine Diagnostics Certification</certifications>
+        <idEmployee>14</idEmployee>
+        <id_user>user015</id_user>
+        <role>Maintenance Technician</role>
+        <skills>Diagnostic Tools</skills>
+        <speciality>Mechanical Technician</speciality>
+        <status>busy</status>
+    </employee>
+    <employee>
+        <certifications>Machine Safety Certification</certifications>
+        <idEmployee>15</idEmployee>
+        <id_user>user016</id_user>
+        <role>Maintenance Technician</role>
+        <skills>Safety Procedures</skills>
+        <speciality>Machine Technician</speciality>
+        <status>available</status>
+    </employee>
+    <employee>
+        <certifications>Preventive Maintenance Certification</certifications>
+        <idEmployee>16</idEmployee>
+        <id_user>user017</id_user>
+        <role>Maintenance Technician</role>
+        <skills>Preventive Maintenance</skills>
+        <speciality>Electrical Technician</speciality>
+        <status>busy</status>
+    </employee>
+    <employee>
+        <certifications>Heavy Equipment Maintenance Certification</certifications>
+        <idEmployee>17</idEmployee>
+        <id_user>user018</id_user>
+        <role>Maintenance Technician</role>
+        <skills>Heavy Equipment</skills>
+        <speciality>Heavy Equipment Technician</speciality>
+        <status>available</status>
+    </employee>
+    <employee>
+        <certifications>Machine Safety Compliance Certification</certifications>
+        <idEmployee>18</idEmployee>
+        <id_user>user019</id_user>
+        <role>Maintenance Technician</role>
+        <skills>Safety Compliance</skills>
+        <speciality>Mechanical Technician</speciality>
+        <status>busy</status>
+    </employee>
+</employees>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<technicians>
+    <technicien>
+        <id_employee>11</id_employee>
+        <id_technicien>1</id_technicien>
+    </technicien>
+    <technicien>
+        <id_employee>12</id_employee>
+        <id_technicien>2</id_technicien>
+    </technicien>
+    <technicien>
+        <id_employee>13</id_employee>
+        <id_technicien>3</id_technicien>
+    </technicien>
+    <technicien>
+        <id_employee>14</id_employee>
+        <id_technicien>4</id_technicien>
+    </technicien>
+    <technicien>
+        <id_employee>15</id_employee>
+        <id_technicien>5</id_technicien>
+    </technicien>
+    <technicien>
+        <id_employee>16</id_employee>
+        <id_technicien>6</id_technicien>
+    </technicien>
+    <technicien>
+        <id_employee>17</id_employee>
+        <id_technicien>7</id_technicien>
+    </technicien>
+    <technicien>
+        <id_employee>18</id_employee>
+        <id_technicien>8</id_technicien>
+    </technicien>
+</technicians>

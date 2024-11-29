@@ -8,7 +8,7 @@ import java.io.File;
 
 public class XMLService {
 
-    public <T> void generateXMLFromObjects(T object, String outputPath) {
+    public <T> void generateXMLFromObjects(T object, String outputPath) { //write to xml file
         try {
             JAXBContext context = JAXBContext.newInstance(object.getClass());
             Marshaller marshaller = context.createMarshaller();
@@ -20,7 +20,7 @@ public class XMLService {
         }
     }
 
-    public <T> T unmarshalXML(String inputPath, Class<T> clazz) {
+    public <T> T unmarshalXML(String inputPath, Class<T> clazz) {//read from xml
         T object = null;
         try {
             JAXBContext context = JAXBContext.newInstance(clazz);
@@ -32,4 +32,5 @@ public class XMLService {
         }
         return object;
     }
+   
 }

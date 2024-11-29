@@ -1,11 +1,29 @@
 package com.xml.project.service;
 
+import com.xml.project.model.Employee;
+import com.xml.project.model.Employees;
+import com.xml.project.model.Equipment;
+import com.xml.project.model.Equipments;
+import com.xml.project.model.Technician;
+import com.xml.project.model.Technicians;
 import com.xml.project.model.User;
 import com.xml.project.model.Users;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SampleDataService {
+	public Employee createEmployee(String idUser, int idEmployee, List<String> skills, String status, 
+            String speciality, List<String> certifications, String role) {
+		Employee employee = new Employee();
+		employee.setIdUser(idUser);
+		employee.setIdEmployee(idEmployee);
+		employee.setSkills(skills);
+		employee.setStatus(status);
+		employee.setSpeciality(speciality);
+		employee.setCertifications(certifications);
+		employee.setRole(role);
+		return employee;
+}
 	public  User createUser(String idUser, String login, String email, String nom, String prenom, String role, String password) {
         // Create a new User object
         User user = new User();
@@ -21,6 +39,29 @@ public class SampleDataService {
         return user;
     
 	}
+	private Technician createTechnician(int i, int j) {
+		 Technician technician = new Technician();
+		 technician.setIdTechnicien(i);
+		 technician.setIdEmployee(j);
+		
+		return technician;
+	}
+	private Equipment createEquipment(int idEquipment, String name, String type, int quantity, String status, String category) {
+	    // Create a new Equipment instance
+	    Equipment equipment = new Equipment();
+	    
+	    // Set the fields of the Equipment object using the method parameters
+	    equipment.setIdEquipment(idEquipment);
+	    equipment.setName(name);
+	    equipment.setType(type);
+	    equipment.setQuantity(quantity);
+	    equipment.setStatus(status);
+	    equipment.setCategory(category);
+	    
+	    // Return the fully created Equipment object
+	    return equipment;
+	}
+
     public Users createSampleUsers() {
     	
         // Create a list of User objects
@@ -29,7 +70,7 @@ public class SampleDataService {
         // Add sample users
         userList.add(createUser("user001", "doe", "doe@gmail.com", "John", "Doe", "employee", "password123"));
         userList.add(createUser("user002", "schmidt", "schmidt@gmail.com", "Jake", "Schmidt", "employee", "password012"));
-        userList.add(createUser("user003", "smith", "smith@gmail.com", "Jack", "Smith", "admin", "admin2024"));
+        userList.add(createUser("user003", "smith", "smith@gmail.com", "Jack", "Smith", "admin", "admin2024"));//admin
         userList.add(createUser("user004", "brown", "brown@gmail.com", "James", "Brown", "maintenance technician", "password345"));
         userList.add(createUser("user005", "taylor", "taylor@gmail.com", "Susan", "Taylor", "employee", "password456"));
         userList.add(createUser("user006", "johnson", "johnson@gmail.com", "Michael", "Johnson", "employee", "password789"));
@@ -58,6 +99,80 @@ public class SampleDataService {
 
         return users;
     }
+    public Employees createSampleEmployees() {
+        List<Employee> employeeList = new ArrayList<>();
+
+        // Sample data for employees
+        employeeList.add(createEmployee("user001", 1, List.of("Waste Management"), "busy", "Sorting Specialist", List.of("Waste Management Certification"), "Employee"));
+        employeeList.add(createEmployee("user002", 2, List.of("Sorting"), "available", "Sorting Specialist", List.of("Recycling Process Certification"), "Employee"));
+        employeeList.add(createEmployee("user005", 3, List.of("Logistics"), "busy", "Logistics Coordinator", List.of("Logistics Management"), "Employee"));
+        employeeList.add(createEmployee("user006", 4, List.of( "Teamwork"), "available", "Sorting Specialist", List.of("Recycling Process Certification"), "Employee"));
+        employeeList.add(createEmployee("user009", 5, List.of("Waste Management", "Customer Service"), "available", "Sorting Specialist", List.of("Waste Management Certification"), "Employee"));
+        employeeList.add(createEmployee("user010", 6, List.of( "Recycling"), "busy", "Recycling Specialist", List.of("Recycling Process Certification"), "Employee"));
+        employeeList.add(createEmployee("user011", 7, List.of("Safety"), "available", "Sorting Specialist", List.of("Safety Management"), "Employee"));
+        employeeList.add(createEmployee("user012", 8, List.of("Customer Service"), "busy", "Recycling Specialist", List.of("Waste Management Certification"), "Employee"));
+        employeeList.add(createEmployee("user013", 9, List.of("Sorting"), "available", "Sorting Specialist", List.of("Recycling Process Certification"), "Employee"));
+        employeeList.add(createEmployee("user014", 10, List.of( "Waste Management"), "busy", "Sorting Specialist", List.of("Waste Management Certification"), "Employee"));
+        
+        employeeList.add(createEmployee("user007", 11, List.of("Equipment Maintenance"), "available", "Equipment Technician", List.of("Electrical Maintenance Certification"), "Maintenance Technician"));
+        employeeList.add(createEmployee("user008", 12, List.of("Electrical Repairs"), "busy", "Equipment Technician", List.of("Mechanical Repairs Certification"), "Maintenance Technician"));
+        employeeList.add(createEmployee("user004", 13, List.of( "Machine Operation"), "available", "Electrical Technician", List.of("Electrical Systems Certification"), "Maintenance Technician"));
+        employeeList.add(createEmployee("user015", 14, List.of( "Diagnostic Tools"), "busy", "Mechanical Technician", List.of("Machine Diagnostics Certification"), "Maintenance Technician"));
+        employeeList.add(createEmployee("user016", 15, List.of("Safety Procedures"), "available", "Machine Technician", List.of("Machine Safety Certification"), "Maintenance Technician"));
+        employeeList.add(createEmployee("user017", 16, List.of( "Preventive Maintenance"), "busy", "Electrical Technician", List.of("Preventive Maintenance Certification"), "Maintenance Technician"));
+        employeeList.add(createEmployee("user018", 17, List.of("Heavy Equipment"), "available", "Heavy Equipment Technician", List.of("Heavy Equipment Maintenance Certification"), "Maintenance Technician"));
+        employeeList.add(createEmployee("user019", 18, List.of( "Safety Compliance"), "busy", "Mechanical Technician", List.of("Machine Safety Compliance Certification"), "Maintenance Technician"));
+      
+
+
+        // Create an Employees object and set the employee list
+        Employees employees = new Employees();
+        employees.setEmployees(employeeList);
+
+        return employees;
+    }
+    public Technicians createSampleTechnicians() {
+        List<Technician> technicianList = new ArrayList<>();
+
+        
+        technicianList.add(createTechnician(1, 11));
+        technicianList.add(createTechnician(2, 12));
+        technicianList.add(createTechnician(3, 13));
+        technicianList.add(createTechnician(4, 14));
+        technicianList.add(createTechnician(5, 15));
+        technicianList.add(createTechnician(6, 16));
+        technicianList.add(createTechnician(7, 17));
+        technicianList.add(createTechnician(8, 18));
+      
+
+
+        // Create an Employees object and set the employee list
+        Technicians technicians = new Technicians();
+        technicians.setTechnicianList(technicianList);
+
+        return technicians;
+    }
+    public Equipments createSampleEquipment() {
+        List<Equipment> equipmentList = new ArrayList<>();
+
+       
+      
+        
+        equipmentList.add(createEquipment(1, "Compactor","Heavy Machinery",22,"Operational","Waste Management"));
+        equipmentList.add(createEquipment(2, "Sorting Conveyor","Automatic Machine",10,"In Service","Waste Sorting"));
+        equipmentList.add(createEquipment(3, "Shredder","Mechanical Machine",10,"Under Maintenance","Equipment Maintenance"));
+        
+      
+
+
+        // Create an Employees object and set the employee list
+        Equipments equipments = new Equipments();
+        equipments.setEquipmentList(equipmentList);
+
+        return equipments;
+    }
+
+	
 
 	
 }
