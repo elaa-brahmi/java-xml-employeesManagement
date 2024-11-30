@@ -8,12 +8,19 @@ import java.util.List;
 public class Users {
     private List<User> users;
 
+    
+    public Users() {}
+    public Users(List<User> users) {
+		
+		this.users = users;
+	}
     @XmlElement(name = "user") // Maps each <user> element in the XML
     public List<User> getUsers() {
         return users;
     }
+    
 
-    public void setUsers(List<User> users) {
+	public void setUsers(List<User> users) {
         this.users = users;
     }
 }

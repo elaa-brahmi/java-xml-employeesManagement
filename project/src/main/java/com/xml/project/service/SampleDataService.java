@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SampleDataService {
-	public Employee createEmployee(String idUser, int idEmployee, List<String> skills, String status, 
-            String speciality, List<String> certifications, String role) {
+	public Employee createEmployee(String idUser, int idEmployee, String skills, String status, 
+            String speciality, String certifications, String role) {
 		Employee employee = new Employee();
 		employee.setIdUser(idUser);
 		employee.setIdEmployee(idEmployee);
@@ -103,25 +103,25 @@ public class SampleDataService {
         List<Employee> employeeList = new ArrayList<>();
 
         // Sample data for employees
-        employeeList.add(createEmployee("user001", 1, List.of("Waste Management"), "busy", "Sorting Specialist", List.of("Waste Management Certification"), "Employee"));
-        employeeList.add(createEmployee("user002", 2, List.of("Sorting"), "available", "Sorting Specialist", List.of("Recycling Process Certification"), "Employee"));
-        employeeList.add(createEmployee("user005", 3, List.of("Logistics"), "busy", "Logistics Coordinator", List.of("Logistics Management"), "Employee"));
-        employeeList.add(createEmployee("user006", 4, List.of( "Teamwork"), "available", "Sorting Specialist", List.of("Recycling Process Certification"), "Employee"));
-        employeeList.add(createEmployee("user009", 5, List.of("Waste Management", "Customer Service"), "available", "Sorting Specialist", List.of("Waste Management Certification"), "Employee"));
-        employeeList.add(createEmployee("user010", 6, List.of( "Recycling"), "busy", "Recycling Specialist", List.of("Recycling Process Certification"), "Employee"));
-        employeeList.add(createEmployee("user011", 7, List.of("Safety"), "available", "Sorting Specialist", List.of("Safety Management"), "Employee"));
-        employeeList.add(createEmployee("user012", 8, List.of("Customer Service"), "busy", "Recycling Specialist", List.of("Waste Management Certification"), "Employee"));
-        employeeList.add(createEmployee("user013", 9, List.of("Sorting"), "available", "Sorting Specialist", List.of("Recycling Process Certification"), "Employee"));
-        employeeList.add(createEmployee("user014", 10, List.of( "Waste Management"), "busy", "Sorting Specialist", List.of("Waste Management Certification"), "Employee"));
+        employeeList.add(createEmployee("user001", 1, "Waste Management", "busy", "Sorting Specialist", "Waste Management Certification", "Employee"));
+        employeeList.add(createEmployee("user002", 2, "Sorting", "available", "Sorting Specialist", "Recycling Process Certification", "Employee"));
+        employeeList.add(createEmployee("user005", 3, "Logistics", "busy", "Logistics Coordinator", "Logistics Management", "Employee"));
+        employeeList.add(createEmployee("user006", 4,  "Teamwork", "available", "Sorting Specialist", "Recycling Process Certification", "Employee"));
+        employeeList.add(createEmployee("user009", 5, "Waste Management", "available", "Sorting Specialist", "Waste Management Certification", "Employee"));
+        employeeList.add(createEmployee("user010", 6, "Recycling", "busy", "Recycling Specialist", "Recycling Process Certification", "Employee"));
+        employeeList.add(createEmployee("user011", 7, "Safety", "available", "Sorting Specialist", "Safety Management", "Employee"));
+        employeeList.add(createEmployee("user012", 8, "Customer Service", "busy", "Recycling Specialist", "Waste Management Certification", "Employee"));
+        employeeList.add(createEmployee("user013", 9, "Sorting", "available", "Sorting Specialist", "Recycling Process Certification", "Employee"));
+        employeeList.add(createEmployee("user014", 10,  "Waste Management", "busy", "Sorting Specialist", "Waste Management Certification", "Employee"));
         
-        employeeList.add(createEmployee("user007", 11, List.of("Equipment Maintenance"), "available", "Equipment Technician", List.of("Electrical Maintenance Certification"), "Maintenance Technician"));
-        employeeList.add(createEmployee("user008", 12, List.of("Electrical Repairs"), "busy", "Equipment Technician", List.of("Mechanical Repairs Certification"), "Maintenance Technician"));
-        employeeList.add(createEmployee("user004", 13, List.of( "Machine Operation"), "available", "Electrical Technician", List.of("Electrical Systems Certification"), "Maintenance Technician"));
-        employeeList.add(createEmployee("user015", 14, List.of( "Diagnostic Tools"), "busy", "Mechanical Technician", List.of("Machine Diagnostics Certification"), "Maintenance Technician"));
-        employeeList.add(createEmployee("user016", 15, List.of("Safety Procedures"), "available", "Machine Technician", List.of("Machine Safety Certification"), "Maintenance Technician"));
-        employeeList.add(createEmployee("user017", 16, List.of( "Preventive Maintenance"), "busy", "Electrical Technician", List.of("Preventive Maintenance Certification"), "Maintenance Technician"));
-        employeeList.add(createEmployee("user018", 17, List.of("Heavy Equipment"), "available", "Heavy Equipment Technician", List.of("Heavy Equipment Maintenance Certification"), "Maintenance Technician"));
-        employeeList.add(createEmployee("user019", 18, List.of( "Safety Compliance"), "busy", "Mechanical Technician", List.of("Machine Safety Compliance Certification"), "Maintenance Technician"));
+        employeeList.add(createEmployee("user007", 11, "Equipment Maintenance", "available", "Equipment Technician", "Electrical Maintenance Certification", "Maintenance Technician"));
+        employeeList.add(createEmployee("user008", 12, "Electrical Repairs", "busy", "Equipment Technician", "Mechanical Repairs Certification", "Maintenance Technician"));
+        employeeList.add(createEmployee("user004", 13,  "Machine Operation", "available", "Electrical Technician", "Electrical Systems Certification", "Maintenance Technician"));
+        employeeList.add(createEmployee("user015", 14, "Diagnostic Tools", "busy", "Mechanical Technician", "Machine Diagnostics Certification", "Maintenance Technician"));
+        employeeList.add(createEmployee("user016", 15, "Safety Procedures", "available", "Machine Technician","Machine Safety Certification", "Maintenance Technician"));
+        employeeList.add(createEmployee("user017", 16,  "Preventive Maintenance", "busy", "Electrical Technician","Preventive Maintenance Certification", "Maintenance Technician"));
+        employeeList.add(createEmployee("user018", 17, "Heavy Equipment", "available", "Heavy Equipment Technician","Heavy Equipment Maintenance Certification", "Maintenance Technician"));
+        employeeList.add(createEmployee("user019", 18, "Safety Compliance", "busy", "Mechanical Technician","Machine Safety Compliance Certification", "Maintenance Technician"));
       
 
 

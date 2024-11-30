@@ -13,7 +13,22 @@ public class User {
     private String role;
     private String password;
 
-    @XmlElement(name = "id_user")
+    public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public User(String idUser, String login, String email, String nom, String prenom, String role, String password) {
+		
+		this.idUser = idUser;
+		this.login = login;
+		this.email = email;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.role = role;
+		this.password = password;
+	}
+
+	@XmlElement(name = "id_user")
     public String getIdUser() {
         return idUser;
     }

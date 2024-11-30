@@ -7,8 +7,9 @@ import jakarta.xml.bind.Unmarshaller;
 import java.io.File;
 
 public class XMLService {
+	public XMLService() {}
 
-    public <T> void generateXMLFromObjects(T object, String outputPath) { //write to xml file
+    public <T> void generateXMLFromObjects(T object, String outputPath) { //write object to xml file
         try {
             JAXBContext context = JAXBContext.newInstance(object.getClass());
             Marshaller marshaller = context.createMarshaller();

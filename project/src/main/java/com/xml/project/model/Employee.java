@@ -7,16 +7,32 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "employee")
-public class Employee {
+public class Employee extends User {
     private String idUser;
     private int idEmployee;
-    private List<String> skills;
+    private String skills;
     private String status;
    
     private String speciality;
-    private List<String> certifications;
+    private String certifications;
     private String role;
-    @XmlElement(name = "id_user")
+    public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    public Employee(String login, String email, String nom, String prenom, String role, String password,String idUser, int idEmployee, String skills, String status, String speciality,
+			String certifications, String roleE) {
+		super(idUser,login,email,nom,prenom,role,password);
+		this.idUser = idUser;
+		this.idEmployee = idEmployee;
+		this.skills = skills;
+		this.status = status;
+		this.speciality = speciality;
+		this.certifications = certifications;
+		this.role = roleE;
+	}
+	
+	@XmlElement(name = "id_user")
 	public String getIdUser() {
 		return idUser;
 	}
@@ -31,11 +47,11 @@ public class Employee {
 		this.idEmployee = idEmployee;
 	}
 	 @XmlElement
-	public List<String> getSkills() {
+	public String getSkills() {
 		return skills;
 	}
-	public void setSkills(List<String> skills) {
-		this.skills = skills;
+	public void setSkills(String skills2) {
+		this.skills = skills2;
 	}
 	 @XmlElement
 	public String getStatus() {
@@ -52,10 +68,10 @@ public class Employee {
 		this.speciality = speciality;
 	}
 	 @XmlElement
-	public List<String> getCertifications() {
+	public String getCertifications() {
 		return certifications;
 	}
-	public void setCertifications(List<String> certifications) {
+	public void setCertifications(String certifications) {
 		this.certifications = certifications;
 	}
 	 @XmlElement

@@ -6,7 +6,13 @@ import java.util.List;
 
 @XmlRootElement(name = "employees") // Root element of the XML file
 public class Employees {
-    private List<Employee> employees;
+    public Employees(List<Employee> employees) {
+		super();
+		this.employees = employees;
+	}
+    public Employees() {}
+
+	private List<Employee> employees;
 
     @XmlElement(name = "employee") // Maps each <Employee> element in the XML
     public List<Employee> getEmployees() {

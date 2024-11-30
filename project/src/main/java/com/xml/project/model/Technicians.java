@@ -16,4 +16,10 @@ public class Technicians {
     public void setTechnicianList(List<Technician> technicianList) {
         this.technicianList = technicianList;
     }
+
+	public Technicians(List<Technician> technicianList) {
+		super();
+		this.technicianList = technicianList;
+	}
+	public Technicians() {}
 }

@@ -1,10 +1,12 @@
 package com.xml.project;
 
 
+import com.xml.project.model.Employee;
 import com.xml.project.model.Employees;
 import com.xml.project.model.Equipments;
 import com.xml.project.model.Technicians;
 import com.xml.project.model.Users;
+import com.xml.project.service.EmployeeServiceImpl;
 import com.xml.project.service.SampleDataService;
 import com.xml.project.service.XMLService;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +34,26 @@ public class ProjectApplication {
 	        xmlService.generateXMLFromObjects(sampleEmployees, employees);
 	        xmlService.generateXMLFromObjects(sampleTechnician, Technicians);
 	        xmlService.generateXMLFromObjects(sampleEquipment, equipments);
+	        Employee newEmployee = new Employee();
+	        newEmployee.setIdUser("5000");
+	        newEmployee.setIdEmployee(5001);
+	        newEmployee.setLogin("jdoe");
+	        newEmployee.setEmail("jdoe@example.com");
+	        newEmployee.setNom("Doe");
+	        newEmployee.setPrenom("John");
+	        newEmployee.setRole("Employee");
+	        newEmployee.setPassword("hashedPassword");
+	        newEmployee.setSkills("Waste Management");
+	        newEmployee.setStatus("Active");
+	        newEmployee.setSpeciality("Recycling");
+	        newEmployee.setCertifications("ISO 14001");
+
+	        EmployeeServiceImpl service = new EmployeeServiceImpl();
+	        service.addEmployee(newEmployee);
+	        service.findEmployeeById(18);
+	       service.deleteEmployeeById(5001);
+	        
+
 	        SpringApplication.run(ProjectApplication.class, args);
 	    }
 		

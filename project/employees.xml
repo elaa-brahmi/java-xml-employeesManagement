@@ -42,7 +42,6 @@
         <id_user>user009</id_user>
         <role>Employee</role>
         <skills>Waste Management</skills>
-        <skills>Customer Service</skills>
         <speciality>Sorting Specialist</speciality>
         <status>available</status>
     </employee>
