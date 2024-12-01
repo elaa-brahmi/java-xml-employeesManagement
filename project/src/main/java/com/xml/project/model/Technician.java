@@ -5,15 +5,17 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "technicien")
 public class Technician extends Employee{
+    
+
+	private int idTechnicien;
+    private int idEmployee;
+    
     public Technician(int idTechnicien, int idEmployee) {
 		super();
 		this.idTechnicien = idTechnicien;
 		this.idEmployee = idEmployee;
 	}
     public Technician() {}
-
-	private int idTechnicien;
-    private int idEmployee;
 
     @XmlElement(name = "id_technicien")
     public int getIdTechnicien() {

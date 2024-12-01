@@ -11,7 +11,18 @@ public class Tache {
     private int idEquipment;
     private String description;
     private String status;
-    private Date dueDate;
+    private String dueDate;
+ 
+    public Tache(int idTache, int idEmployee, int idEquipment, String description, String status, String dueDate) {
+		
+		this.idTache = idTache;
+		this.idEmployee = idEmployee;
+		this.idEquipment = idEquipment;
+		this.description = description;
+		this.status = status;
+		this.dueDate = dueDate;
+	}
+    public Tache() {}
 
     @XmlElement(name = "id_tache")
     public int getIdTache() {
@@ -59,11 +70,12 @@ public class Tache {
     }
 
     @XmlElement(name = "due_date")
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
+    
+	public void setDueDate(String string) {
+        this.dueDate = string;
     }
 }

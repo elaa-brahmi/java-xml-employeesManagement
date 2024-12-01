@@ -105,7 +105,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> employees = parseXMLEmployees();
         List<User> users = parseXMLUsers();
         User newUser = new User();
-        newUser.setIdUser(newEmployee.getIdUser());
+       
         newUser.setLogin(newEmployee.getLogin());
         newUser.setEmail(newEmployee.getEmail());
         newUser.setNom(newEmployee.getNom());
@@ -115,9 +115,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         users.add(newUser);
         saveToXMLUsers(users);
         Employee newEmp = new Employee();
-        newEmp.setIdUser(newEmployee.getIdUser());
-        newEmp.setCertifications(newEmployee.getCertifications());
-        newEmp.setIdEmployee(newEmployee.getIdEmployee());
+         newEmp.setCertifications(newEmployee.getCertifications());
+      
         newEmp.setSkills(newEmployee.getSkills());
         newEmp.setSpeciality(newEmployee.getSpeciality());
         newEmp.setRole(newEmployee.getRole());

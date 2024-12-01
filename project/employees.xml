@@ -162,4 +162,12 @@
         <speciality>Mechanical Technician</speciality>
         <status>busy</status>
     </employee>
+    <employee>
+        <certifications>ISO 14001</certifications>
+        <idEmployee>0</idEmployee>
+        <role>Employee</role>
+        <skills>Waste Management</skills>
+        <speciality>Recycling</speciality>
+        <status>Active</status>
+    </employee>
 </employees>
