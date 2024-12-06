@@ -1,0 +1,182 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <!-- Base statusProject type -->
+    <xs:simpleType name="statusProjectTache">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="finished"/>
+            <xs:enumeration value="unfinished"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="roleEmployee">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="employee"/>
+            <xs:enumeration value="maintenance technician"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="statusEmployee">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="busy"/>
+            <xs:enumeration value="free"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="statusEquipment">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="under maintenance"/>
+            <xs:enumeration value="broken"/>
+            <xs:enumeration value="operable"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Base User type -->
+    <xs:complexType name="User">
+        <xs:sequence>
+            <xs:element name="idUser" type="xs:string"/>
+            <xs:element name="login" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="prenom" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Base Project type -->
+    <xs:complexType name="project">
+        <xs:sequence>
+            <xs:element name="idProject" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="status" type="statusProjectTache"/>
+            <xs:element name="taches" type="tache" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Base Equipment type -->
+    <xs:complexType name="equipment">
+        <xs:sequence>
+            <xs:element name="idEquipment" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="quantity" type="xs:int"/>
+            <xs:element name="status" type="statusEquipment"/>
+            <xs:element name="category" type="xs:string"/>
+            <xs:element name="idTache" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Base Task type -->
+    <xs:complexType name="tache">
+        <xs:sequence>
+            <xs:element name="idTache" type="xs:int"/>
+            <xs:element name="status" type="statusProjectTache"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="start_date" type="xs:date"/>
+            <xs:element name="end_date" type="xs:date"/>
+            <xs:element name="idProject" type="xs:int"/>
+            <xs:element name="employees" type="Employee" maxOccurs="unbounded"/>
+            <xs:element name="equipments" type="equipment" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Employee type extending User -->
+    <xs:complexType name="Employee">
+        <xs:complexContent>
+            <xs:extension base="User">
+                <xs:sequence>
+                    <xs:element name="idEmployee" type="xs:int"/>
+                    <xs:element name="skills">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="skill" type="xs:string" maxOccurs="unbounded"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="status" type="statusEmployee"/>
+                    <xs:element name="speciality" type="xs:string"/>
+                    <xs:element name="certification" type="xs:string"/>
+                    <xs:element name="role" type="roleEmployee"/>
+                    <xs:element name="idTache" type="xs:int"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Root elements with keys and keyrefs -->
+    <xs:element name="users">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="User" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:key name="uniqueUserId">
+            <xs:selector xpath="user"/>
+            <xs:field xpath="idUser"/>
+        </xs:key>
+    </xs:element>
+
+
+    <xs:element name="employees">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="employee" type="Employee" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:key name="uniqueEmployeeId">
+            <xs:selector xpath="employee"/>
+            <xs:field xpath="idEmployee"/>
+        </xs:key>
+    </xs:element>
+
+    <xs:element name="equipments">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="equipment" type="equipment" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:key name="uniqueEquipmentId">
+            <xs:selector xpath="equipment"/>
+            <xs:field xpath="idEquipment"/>
+        </xs:key>
+        <xs:keyref name="equipmentToTache" refer="uniqueTacheId">
+            <xs:selector xpath="equipment"/>
+            <xs:field xpath="idTache"/>
+        </xs:keyref>
+    </xs:element>
+
+    <xs:element name="taches">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="tache" type="tache" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:key name="uniqueTacheId">
+            <xs:selector xpath="tache"/>
+            <xs:field xpath="idTache"/>
+        </xs:key>
+        <xs:keyref name="tacheToProject" refer="uniqueProjectId">
+            <xs:selector xpath="tache"/>
+            <xs:field xpath="idProject"/>
+        </xs:keyref>
+    </xs:element>
+
+    <xs:element name="projects">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="project" type="project" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:key name="uniqueProjectId">
+            <xs:selector xpath="project"/>
+            <xs:field xpath="idProject"/>
+        </xs:key>
+    </xs:element>
+
+    <xs:element name="employeesToTaches">
+        <xs:keyref name="employeeToTache" refer="uniqueTacheId">
+            <xs:selector xpath="employee"/>
+            <xs:field xpath="idTache"/>
+        </xs:keyref>
+    </xs:element>
+
+</xs:schema>

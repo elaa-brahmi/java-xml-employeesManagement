@@ -3,22 +3,22 @@ package com.xml.project.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xml.project.model.Tache;
-import com.xml.project.model.Taches;
-import com.xml.project.model.Technicians;
-import com.xml.project.model.Users;
+import com.xml.project.model.generated.Tache;
+import com.xml.project.model.generated.Taches;
+
+import com.xml.project.model.generated.Users;
 
 public class TacheService {
 	public TacheService() {}
 	 private final String XML_FILE_PATH = "employees.xml";
 	 private final String taches = "tache.xml";
-	 private final String techniciens = "techniciens.xml";
+
 	 
 	 public List<Tache> voirTaches() {
 		    XMLService xmlService = new XMLService();
 		    Taches listeTaches = xmlService.unmarshalXML(taches, Taches.class);
-		    return (listeTaches != null && listeTaches.getTacheList() != null)
-		        ? listeTaches.getTacheList()
+		    return (listeTaches != null && listeTaches.getTache() != null)
+		        ? listeTaches.getTache()
 		        : new ArrayList<>();
 		}
 
@@ -26,7 +26,7 @@ public class TacheService {
 	 public void saveTache(List<Tache> liste) {
 		 try {
 	            Taches wrapper = new Taches();
-	            wrapper.setTacheList(liste);
+	            wrapper.setTache(liste);
 	            XMLService xmlService = new XMLService();
 	            xmlService.generateXMLFromObjects(wrapper, taches);
 	        } catch (Exception e) {
@@ -66,17 +66,17 @@ public class TacheService {
 
 	 
 	 
-	 public void updateTache(Tache updatedTache) {
+	 public void updateTache(int id,Tache updatedTache) {
 		    List<Tache> listeTaches = voirTaches();
 		    for (int i = 0; i < listeTaches.size(); i++) {
-		        if (listeTaches.get(i).getIdTache() == updatedTache.getIdTache()) {
+		        if (listeTaches.get(i).getIdTache() == id) {
 		            listeTaches.set(i, updatedTache);
 		            saveTache(listeTaches);
-		            System.out.println("Tache with ID " + updatedTache.getIdTache() + " is updated");
+		            System.out.println("Tache with ID " + id + " is updated");
 		            return;
 		        }
 		    }
-		    System.out.println("Tache with ID " + updatedTache.getIdTache() + " not found");
+		    System.out.println("Tache with ID " + id + " not found");
 		}
 
 

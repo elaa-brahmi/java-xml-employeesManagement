@@ -2,7 +2,7 @@ package com.xml.project.service;
 
 import java.util.List;
 
-import com.xml.project.model.Employee;
+import com.xml.project.model.generated.Employee;
 
 public interface EmployeeService {
 	Employee findEmployeeById(int id);

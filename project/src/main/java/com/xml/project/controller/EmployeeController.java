@@ -1,66 +1,100 @@
 package com.xml.project.controller;
-import com.xml.project.model.Employee;
+
+import com.xml.project.model.generated.Employee;
 import com.xml.project.service.EmployeeService;
-import com.xml.project.service.EmployeeServiceImpl; 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.xml.project.model.generated.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-@RestController //this annotation is a combination of @Controller and @ResponseBody.
-@RequestMapping("/adminDashboard/employees")//All methods in this controller will be accessible under URLs starting with /adminDashboard/employees
+
+@Controller // Use @Controller for HTML views
+@RequestMapping("/employees")
 public class EmployeeController {
-	private final EmployeeService employeeService;
-	public EmployeeController() {
-		this.employeeService=new EmployeeServiceImpl();
-	}
-	//fetch an employee by id
-	@GetMapping("/{id}")
-	public ResponseEntity<Employee> getEmployeeById(@PathVariable int id){
-		Employee employee=employeeService.findEmployeeById(id);
-		if(employee!= null) {
-			return ResponseEntity.ok(employee);
-		}
-		else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-		}
-	//fetch all employees
-	@GetMapping
-	public ResponseEntity<List<Employee>> getAllEmployees(){
-		List<Employee> employees=employeeService.getAllEmployees();
-		return ResponseEntity.ok(employees);
-	}
-	//add new employee
-	 @PostMapping
-	    public ResponseEntity<String> addEmployee(@RequestBody Employee newEmployee) {
-	        employeeService.addEmployee(newEmployee);
-	        return ResponseEntity.status(HttpStatus.CREATED).body("Employee added successfully");
-	    }
-	// Update an employee by ID
-	    @PutMapping("/{id}")
-	    //@PathVariable: Extracts the {id} from the URL
-	    public ResponseEntity<String> updateEmployee(@PathVariable int id, @RequestBody Employee updatedEmployee) {
-	        Employee employee = employeeService.updateEmployeeById(id, updatedEmployee);
-	        if (employee != null) {
-	            return ResponseEntity.ok("Employee updated successfully");
-	        } else {
-	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found");
-	        }
-	    }
-	    // Delete an employee by ID
-	    @DeleteMapping("/{id}")
-	    public ResponseEntity<String> deleteEmployee(@PathVariable int id) {
-	        boolean removed = employeeService.deleteEmployeeById(id);
-	        if (removed) {
-	            return ResponseEntity.ok("Employee deleted successfully");
-	        } else {
-	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found");
-	        }
-	    }
-	    //Used to handle HTTP responses with appropriate status codes (e.g., 200 OK, 201 Created, 404 Not Found).
-	
-	
-	}
-	
 
+    private final EmployeeService employeeService;
 
+    @Autowired
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
+    // Fetch all employees and return as an HTML view
+    @GetMapping
+    public String getAllEmployees(Model model) {
+        List<Employee> employees = employeeService.getAllEmployees();
+        model.addAttribute("employees", employees); // Add the list of employees to the model
+        return "employees/list"; // Return the Thymeleaf template (e.g., "list.html" in the "employees" folder)
+    }
+    @GetMapping("/test")
+    public String test() {
+        return "employees/test";
+    }
+
+    // Fetch a single employee by ID and return as an HTML view
+    @GetMapping("/{id}")
+    public String getEmployeeById(@PathVariable int id, Model model) {
+        Employee employee = employeeService.findEmployeeById(id);
+        if (employee != null) {
+            model.addAttribute("employee", employee); // Add the employee to the model
+            return "employees/detail"; // Return the template (e.g., "detail.html")
+        } else {
+            model.addAttribute("error", "Employee not found");
+            return "employees/error"; // Return an error template
+        }
+    }
+
+    // Show a form for adding a new employee
+    @GetMapping("/new")
+    public String showAddEmployeeForm(Model model) {
+        model.addAttribute("employee", new Employee()); // Bind a new empty employee object
+        return "employees/new"; // Return the "new.html" form
+    }
+
+    // Handle adding a new employee
+    @PostMapping
+    public String addEmployee(@ModelAttribute Employee newEmployee, Model model) {
+        employeeService.addEmployee(newEmployee);
+        return "redirect:/employees"; // Redirect to the list view after adding
+    }
+
+    // Show a form for updating an employee by ID
+    @GetMapping("/{id}/edit")
+    public String showUpdateEmployeeForm(@PathVariable int id, Model model) {
+        Employee employee = employeeService.findEmployeeById(id);
+        if (employee != null) {
+            model.addAttribute("employee", employee); // Add the employee to the model
+            return "employees/edit"; // Return the "edit.html" form
+        } else {
+            model.addAttribute("error", "Employee not found");
+            return "employees/error"; // Return an error template
+        }
+    }
+
+    // Handle updating an employee
+    @PostMapping("/{id}")
+    public String updateEmployee(@PathVariable int id, @ModelAttribute Employee updatedEmployee, Model model) {
+        Employee employee = employeeService.updateEmployeeById(id, updatedEmployee);
+        if (employee != null) {
+            return "redirect:/employees"; // Redirect to the list view after updating
+        } else {
+            model.addAttribute("error", "Employee not found");
+            return "employees/error"; // Return an error template
+        }
+    }
+
+    // Delete an employee by ID
+    @GetMapping("/{id}/delete")
+    public String deleteEmployee(@PathVariable int id, Model model) {
+        boolean removed = employeeService.deleteEmployeeById(id);
+        if (removed) {
+            return "redirect:/employees"; // Redirect to the list view after deleting
+        } else {
+            model.addAttribute("error", "Employee not found");
+            return "employees/error"; // Return an error template
+        }
+    }
+}

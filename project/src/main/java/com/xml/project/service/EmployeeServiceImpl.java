@@ -1,14 +1,14 @@
 package com.xml.project.service;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.xml.project.model.Employee;
-import com.xml.project.model.Employees;
-import com.xml.project.model.User;
-import com.xml.project.model.Users;
-
+import org.springframework.stereotype.Service;
+import com.xml.project.model.generated.Employee;
+import com.xml.project.model.generated.Employees;
+import com.xml.project.model.generated.User;
+import com.xml.project.model.generated.Users;
+import com.xml.project.model.generated.*;
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 	public EmployeeServiceImpl() {}
     private final String XML_FILE_PATH = "employees.xml";
@@ -18,23 +18,22 @@ public class EmployeeServiceImpl implements EmployeeService {
         XMLService xmlService = new XMLService();
         Employees employees = xmlService.unmarshalXML(XML_FILE_PATH, Employees.class);
 
-        if (employees == null || employees.getEmployees() == null) {
+        if (employees == null || employees.getEmployee() == null) {
             // Initialize an empty list if XML file is empty or doesn't exist
             return new ArrayList<>();
         }
 
-        return employees.getEmployees();
+        return employees.getEmployee();
     }
     private List<User> parseXMLUsers() { // fetch list of users from users.xml
         XMLService xmlService = new XMLService();
         Users users = xmlService.unmarshalXML(usersFile, Users.class);
-
-        if (users == null || users.getUsers() == null) {
+        if (users == null || users.getUser() == null) {
             // Initialize an empty list if XML file is empty or doesn't exist
             return new ArrayList<>();
         }
 
-        return users.getUsers();
+        return users.getUser();
     }
 
     @Override
@@ -83,19 +82,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee updateEmployeeById(int id, Employee updatedEmployee) {
         List<Employee> employees = parseXMLEmployees();
+        List<User> users = parseXMLUsers();
         if (updatedEmployee == null || updatedEmployee.getIdUser() == null) {
             throw new IllegalArgumentException("Invalid employee data provided for update.");
         }
 
 
         for (int i = 0; i < employees.size(); i++) {
-            if (employees.get(i).getIdEmployee() == id) {
+            if (employees.get(i).getIdEmployee() == id)
                 employees.set(i, updatedEmployee);
-                saveToXML(employees);
-                return updatedEmployee;
-            }
+            saveToXML(employees);
+            return updatedEmployee;
         }
-         
 
         return null;
     }
@@ -105,18 +103,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> employees = parseXMLEmployees();
         List<User> users = parseXMLUsers();
         User newUser = new User();
-       
+        newUser.setIdUser(newEmployee.getIdUser());
         newUser.setLogin(newEmployee.getLogin());
         newUser.setEmail(newEmployee.getEmail());
         newUser.setNom(newEmployee.getNom());
         newUser.setPrenom(newEmployee.getPrenom());
-        newUser.setRole(newEmployee.getRole());
         newUser.setPassword(newEmployee.getPassword());
         users.add(newUser);
         saveToXMLUsers(users);
         Employee newEmp = new Employee();
-         newEmp.setCertifications(newEmployee.getCertifications());
-      
+        newEmp.setCertification(newEmployee.getCertification());
         newEmp.setSkills(newEmployee.getSkills());
         newEmp.setSpeciality(newEmployee.getSpeciality());
         newEmp.setRole(newEmployee.getRole());
@@ -129,8 +125,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private void saveToXML(List<Employee> employees) {
         try {
             Employees wrapper = new Employees();
-            wrapper.setEmployees(employees);
-
+            wrapper.setEmployee(employees);
             XMLService xmlService = new XMLService();
             xmlService.generateXMLFromObjects(wrapper, XML_FILE_PATH);
         } catch (Exception e) {
@@ -141,7 +136,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private void saveToXMLUsers(List<User> users) {
         try {
             Users wrapper = new Users();
-            wrapper.setUsers(users);
+            wrapper.setUser(users);
             XMLService xmlService = new XMLService();
             xmlService.generateXMLFromObjects(wrapper, usersFile);
         } catch (Exception e) {

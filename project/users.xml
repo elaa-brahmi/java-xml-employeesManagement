@@ -180,12 +180,4 @@
         <prenom>Ross</prenom>
         <role>maintenance technician</role>
     </user>
-    <user>
-        <email>jdoe@example.com</email>
-        <login>jdoe</login>
-        <nom>Doe</nom>
-        <password>hashedPassword</password>
-        <prenom>John</prenom>
-        <role>Employee</role>
-    </user>
 </users>

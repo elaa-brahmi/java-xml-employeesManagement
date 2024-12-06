@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Skills</th>
+                <th>Speciality</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.idEmployee}">1</td>
+                <td th:text="${employee.skills}">Skill Placeholder</td>
+                <td th:text="${employee.speciality}">Speciality Placeholder</td>
+                <td th:text="${employee.role}">Role Placeholder</td>
+                <td>
+                    <a th:href="@{/employees/{id}(id=${employee.idEmployee})}">View</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/employees/new">Add New Employee</a>
+</body>
+</html>

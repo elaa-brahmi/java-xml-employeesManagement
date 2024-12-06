@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.xml.project.model.Tache;
+import com.xml.project.model.generated.*;
+import com.xml.project.model.generated.Tache;
 import com.xml.project.service.TacheService;
 
 @RestController
@@ -48,7 +48,7 @@ public class TacheController {
         Tache existingTache = tacheService.findTacheById(id);
         if (existingTache != null) {
             updatedTache.setIdTache(id); // Ensure the ID remains unchanged
-            tacheService.updateTache(updatedTache);
+            tacheService.updateTache(id,updatedTache);
             return ResponseEntity.ok("Tache updated successfully");
         }
         return ResponseEntity.notFound().build();

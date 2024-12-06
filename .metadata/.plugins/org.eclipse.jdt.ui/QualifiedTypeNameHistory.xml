@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.xml.project.model.Equipment"/>
+    <fullyQualifiedTypeName name="com.xml.project.model.Equipments"/>
+    <fullyQualifiedTypeName name="jakarta.xml.bind.JAXBContext"/>
+    <fullyQualifiedTypeName name="jakarta.xml.bind.Unmarshaller"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="jakarta.xml.bind.Marshaller"/>
+    <fullyQualifiedTypeName name="com.xml.project.model.Users"/>
+    <fullyQualifiedTypeName name="com.xml.project.model.User"/>
+    <fullyQualifiedTypeName name="com.xml.project.model.Employees"/>
+    <fullyQualifiedTypeName name="com.xml.project.model.Technician"/>
+    <fullyQualifiedTypeName name="com.xml.project.model.Technicians"/>
+    <fullyQualifiedTypeName name="com.xml.project.model.Employee"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.xml.project.model.Tache"/>
+    <fullyQualifiedTypeName name="com.xml.project.controller.TacheController"/>
+    <fullyQualifiedTypeName name="com.xml.project.service.TacheService"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="com.xml.project.model.Taches"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="com.xml.project.service.EmployeeServiceImpl"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="java.awt.PageAttributes.MediaType"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpHeaders"/>
+    <fullyQualifiedTypeName name="jakarta.xml.bind.annotation.XmlElementWrapper"/>
 </qualifiedTypeNameHistroy>
