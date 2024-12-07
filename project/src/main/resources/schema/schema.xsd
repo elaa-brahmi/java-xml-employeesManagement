@@ -85,12 +85,8 @@
             <xs:extension base="User">
                 <xs:sequence>
                     <xs:element name="idEmployee" type="xs:int"/>
-                    <xs:element name="skills">
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element name="skill" type="xs:string" maxOccurs="unbounded"/>
-                            </xs:sequence>
-                        </xs:complexType>
+                    <xs:element name="skills" type="xs:string">
+
                     </xs:element>
                     <xs:element name="status" type="statusEmployee"/>
                     <xs:element name="speciality" type="xs:string"/>

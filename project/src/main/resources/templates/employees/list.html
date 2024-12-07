@@ -20,13 +20,19 @@
     </style>
 </head>
 <body>
+<!-- aamel format behi taa table khoudhha mil bootstrap les lien delete aamelou class bootstrap 7amra w ajout class zar9a w update class khadhra-->
     <h1>Employee List</h1>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
+                <th>name</th>
+                <th>lastName</th>
+                <th>email</th>
                 <th>Skills</th>
                 <th>Speciality</th>
+                <th>certification</th>
+                <th>status</th>
                 <th>Role</th>
                 <th>Actions</th>
             </tr>
@@ -34,11 +40,18 @@
         <tbody>
             <tr th:each="employee : ${employees}">
                 <td th:text="${employee.idEmployee}">1</td>
+                <td th:text="${employee.nom}">1</td>
+                <td th:text="${employee.prenom}">1</td>
+                <td th:text="${employee.email}">1</td>
                 <td th:text="${employee.skills}">Skill Placeholder</td>
                 <td th:text="${employee.speciality}">Speciality Placeholder</td>
+                <td th:text="${employee.certification}">1</td>
+                <td th:text="${employee.status}">1</td>
                 <td th:text="${employee.role}">Role Placeholder</td>
                 <td>
-                    <a th:href="@{/employees/{id}(id=${employee.idEmployee})}">View</a>
+                    <a th:href="@{/employees/{id}/edit(id=${employee.idEmployee})}">update</a>
+                    <a th:href="@{/employees/{id}/delete(id=${employee.idEmployee})}">delete</a>
+                    <a th:href="@{/employees/profile/{id}(id=${employee.idEmployee})}">view</a>
                 </td>
             </tr>
         </tbody>

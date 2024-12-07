@@ -33,9 +33,9 @@ import javax.xml.bind.annotation.XmlType;
 public enum StatusProjectTache {
 
     @XmlEnumValue("finished")
-    FINISHED("finished"),
+    finished("finished"),
     @XmlEnumValue("unfinished")
-    UNFINISHED("unfinished");
+    unfinished("unfinished");
     private final String value;
 
     StatusProjectTache(String v) {

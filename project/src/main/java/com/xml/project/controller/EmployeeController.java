@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.bind.JAXBException;
 import java.util.List;
 
 @Controller // Use @Controller for HTML views
@@ -24,7 +25,7 @@ public class EmployeeController {
 
     // Fetch all employees and return as an HTML view
     @GetMapping
-    public String getAllEmployees(Model model) {
+    public String getAllEmployees(Model model) throws JAXBException {
         List<Employee> employees = employeeService.getAllEmployees();
         model.addAttribute("employees", employees); // Add the list of employees to the model
         return "employees/list"; // Return the Thymeleaf template (e.g., "list.html" in the "employees" folder)
@@ -35,8 +36,8 @@ public class EmployeeController {
     }
 
     // Fetch a single employee by ID and return as an HTML view
-    @GetMapping("/{id}")
-    public String getEmployeeById(@PathVariable int id, Model model) {
+    @GetMapping("/profile/{id}")
+    public String getEmployeeById(@PathVariable("id") int id, Model model) throws JAXBException {
         Employee employee = employeeService.findEmployeeById(id);
         if (employee != null) {
             model.addAttribute("employee", employee); // Add the employee to the model
@@ -56,14 +57,21 @@ public class EmployeeController {
 
     // Handle adding a new employee
     @PostMapping
-    public String addEmployee(@ModelAttribute Employee newEmployee, Model model) {
-        employeeService.addEmployee(newEmployee);
-        return "redirect:/employees"; // Redirect to the list view after adding
-    }
+    public String addEmployee(@ModelAttribute Employee newEmployee, Model model) throws JAXBException {
+        try {
+            employeeService.addEmployee(newEmployee);
+            return "redirect:/employees"; // Redirect to the list view after adding
+        }
+        catch (ReusedIdException e) {
+            model.addAttribute("error", e.getMessage());
+            return "employees/new"; // Show the form again with an error message
+        }
+        }
+
 
     // Show a form for updating an employee by ID
     @GetMapping("/{id}/edit")
-    public String showUpdateEmployeeForm(@PathVariable int id, Model model) {
+    public String showUpdateEmployeeForm(@PathVariable("id") int id, Model model) throws JAXBException {
         Employee employee = employeeService.findEmployeeById(id);
         if (employee != null) {
             model.addAttribute("employee", employee); // Add the employee to the model
@@ -76,25 +84,38 @@ public class EmployeeController {
 
     // Handle updating an employee
     @PostMapping("/{id}")
-    public String updateEmployee(@PathVariable int id, @ModelAttribute Employee updatedEmployee, Model model) {
-        Employee employee = employeeService.updateEmployeeById(id, updatedEmployee);
-        if (employee != null) {
-            return "redirect:/employees"; // Redirect to the list view after updating
-        } else {
-            model.addAttribute("error", "Employee not found");
+    public String updateEmployee(@PathVariable("id") int id, @ModelAttribute Employee updatedEmployee, Model model) throws JAXBException {
+        try {
+            Employee employee = employeeService.updateEmployeeById(id, updatedEmployee);
+            if (employee != null) {
+                return "redirect:/employees"; // Redirect to the list view after updating
+            } else {
+                model.addAttribute("error", "Employee not found");
+                return "employees/error"; // Return an error template
+            }
+        } catch (ReusedIdException e) {
+            model.addAttribute("error", e.getMessage());
+            return "employees/edit"; // Show the edit form again with an error message
+        }
+        }
+
+
+
+    // Delete an employee by ID
+    @GetMapping("/{id}/delete")
+    public String deleteEmployee(@PathVariable("id") int id, Model model) throws JAXBException {
+        try {
+            boolean removed = employeeService.deleteEmployeeById(id);
+            if (removed) {
+                return "redirect:/employees"; // Redirect to the list view after deleting
+            } else {
+                model.addAttribute("error", "Employee not found");
+                return "employees/error"; // Return an error template
+            }
+        } catch (Exception e) {
+            model.addAttribute("error", "An error occurred while deleting the employee: " + e.getMessage());
             return "employees/error"; // Return an error template
         }
     }
 
-    // Delete an employee by ID
-    @GetMapping("/{id}/delete")
-    public String deleteEmployee(@PathVariable int id, Model model) {
-        boolean removed = employeeService.deleteEmployeeById(id);
-        if (removed) {
-            return "redirect:/employees"; // Redirect to the list view after deleting
-        } else {
-            model.addAttribute("error", "Employee not found");
-            return "employees/error"; // Return an error template
-        }
-    }
 }

@@ -33,9 +33,9 @@ import javax.xml.bind.annotation.XmlType;
 public enum StatusEmployee {
 
     @XmlEnumValue("busy")
-    BUSY("busy"),
+    busy("busy"),
     @XmlEnumValue("free")
-    FREE("free");
+    free("free");
     private final String value;
 
     StatusEmployee(String v) {

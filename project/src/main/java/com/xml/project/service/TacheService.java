@@ -8,13 +8,15 @@ import com.xml.project.model.generated.Taches;
 
 import com.xml.project.model.generated.Users;
 
+import javax.xml.bind.JAXBException;
+
 public class TacheService {
 	public TacheService() {}
 	 private final String XML_FILE_PATH = "employees.xml";
 	 private final String taches = "tache.xml";
 
 	 
-	 public List<Tache> voirTaches() {
+	 public List<Tache> voirTaches() throws JAXBException {
 		    XMLService xmlService = new XMLService();
 		    Taches listeTaches = xmlService.unmarshalXML(taches, Taches.class);
 		    return (listeTaches != null && listeTaches.getTache() != null)
@@ -35,7 +37,7 @@ public class TacheService {
 		 
 	 }
 	 
-	 public void addTache(Tache tache) {
+	 public void addTache(Tache tache) throws JAXBException {
 		 List<Tache> listeTaches=voirTaches();
 		 listeTaches.add(tache);
 		 
@@ -45,7 +47,7 @@ public class TacheService {
 		 
 	 }
 	 
-	 public Tache findTacheById(int id) {
+	 public Tache findTacheById(int id) throws JAXBException {
 		    return voirTaches().stream()
 		        .filter(t -> t.getIdTache() == id)
 		        .findFirst()
@@ -53,7 +55,7 @@ public class TacheService {
 		}
 
 	 
-	 public void deleteTache(int id) {
+	 public void deleteTache(int id) throws JAXBException {
 		    List<Tache> listeTaches = voirTaches();
 		    Tache t = findTacheById(id);
 		    if (t != null && listeTaches.remove(t)) {
@@ -66,7 +68,7 @@ public class TacheService {
 
 	 
 	 
-	 public void updateTache(int id,Tache updatedTache) {
+	 public void updateTache(int id,Tache updatedTache) throws JAXBException {
 		    List<Tache> listeTaches = voirTaches();
 		    for (int i = 0; i < listeTaches.size(); i++) {
 		        if (listeTaches.get(i).getIdTache() == id) {

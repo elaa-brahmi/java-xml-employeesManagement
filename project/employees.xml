@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<employees>
+    <employee>
+        <idUser>user002</idUser>
+        <login>ines123</login>
+        <email>ines@gmail.com</email>
+        <nom>Ines</nom>
+        <prenom>dream</prenom>
+        <password>azerty</password>
+        <idEmployee>1</idEmployee>
+        <skills>Teamwork</skills>
+        <status>free</status>
+        <speciality>sorting</speciality>
+        <certification>Certified rubbish sorter</certification>
+        <role>employee</role>
+        <idTache>0</idTache>
+    </employee>
+    <employee>
+        <idUser>user001</idUser>
+        <login>morgan</login>
+        <email>morgan@gmail.com</email>
+        <nom>Ella</nom>
+        <prenom>Morgan</prenom>
+        <password>password016</password>
+        <idEmployee>2</idEmployee>
+        <skills>Logistics</skills>
+        <status>busy</status>
+        <speciality>Logistics Coordinator</speciality>
+        <certification>Logistics Management</certification>
+        <role>employee</role>
+        <idTache>0</idTache>
+    </employee>
+    <employee>
+        <idUser>user003</idUser>
+        <login>jason003</login>
+        <email>jason@gmail.com</email>
+        <nom>jason</nom>
+        <prenom>smith</prenom>
+        <password>password003</password>
+        <idEmployee>3</idEmployee>
+        <skills>Sorting</skills>
+        <status>busy</status>
+        <speciality>Sorting Specialist</speciality>
+        <certification>Recycling Process Certification</certification>
+        <role>employee</role>
+        <idTache>0</idTache>
+    </employee>
+    <employee>
+        <idUser>user004</idUser>
+        <login>david004</login>
+        <email>david@gmail.com</email>
+        <nom>David</nom>
+        <prenom>Johnson</prenom>
+        <password>password004</password>
+        <idEmployee>4</idEmployee>
+        <skills>Waste Management</skills>
+        <status>free</status>
+        <speciality>Sorting Specialist</speciality>
+        <certification>Waste Management Certification</certification>
+        <role>employee</role>
+        <idTache>0</idTache>
+    </employee>
+    <employee>
+        <idUser>user005</idUser>
+        <login>isabella005</login>
+        <email>isabella@gmail.com</email>
+        <nom>Isabella</nom>
+        <prenom>Williams</prenom>
+        <password>password005</password>
+        <idEmployee>5</idEmployee>
+        <skills>Safety Compliance</skills>
+        <status>free</status>
+        <speciality>Mechanical Technician</speciality>
+        <certification>Machine Safety Compliance Certification</certification>
+        <role>maintenance technician</role>
+        <idTache>0</idTache>
+    </employee>
+    <employee>
+        <idUser>user006</idUser>
+        <login>ava006</login>
+        <email>ava@gmail.com</email>
+        <nom>Ava</nom>
+        <prenom>Jones</prenom>
+        <password>password006</password>
+        <idEmployee>6</idEmployee>
+        <skills>Heavy Equipment</skills>
+        <status>free</status>
+        <speciality>Heavy Equipment Technician</speciality>
+        <certification>Heavy Equipment Maintenance Certification</certification>
+        <role>maintenance technician</role>
+        <idTache>0</idTache>
+    </employee>
+    <employee>
+        <idUser>user007</idUser>
+        <login>michael007</login>
+        <email>michael@gmail.com</email>
+        <nom>Michael</nom>
+        <prenom>Martinez</prenom>
+        <password>password007</password>
+        <idEmployee>7</idEmployee>
+        <skills>Preventive Maintenance</skills>
+        <status>busy</status>
+        <speciality>Electrical Technician</speciality>
+        <certification>Preventive Maintenance Certification</certification>
+        <role>maintenance technician</role>
+        <idTache>0</idTache>
+    </employee>
+    <employee>
+        <idUser>user008</idUser>
+        <login>john008</login>
+        <email>john@gmail.com</email>
+        <nom>John</nom>
+        <prenom>Lee</prenom>
+        <password>password008</password>
+        <idEmployee>8</idEmployee>
+        <skills>Diagnostic Tools</skills>
+        <status>free</status>
+        <speciality>Mechanical Technician</speciality>
+        <certification>Machine Diagnostics Certification</certification>
+        <role>maintenance technician</role>
+        <idTache>0</idTache>
+    </employee>
+    <employee>
+        <idUser>user009</idUser>
+        <login>william009</login>
+        <email>william@gmail.com</email>
+        <nom>William</nom>
+        <prenom>Anderson</prenom>
+        <password>password009</password>
+        <idEmployee>9</idEmployee>
+        <skills>Machine Operation</skills>
+        <status>free</status>
+        <speciality>Electrical Technician</speciality>
+        <certification>Electrical Systems Certification</certification>
+        <role>maintenance technician</role>
+        <idTache>0</idTache>
+    </employee>
+    <employee>
+        <idUser>user010</idUser>
+        <login>olivia010</login>
+        <email>olivia@gmail.com</email>
+        <nom>Olivia</nom>
+        <prenom>anderson</prenom>
+        <password>password010</password>
+        <idEmployee>10</idEmployee>
+        <skills>Electrical Repairs</skills>
+        <status>busy</status>
+        <speciality>Equipment Technician</speciality>
+        <certification>Mechanical Repairs Certification</certification>
+        <role>maintenance technician</role>
+        <idTache>0</idTache>
+    </employee>
+</employees>

@@ -8,11 +8,8 @@
 
 package com.xml.project.model.generated;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
+
 import com.xml.project.model.generated.*;
 
 /**
@@ -51,6 +48,7 @@ import com.xml.project.model.generated.*;
 @XmlSeeAlso({
     Employee.class
 })
+
 public class User {
 
     @XmlElement(required = true)
@@ -65,6 +63,23 @@ public class User {
     protected String prenom;
     @XmlElement(required = true)
     protected String password;
+    public User(){}
+    public User(String idUser, String login, String email, String nom, String prenom, String password) {
+        this.idUser = idUser;
+        this.login = login;
+        this.email = email;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.password = password;
+    }
+    public User(User user) {
+        this.idUser = user.idUser;
+        this.login = user.login;
+        this.email = user.email;
+        this.nom = user.nom;
+        this.prenom = user.prenom;
+        this.password = user.password;
+    }
 
     /**
      * Gets the value of the idUser property.

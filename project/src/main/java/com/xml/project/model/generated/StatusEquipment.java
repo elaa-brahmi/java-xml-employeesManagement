@@ -34,11 +34,11 @@ import javax.xml.bind.annotation.XmlType;
 public enum StatusEquipment {
 
     @XmlEnumValue("under maintenance")
-    UNDER_MAINTENANCE("under maintenance"),
+    uder_maintenance("under maintenance"),
     @XmlEnumValue("broken")
-    BROKEN("broken"),
+    broken("broken"),
     @XmlEnumValue("operable")
-    OPERABLE("operable");
+    operable("operable");
     private final String value;
 
     StatusEquipment(String v) {

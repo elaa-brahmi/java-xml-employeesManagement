@@ -10,11 +10,8 @@ package com.xml.project.model.generated;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
+
 import com.xml.project.model.generated.RoleEmployee;
 import com.xml.project.model.generated.*;
 
@@ -64,13 +61,13 @@ import com.xml.project.model.generated.*;
     "role",
     "idTache"
 })
+
 public class Employee
     extends User
 {
-
     protected int idEmployee;
     @XmlElement(required = true)
-    protected Employee.Skills skills;
+    protected String skills;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected StatusEmployee status;
@@ -82,6 +79,30 @@ public class Employee
     @XmlSchemaType(name = "string")
     protected RoleEmployee role;
     protected int idTache;
+    public Employee() {}
+    public Employee(String idUser, String login, String email, String nom, String prenom, String password,int idEmployee, String skills, StatusEmployee status, String speciality, String certification, RoleEmployee role, int idTache) {
+        super(idUser, login, email, nom, prenom, password);
+        this.idEmployee = idEmployee;
+        this.skills = skills;
+        this.status = status;
+        this.speciality = speciality;
+        this.certification = certification;
+        this.role = role;
+        this.idTache = idTache;
+    }
+
+    public Employee(Employee employee) {
+        super(employee.getIdUser(), employee.getLogin(), employee.getEmail(), employee.getNom(), employee.getPrenom(), employee.getPassword());
+        this.idEmployee = employee.getIdEmployee();
+        this.certification = employee.getCertification();
+        this.skills = employee.getSkills();
+        this.speciality = employee.getSpeciality();
+        this.role = employee.getRole();
+        this.status = employee.getStatus();
+    }
+    public Employee(User user) {
+        super(user); // Use the User copy constructor
+    }
 
     /**
      * Gets the value of the idEmployee property.
@@ -107,7 +128,7 @@ public class Employee
      *     {@link Employee.Skills }
      *     
      */
-    public Employee.Skills getSkills() {
+    public String getSkills() {
         return skills;
     }
 
@@ -119,7 +140,7 @@ public class Employee
      *     {@link Employee.Skills }
      *     
      */
-    public void setSkills(Employee.Skills value) {
+    public void setSkills(String value) {
         this.skills = value;
     }
 
@@ -291,6 +312,12 @@ public class Employee
                 skill = new ArrayList<String>();
             }
             return this.skill;
+        }
+        public void  setSkill(List<String> skill) {
+            if (skill == null) {
+                skill = new ArrayList<String>();
+            }
+             this.skill= skill;
         }
 
     }

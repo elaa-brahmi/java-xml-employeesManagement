@@ -2,6 +2,7 @@ package com.xml.project.service;
 
 import com.xml.project.model.generated.*;
 
+import javax.xml.bind.JAXBException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class ProjectService {
 
 
 
-    public List<Project> voirProjects() {// read from xml
+    public List<Project> voirProjects() throws JAXBException {// read from xml
         XMLService xmlService = new XMLService();
         Projects listeProjects = xmlService.unmarshalXML(projects, Projects.class);
         return (listeProjects != null && listeProjects.getProject() != null)
@@ -44,7 +45,7 @@ public class ProjectService {
 
     }
 
-    public void addProject(Project project) {
+    public void addProject(Project project) throws JAXBException {
         List<Project> listeproject=voirProjects();
         listeproject.add(project);
 
@@ -59,7 +60,7 @@ public class ProjectService {
 
     }
 
-    public Project findProjectById(int id) {
+    public Project findProjectById(int id) throws JAXBException {
         return voirProjects().stream()
                 .filter(t -> t.getIdProject() == id)
                 .findFirst()
@@ -67,7 +68,7 @@ public class ProjectService {
     }
 
 
-    public void deleteProject(int id) {
+    public void deleteProject(int id) throws JAXBException {
         List<Project> listeProjects = voirProjects();
         Project t = findProjectById(id);
         if (t != null) {
@@ -81,7 +82,7 @@ public class ProjectService {
 
 
 
-    public void updateStatusProject(int id, StatusProjectTache status) {
+    public void updateStatusProject(int id, StatusProjectTache status) throws JAXBException {
         if (status == null) {
             System.out.println("Cannot update project status: provided status is null.");
             return;

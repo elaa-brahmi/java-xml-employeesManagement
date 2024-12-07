@@ -33,9 +33,9 @@ import javax.xml.bind.annotation.XmlType;
 public enum RoleEmployee {
 
     @XmlEnumValue("employee")
-    EMPLOYEE("employee"),
+    employee("employee"),
     @XmlEnumValue("maintenance technician")
-    MAINTENANCE_TECHNICIAN("maintenance technician");
+    maintenance_technician("maintenance technician");
     private final String value;
 
     RoleEmployee(String v) {
