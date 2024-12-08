@@ -17,6 +17,10 @@ public class XMLService {
 
     public <T> void generateXMLFromObjects(T object, String outputPath) throws JAXBException { //write object to xml file
         try {
+            File file = new File(outputPath);
+            if (!file.exists()) {
+                throw new IllegalArgumentException("File not found: " + outputPath);
+            }
             JAXBContext context = JAXBContext.newInstance(object.getClass());
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -30,6 +34,19 @@ public class XMLService {
     public <T> T unmarshalXML(String inputPath, Class<T> clazz) throws JAXBException {//read from xml
         T object = null;
         try {
+            File file = new File(inputPath);
+            if (!file.exists() ) {
+                throw new IllegalArgumentException("File not found: " + inputPath);
+            }
+            if (file.length()==0) {
+                System.out.println("File is empty: " + inputPath);
+                try {
+                    return clazz.getDeclaredConstructor().newInstance(); // Creates a new instance of the class
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
             JAXBContext context = JAXBContext.newInstance(clazz);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             object = (T) unmarshaller.unmarshal(new File(inputPath));

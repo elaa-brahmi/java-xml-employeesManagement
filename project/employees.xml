@@ -54,7 +54,7 @@
         <password>password004</password>
         <idEmployee>4</idEmployee>
         <skills>Waste Management</skills>
-        <status>free</status>
+        <status>busy</status>
         <speciality>Sorting Specialist</speciality>
         <certification>Waste Management Certification</certification>
         <role>employee</role>

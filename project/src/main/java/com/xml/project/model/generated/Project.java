@@ -56,6 +56,13 @@ public class Project {
     protected StatusProjectTache status;
     @XmlElement(required = true)
     protected List<Tache> taches;
+    public Project(){}
+    public Project(int id,String name, StatusProjectTache status) {
+        this.idProject = id;
+        this.name = name;
+        this.status = status;
+        this.taches = new ArrayList<>(); // Initialize the taches list
+    }
 
     /**
      * Gets the value of the idProject property.

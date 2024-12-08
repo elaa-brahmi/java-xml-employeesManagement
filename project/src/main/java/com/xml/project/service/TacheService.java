@@ -40,18 +40,19 @@ public class TacheService {
 	 public void addTache(Tache tache) throws JAXBException {
 		 List<Tache> listeTaches=voirTaches();
 		 listeTaches.add(tache);
-		 
 		 saveTache(listeTaches);
 		 System.out.println("tache with id"+ tache.getIdTache()+ "is added");
 		 
 		 
 	 }
 	 
-	 public Tache findTacheById(int id) throws JAXBException {
+	 public List<Tache> findTachesByIdProjet(int id) throws JAXBException {
 		    return voirTaches().stream()
-		        .filter(t -> t.getIdTache() == id)
-		        .findFirst()
-		        .orElse(null);
+		        .filter(t -> t.getIdProject() == id).toList();
+
+		}
+		public Tache findTacheById(int id) throws JAXBException {
+			return voirTaches().stream().filter(t-> t.getIdTache() == id).findFirst().get();
 		}
 
 	 

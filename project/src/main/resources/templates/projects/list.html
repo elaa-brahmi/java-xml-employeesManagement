@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Project List</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Include your CSS file -->
+</head>
+<body>
+<h1>List of Projects</h1>
+
+<!-- Success Message -->
+<div th:if="${success}" class="alert alert-success">
+    <p th:text="${success}"></p>
+</div>
+
+<!-- Error Message -->
+<div th:if="${error}" class="alert alert-danger">
+    <p th:text="${error}"></p>
+</div>
+
+<!-- Projects Table -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Tasks</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="project : ${projects}">
+        <td th:text="${project.idProject}"></td>
+        <td th:text="${project.name}"></td>
+        <td th:text="${project.status}"></td>
+        <td>
+            <!-- Iterate over the list of tasks -->
+            <ul>
+                <li th:each="task : ${project.taches}" th:text="${task.name}"></li>
+            </ul>
+        </td>
+        <td>
+            <a th:href="@{/employees/edit/{id}/(id=${project.idProject})}">update</a>
+            <a th:href="@{/employees/deletee/{id}/(id=${project.idProject})}">delete</a>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/employees/new}">add a project</a>
+</body>
+</html>

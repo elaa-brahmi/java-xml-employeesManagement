@@ -45,6 +45,10 @@ public class Projects {
 
     @XmlElement(required = true)
     protected List<Project> project;
+    public Projects() {}
+    public Projects(List<Project> project) {
+        this.project = project;
+    }
 
     /**
      * Gets the value of the project property.

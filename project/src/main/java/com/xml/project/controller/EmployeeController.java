@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.xml.bind.JAXBException;
 import java.util.List;
@@ -30,10 +31,7 @@ public class EmployeeController {
         model.addAttribute("employees", employees); // Add the list of employees to the model
         return "employees/list"; // Return the Thymeleaf template (e.g., "list.html" in the "employees" folder)
     }
-    @GetMapping("/test")
-    public String test() {
-        return "employees/test";
-    }
+
 
     // Fetch a single employee by ID and return as an HTML view
     @GetMapping("/profile/{id}")
@@ -44,7 +42,7 @@ public class EmployeeController {
             return "employees/detail"; // Return the template (e.g., "detail.html")
         } else {
             model.addAttribute("error", "Employee not found");
-            return "employees/error"; // Return an error template
+            return "employees/list"; // Return an error template
         }
     }
 
@@ -57,14 +55,15 @@ public class EmployeeController {
 
     // Handle adding a new employee
     @PostMapping
-    public String addEmployee(@ModelAttribute Employee newEmployee, Model model) throws JAXBException {
+    public String addEmployee(@ModelAttribute Employee newEmployee, RedirectAttributes redirectAttributes) throws JAXBException {
         try {
             employeeService.addEmployee(newEmployee);
+            redirectAttributes.addFlashAttribute("success", "Employee added successfully!");
             return "redirect:/employees"; // Redirect to the list view after adding
         }
         catch (ReusedIdException e) {
-            model.addAttribute("error", e.getMessage());
-            return "employees/new"; // Show the form again with an error message
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/employees/new";
         }
         }
 
@@ -84,18 +83,20 @@ public class EmployeeController {
 
     // Handle updating an employee
     @PostMapping("/{id}")
-    public String updateEmployee(@PathVariable("id") int id, @ModelAttribute Employee updatedEmployee, Model model) throws JAXBException {
+    public String updateEmployee(@PathVariable("id") int id, @ModelAttribute Employee updatedEmployee,RedirectAttributes redirectAttributes) throws JAXBException {
         try {
             Employee employee = employeeService.updateEmployeeById(id, updatedEmployee);
             if (employee != null) {
+                redirectAttributes.addFlashAttribute("success", "Employee updated successfully!");
+
                 return "redirect:/employees"; // Redirect to the list view after updating
             } else {
-                model.addAttribute("error", "Employee not found");
-                return "employees/error"; // Return an error template
+                redirectAttributes.addFlashAttribute("error", "Employee not found");
+                return "redirect:/employees"; // Return an error template
             }
         } catch (ReusedIdException e) {
-            model.addAttribute("error", e.getMessage());
-            return "employees/edit"; // Show the edit form again with an error message
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/employees/" + id + "/edit"; // Redirect back to the edit form
         }
         }
 
@@ -103,18 +104,19 @@ public class EmployeeController {
 
     // Delete an employee by ID
     @GetMapping("/{id}/delete")
-    public String deleteEmployee(@PathVariable("id") int id, Model model) throws JAXBException {
+    public String deleteEmployee(@PathVariable("id") int id, RedirectAttributes redirectAttributes,Model model) throws JAXBException {
         try {
             boolean removed = employeeService.deleteEmployeeById(id);
             if (removed) {
+                redirectAttributes.addFlashAttribute("success", "Employee deleted successfully!");
                 return "redirect:/employees"; // Redirect to the list view after deleting
             } else {
                 model.addAttribute("error", "Employee not found");
-                return "employees/error"; // Return an error template
+                return "employees/list"; // Return an error template
             }
         } catch (Exception e) {
             model.addAttribute("error", "An error occurred while deleting the employee: " + e.getMessage());
-            return "employees/error"; // Return an error template
+            return "employees/list"; // Return an error template
         }
     }
 
