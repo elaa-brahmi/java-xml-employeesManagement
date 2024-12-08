@@ -231,6 +231,12 @@ public class Tache {
         }
         return this.employees;
     }
+    public void setEmployees(List<Employee> employees) {
+        if (employees == null) {
+            employees = new ArrayList<Employee>();
+        }
+         this.employees= employees;
+    }
 
     /**
      * Gets the value of the equipments property.
@@ -259,6 +265,12 @@ public class Tache {
             equipments = new ArrayList<Equipment>();
         }
         return this.equipments;
+    }
+    public void setEquipments(List<Equipment> equipments) {
+        if (equipments == null) {
+            equipments = new ArrayList<Equipment>();
+        }
+         this.equipments=equipments;
     }
 
 }

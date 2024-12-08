@@ -36,12 +36,12 @@
         <td>
             <!-- Iterate over the list of tasks -->
             <ul>
-                <li th:each="task : ${project.taches}" th:text="${task.name}"></li>
+                <li th:each="task : ${project.taches}" th:text="${task.description}"></li>
             </ul>
         </td>
         <td>
             <a th:href="@{/employees/edit/{id}/(id=${project.idProject})}">update</a>
-            <a th:href="@{/employees/deletee/{id}/(id=${project.idProject})}">delete</a>
+            <a th:href="@{/employees/delete/{id}/(id=${project.idProject})}">delete</a>
 
         </td>
     </tr>

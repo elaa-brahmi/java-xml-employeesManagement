@@ -86,10 +86,17 @@ public class ProjectController {
     @GetMapping("/delete/{id}")
     public String deleteProject(@PathVariable int id, Model model, RedirectAttributes redirectAttributes) {
         try {
-            projectService.deleteProject(id);
-            model.addAttribute("success", "Project deleted successfully!");
+            boolean removed=projectService.deleteProject(id);
+            if(removed) {
+                model.addAttribute("success", "Project deleted successfully!");
+            }
+            else{
+                model.addAttribute("error", "Project not found.");
+            }
+            return "redirect:/projects";
         } catch (JAXBException e) {
             model.addAttribute("error", "Error deleting project: " + e.getMessage());
+
         }
         model.addAttribute("projects", getProjectsSafe()); // Reload the list
         return "projects/list";
