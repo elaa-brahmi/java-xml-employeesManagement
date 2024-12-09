@@ -6,7 +6,7 @@
         <description>Implement feature X</description>
         <start_date>2024-12-01</start_date>
         <end_date>2024-12-10</end_date>
-        <idProject>101</idProject>
+        <idProject>1</idProject>
         <employees>
             <employee>
                 <id>1</id>
@@ -32,26 +32,5 @@
             </equipment>
         </equipments>
     </tache>
-    <tache>
-        <idTache>2</idTache>
-        <status>Completed</status>
-        <description>Prepare project documentation</description>
-        <start_date>2024-11-20</start_date>
-        <end_date>2024-11-25</end_date>
-        <idProject>102</idProject>
-        <employees>
-            <employee>
-                <id>3</id>
-                <name>Emily Davis</name>
-                <role>Writer</role>
-            </employee>
-        </employees>
-        <equipments>
-            <equipment>
-                <id>203</id>
-                <name>Printer</name>
-                <type>Office</type>
-            </equipment>
-        </equipments>
-    </tache>
+    
 </taches>

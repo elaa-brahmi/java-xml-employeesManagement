@@ -1,6 +1,7 @@
 package com.xml.project.controller;
 
 import com.xml.project.model.generated.*;
+import com.xml.project.service.EmployeeServiceImpl;
 import com.xml.project.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ public class ProjectController {
 
     @Autowired
     public ProjectService projectService;
+    public EmployeeServiceImpl employeeService;
 
     @GetMapping
     public String listProjects(Model model) {
@@ -30,8 +32,10 @@ public class ProjectController {
     }
 
     @GetMapping("/new")
-    public String showAddProjectForm(Model model) {
-        model.addAttribute("project", new Project());
+    public String showAddProjectForm(Model model) throws JAXBException {
+        model.addAttribute("project", new Project()); // or your project object
+        model.addAttribute("employees", employeeService.getAllEmployees());
+       model.addAttribute("equipments", EquipmentService.getAllEquipments());
         return "projects/new"; // Adjust this to the correct view name
     }
 

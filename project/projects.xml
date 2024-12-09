@@ -1,40 +1,17 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <projects>
-<project>
-<idProject>1</idProject>
-<name>sample project</name>
-<status>finished</status>
-<taches> <tache>
-        <idTache>1</idTache>
-        <status>In Progress</status>
-        <description>Implement feature X</description>
-        <start_date>2024-12-01</start_date>
-        <end_date>2024-12-10</end_date>
-        <idProject>101</idProject>
-        <employees>
-            <employee>
-                <id>1</id>
-                <name>John Doe</name>
-                <role>Developer</role>
-            </employee>
-            <employee>
-                <id>2</id>
-                <name>Jane Smith</name>
-                <role>Tester</role>
-            </employee>
-        </employees>
-        <equipments>
-            <equipment>
-                <id>201</id>
-                <name>Laptop</name>
-                <type>Electronics</type>
-            </equipment>
-            <equipment>
-                <id>202</id>
-                <name>Router</name>
-                <type>Networking</type>
-            </equipment>
-        </equipments>
-    </tache></taches>
-</project>
+    <project>
+        <idProject>1</idProject>
+        <name>sample project</name>
+        <status>finished</status>
+        <taches>
+            <idTache>0</idTache>
+            <idProject>0</idProject>
+        </taches>
+    </project>
+    <project>
+        <idProject>2</idProject>
+        <name>xml Project</name>
+        <status>unfinished</status>
+    </project>
 </projects>

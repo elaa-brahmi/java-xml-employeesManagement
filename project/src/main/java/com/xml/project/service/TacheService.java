@@ -99,5 +99,19 @@ public class TacheService {
 		 logger.warning("Tache with ID " + id + " not found");
 		}
 
+	public void updateStatusTache(int id,StatusProjectTache status) throws JAXBException {
+		List<Tache> listeTaches = voirTaches();
+		Tache t=findTacheById(id);
+				t.setStatus(status);
+				for(int i=0;i<listeTaches.size();i++) {
+					if (listeTaches.get(i).getIdTache() == id) {
+						listeTaches.set(id,t);
+					}
+				}
+				saveTache(listeTaches);
+				logger.info("Tache with ID " + id + " is updated");
+				return;
+	}
+
 
 }
