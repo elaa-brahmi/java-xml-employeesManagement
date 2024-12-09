@@ -1,0 +1,117 @@
+package com.xml.project.controller;
+
+
+
+import com.xml.project.model.generated.Equipment;
+import com.xml.project.model.generated.Equipments;
+import com.xml.project.model.generated.ReusedIdException;
+import com.xml.project.service.EquipmentService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.xml.bind.JAXBException;
+import java.util.List;
+
+@Controller
+@RequestMapping("/equipments")
+public class EquipmentController {
+
+    private final EquipmentService equipmentService ;
+
+    public EquipmentController(EquipmentService equipmentService) {
+        this.equipmentService = equipmentService;
+    }
+
+    @GetMapping
+    public String getAllEquipments(Model model) throws JAXBException {
+        List<Equipment> equipmentList = equipmentService.getAllEquipments();
+        model.addAttribute("equipments",equipmentList);
+        return "equipments/list";
+    }
+
+    @GetMapping("/equipment/{id}")
+    public String getEquipmentById(@PathVariable("id") int id,Model model ) throws JAXBException {
+        Equipment equipment = equipmentService.getEquipmentById(id);
+        if (equipment != null) {
+            model.addAttribute(equipment);
+            return "equipments/detail";
+        }else {
+            model.addAttribute("error","Equipment not found");
+            return "equipments/list";
+        }
+    }
+
+    @GetMapping("/new")
+    public String showAddEquipmentForm(Model model){
+        model.addAttribute("equipment",new Equipment());
+        return "equipments/new";
+    }
+
+    @PostMapping
+    public String addEquipment(@ModelAttribute Equipment equipment, RedirectAttributes redirectAttributes) {
+        try {
+            equipmentService.addEquipment(equipment);
+            redirectAttributes.addFlashAttribute("success","equipment added succcessfully");
+            return "redirect:/equipments";
+        }catch (ReusedIdException e){
+            redirectAttributes.addFlashAttribute("error",e.getMessage());
+            return "redirect:/equipments/new";
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @GetMapping("/{id}/edit")
+    public String showUpdateForm(@PathVariable("id") int id , Model model) throws JAXBException {
+        Equipment equipment = equipmentService.getEquipmentById(id);
+        if (equipment != null){
+            model.addAttribute("equipment",equipment);
+            return "equipments/edit" ;
+        }else {
+            model.addAttribute("error","Equipment not found !");
+            return "equipments/error";
+        }
+
+    }
+
+    @PostMapping("/{id}")
+    public String updateEquipment (@PathVariable("id") int id , @ModelAttribute Equipment updatedEquipment ,RedirectAttributes redirectAttributes){
+        try{
+            Equipment equipment = equipmentService.updateEquipment(id,updatedEquipment);
+            if (equipment != null){
+                redirectAttributes.addFlashAttribute("success","Equipment updated successfully ! ");
+            }else {
+                redirectAttributes.addFlashAttribute("error","Employee not found");
+            }
+            return "redirect:/equipments";
+        }catch (ReusedIdException e){
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/equipments/" + id + "/edit";
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @GetMapping("/{id}/delete")
+    public String deleteEquipment(@PathVariable("id") int id, RedirectAttributes redirectAttributes,Model model) throws JAXBException {
+        try {
+            boolean removed = equipmentService.deleteEquipmentById(id);
+            if (removed) {
+                redirectAttributes.addFlashAttribute("success", "Equipment deleted successfully!");
+                return "redirect:/equipments"; // Redirect to the list view after deleting
+            } else {
+                model.addAttribute("error", "Equipment not found");
+                return "equipment/list"; // Return an error template
+            }
+        } catch (Exception e) {
+            model.addAttribute("error", "An error occurred while deleting the employee: " + e.getMessage());
+            return "equipment/list"; // Return an error template
+        }
+    }
+
+
+}
+
