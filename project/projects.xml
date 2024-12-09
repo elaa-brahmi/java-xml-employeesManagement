@@ -1,17 +1,40 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <projects>
-    <project>
-        <idProject>1</idProject>
-        <name>sample project</name>
+<project>
+<idProject>1</idProject>
+<name>sample project</name>
+<status>finished</status>
+<taches> 
+<tache>
+        <idTache>1</idTache>
         <status>finished</status>
-        <taches>
-            <idTache>0</idTache>
-            <idProject>0</idProject>
-        </taches>
-    </project>
-    <project>
-        <idProject>2</idProject>
-        <name>xml Project</name>
-        <status>unfinished</status>
-    </project>
+        <description>Implement feature X</description>
+        <start_date>2024-12-01</start_date>
+        <end_date>2024-12-10</end_date>
+        <idProject>1</idProject>
+        <employees>
+            <employee>
+                <idEmployee>1</idEmployee>
+                <skills>Teamwork</skills>
+                <status>free</status>
+		<speciality>sorting</speciality>
+		<certification>Certified rubbish sorter</certification>
+		<role>employee</role>
+		<idTache>1</idTache>
+            </employee>
+                   </employees>
+        <equipments>
+            <equipment>
+                <idEquipment>1</idEquipment>
+                <name>Compactor</name>
+                <type>Heavy Machinery</type>
+		<quantity>22</quantity>
+		<status>operable</status>
+		<category>Waste Management</category>
+		<idTache>1</idTache>
+		
+            </equipment>
+                    </equipments>
+    </tache></taches>
+</project>
 </projects>

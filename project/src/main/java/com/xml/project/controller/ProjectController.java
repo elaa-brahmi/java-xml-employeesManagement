@@ -2,6 +2,7 @@ package com.xml.project.controller;
 
 import com.xml.project.model.generated.*;
 import com.xml.project.service.EmployeeServiceImpl;
+import com.xml.project.service.EquipmentServiceImpl;
 import com.xml.project.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ public class ProjectController {
     @Autowired
     public ProjectService projectService;
     public EmployeeServiceImpl employeeService;
+    public EquipmentServiceImpl equipmentService;
 
     @GetMapping
     public String listProjects(Model model) {
@@ -35,7 +37,7 @@ public class ProjectController {
     public String showAddProjectForm(Model model) throws JAXBException {
         model.addAttribute("project", new Project()); // or your project object
         model.addAttribute("employees", employeeService.getAllEmployees());
-       model.addAttribute("equipments", EquipmentService.getAllEquipments());
+       model.addAttribute("equipments", equipmentService.getAllEquipments());
         return "projects/new"; // Adjust this to the correct view name
     }
 
@@ -56,7 +58,7 @@ public class ProjectController {
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditProjectForm(@PathVariable int id, Model model) {
+    public String showEditProjectForm(@PathVariable("id") int id, Model model) {
         try {
             Project project = projectService.findProjectById(id);
             if (project != null) {
@@ -74,7 +76,7 @@ public class ProjectController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editProject(@PathVariable int id, @ModelAttribute Project project, RedirectAttributes redirectAttributes) {
+    public String editProject(@PathVariable("id") int id, @ModelAttribute Project project, RedirectAttributes redirectAttributes) {
         try {
             projectService.updateStatusProject(id,project.getStatus()); // Remove the old project
             redirectAttributes.addFlashAttribute("success", "project updated successfully!");
@@ -88,7 +90,7 @@ public class ProjectController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteProject(@PathVariable int id, Model model, RedirectAttributes redirectAttributes) {
+    public String deleteProject(@PathVariable("id") int id, Model model, RedirectAttributes redirectAttributes) {
         try {
             boolean removed=projectService.deleteProject(id);
             if(removed) {
@@ -107,7 +109,7 @@ public class ProjectController {
     }
 
     @PostMapping("/updateStatus/{id}")
-    public String updateStatus(@PathVariable int id, @RequestParam StatusProjectTache status, Model model) {
+    public String updateStatus(@PathVariable("id") int id, @RequestParam StatusProjectTache status, Model model) {
         try {
             projectService.updateStatusProject(id, status);
             model.addAttribute("success", "Project status updated successfully!");

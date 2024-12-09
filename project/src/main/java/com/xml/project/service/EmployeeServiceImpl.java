@@ -52,6 +52,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getAllEmployees() throws JAXBException {
+        if(parseXMLEmployees() == null){
+            System.out.println("No employees");
+        }
         return parseXMLEmployees();
     }
 

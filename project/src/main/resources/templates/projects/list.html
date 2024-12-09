@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Project List</title>
-    <link rel="stylesheet" href="/css/styles.css"> <!-- Include your CSS file -->
+
 </head>
 <body>
 <h1>List of Projects</h1>
@@ -26,6 +26,7 @@
         <th>Name</th>
         <th>Status</th>
         <th>Tasks</th>
+        <th>actions</th>
     </tr>
     </thead>
     <tbody>
@@ -35,19 +36,28 @@
         <td th:text="${project.status}"></td>
         <td>
             <!-- Iterate over the list of tasks -->
+            <!-- Check if tasks exist -->
             <ul>
-                <li th:each="task : ${project.taches}" th:text="${task.description}"></li>
-                <li th:each="task : ${project.taches}" th:text="${task.getEmployees()}"></li>
+                <li th:each="task : ${project.taches}">
+                    <strong>Description:</strong> <span th:text="${task.description}"></span><br>
+                    <strong>Status:</strong> <span th:text="${task.status}"></span><br>
+                    <strong>Start Date:</strong> <span th:text="${task.startDate}"></span><br>
+                    <strong>End Date:</strong> <span th:text="${task.endDate}"></span><br>
+                    <strong>Employees:</strong> <span th:text="${task.employees}"></span><br>
+                    <strong>Equipments:</strong> <span th:text="${task.equipments}"></span>
+                </li>
             </ul>
+            <!-- Message if no tasks are available -->
+            <p th:if="${project.taches == null || project.taches.isEmpty()}">No tasks available</p>
         </td>
         <td>
-            <a th:href="@{/employees/edit/{id}/(id=${project.idProject})}">update</a>
-            <a th:href="@{/employees/delete/{id}/(id=${project.idProject})}">delete</a>
+            <a th:href="@{/projects/edit/{id}/(id=${project.idProject})}">update</a>
+            <a th:href="@{/projects/delete/{id}/(id=${project.idProject})}">delete</a>
 
         </td>
     </tr>
     </tbody>
 </table>
-<a th:href="@{/employees/new}">add a project</a>
+<a th:href="@{/projects/new}">add a project</a>
 </body>
 </html>
