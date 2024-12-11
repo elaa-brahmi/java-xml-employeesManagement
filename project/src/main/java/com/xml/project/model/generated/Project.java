@@ -10,11 +10,8 @@ package com.xml.project.model.generated;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
+
 import com.xml.project.model.generated.*;
 
 /**
@@ -54,9 +51,12 @@ public class Project {
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected StatusProjectTache status;
-    @XmlElement(required = true)
+    @XmlElementWrapper(name = "taches")
+    @XmlElement(name="tache",required = true)
     protected List<Tache> taches;
-    public Project(){}
+    public Project(){
+        this.taches = new ArrayList<>();
+    }
     public Project(int id,String name, StatusProjectTache status) {
         this.idProject = id;
         this.name = name;
@@ -155,6 +155,9 @@ public class Project {
             taches = new ArrayList<Tache>();
         }
         return this.taches;
+    }
+    public void setTaches(List<Tache> taches) {
+        this.taches = taches;
     }
 
 }

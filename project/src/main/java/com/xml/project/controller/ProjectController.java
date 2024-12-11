@@ -7,20 +7,29 @@ import com.xml.project.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.xml.bind.JAXBException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/projects")
 public class ProjectController {
-
-    @Autowired
     public ProjectService projectService;
     public EmployeeServiceImpl employeeService;
     public EquipmentServiceImpl equipmentService;
+
+    @Autowired
+    public ProjectController(EmployeeServiceImpl employeeService, EquipmentServiceImpl equipmentService, ProjectService projectService) {
+        this.employeeService = employeeService;
+        this.equipmentService = equipmentService;
+        this.projectService = projectService;
+    }
+
+
 
     @GetMapping
     public String listProjects(Model model) {
@@ -35,28 +44,55 @@ public class ProjectController {
 
     @GetMapping("/new")
     public String showAddProjectForm(Model model) throws JAXBException {
-        model.addAttribute("project", new Project()); // or your project object
+        Project project = new Project();
+        Tache tache = new Tache();
+        tache.setEmployees(new ArrayList<>());
+        tache.setEquipments(new ArrayList<>());
+        project.getTaches().add(tache);
+        model.addAttribute("project", project); // or your project object
         model.addAttribute("employees", employeeService.getAllEmployees());
        model.addAttribute("equipments", equipmentService.getAllEquipments());
         return "projects/new"; // Adjust this to the correct view name
     }
-
     @PostMapping
-    public String addProject(@ModelAttribute Project project, RedirectAttributes redirectAttributes) {
-        try {
-            projectService.addProject(project);
-            redirectAttributes.addFlashAttribute("success", "project added successfully!");
-            return "redirect:/projects"; // Redirect to the list view after adding
-        } catch (ReusedIdException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-            return "redirect:/projects/new";
-        } catch (JAXBException e) {
-            redirectAttributes.addFlashAttribute("error", "Error adding project: " + e.getMessage());
+    public String addProject(@ModelAttribute Project project, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            result.getAllErrors().forEach(error -> {
+                System.out.println("Validation error: " + error.getDefaultMessage());
+                System.out.println("Validation error value: " + result);
+
+            });
+            redirectAttributes.addFlashAttribute("error", "Invalid form data. Please fix the errors and try again.");
             return "redirect:/projects/new";
         }
-
+        try {
+            System.out.println("Validation error: i am here ");
+            if (project.getTaches().isEmpty() ||
+                    project.getTaches().get(0).getEmployees().isEmpty() ||
+                    project.getTaches().get(0).getEquipments().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Please select an employee and equipment.");
+                return "redirect:/projects/new";
+            }
+            Tache tache = project.getTaches().get(0);
+            Employee employee = employeeService.findEmployeeById(tache.getEmployees().get(0).getIdEmployee());
+            Equipment equipment = equipmentService.getEquipmentById(tache.getEquipments().get(0).getIdEquipment());
+                if (employee == null || equipment == null) {
+                    redirectAttributes.addFlashAttribute("error", "Invalid employee or equipment selected.");
+                    return "redirect:/projects/new";
+                }
+            tache.getEmployees().add(employee);
+            tache.getEquipments().add(equipment);
+            projectService.addProject(project);
+            redirectAttributes.addFlashAttribute("success", "project added successfully!");
+                return "redirect:/projects/list"; // Redirect to the list view after adding
+        } catch (ReusedIdException e) {
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                return "redirect:/projects/new";
+        } catch (JAXBException e) {
+                redirectAttributes.addFlashAttribute("error", "Error adding project: " + e.getMessage());
+                return "redirect:/projects/new";
+        }
     }
-
     @GetMapping("/edit/{id}")
     public String showEditProjectForm(@PathVariable("id") int id, Model model) {
         try {

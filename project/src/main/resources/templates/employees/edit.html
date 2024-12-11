@@ -22,8 +22,8 @@
 
   <form th:action="@{|/employees/${employee.idEmployee}|}" th:object="${employee}" method="post">
     <!-- Hidden ID Field -->
-    <input type="text" th:field="*{idEmployee}" />
-    <input type="text" th:field="*{idUser}" />
+    <input type="hidden" th:field="*{idEmployee}" />
+    <input type="hidden" th:field="*{idUser}" />
     <!-- login -->
     <div class="mb-3">
       <label for="login" class="form-label">login</label>

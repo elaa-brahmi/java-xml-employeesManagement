@@ -6,9 +6,10 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.xml.project.model.generated.*;
+import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
-
+@Service
 public class TacheService {
 
 
@@ -76,28 +77,31 @@ public class TacheService {
 		}
 
 	 
-	 public void deleteTache(int id) throws JAXBException {
+	 public boolean deleteTache(int id) throws JAXBException {
 		    List<Tache> listeTaches = voirTaches();
+			boolean removed=false;
 		    Tache t = findTacheById(id);
-		    if (t != null && listeTaches.remove(t)) {
+		    if (t != null  ) {
+				removed=listeTaches.remove(t);
 		        saveTache(listeTaches);
 		        System.out.println("Tache with ID " + id + " is deleted");
 		    } else {
 		        System.out.println("Tache with ID " + id + " not found");
 		    }
+			return removed;
 		}
-	 public void updateTache(int id,Tache updatedTache) throws JAXBException {
+	 public Tache updateTache(int id,Tache updatedTache) throws JAXBException {
 		    List<Tache> listeTaches = voirTaches();
 		    for (int i = 0; i < listeTaches.size(); i++) {
 		        if (listeTaches.get(i).getIdTache() == id) {
 		            listeTaches.set(i, updatedTache);
 		            saveTache(listeTaches);
 					logger.info("Tache with ID " + id + " is updated");
-		            return;
+
 		        }
 		    }
-		 logger.warning("Tache with ID " + id + " not found");
-		}
+		 return updatedTache;
+	}
 
 	public void updateStatusTache(int id,StatusProjectTache status) throws JAXBException {
 		List<Tache> listeTaches = voirTaches();

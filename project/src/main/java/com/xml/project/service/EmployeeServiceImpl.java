@@ -57,6 +57,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return parseXMLEmployees();
     }
+    public void updateStatusEmployee(int id,StatusEmployee status) throws JAXBException {
+        List<Employee> employees = getAllEmployees();
+        for(Employee emp : employees){
+            if(emp.getIdEmployee() == id){
+                emp.setStatus(status);
+            }
+        }
+        saveToXML(employees);
+
+    }
 
     @Override
     public boolean deleteEmployeeById(int id) throws JAXBException {

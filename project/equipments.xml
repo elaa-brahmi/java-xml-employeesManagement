@@ -2,26 +2,29 @@
 <equipments>
     <equipment>
         <category>Waste Management</category>
-        <id_equipment>1</id_equipment>
+        <idEquipment>1</idEquipment>
         <name>Compactor</name>
         <quantity>22</quantity>
-        <status>Operational</status>
+        <status>operable</status>
         <type>Heavy Machinery</type>
+	<idTache>0</idTache>
     </equipment>
     <equipment>
         <category>Waste Sorting</category>
-        <id_equipment>2</id_equipment>
+        <idEquipment>2</idEquipment>
         <name>Sorting Conveyor</name>
         <quantity>10</quantity>
-        <status>In Service</status>
+        <status>broken</status>
         <type>Automatic Machine</type>
+	<idTache>0</idTache>
     </equipment>
     <equipment>
         <category>Equipment Maintenance</category>
-        <id_equipment>3</id_equipment>
+        <idEquipment>3</idEquipment>
         <name>Shredder</name>
         <quantity>10</quantity>
-        <status>Under Maintenance</status>
+        <status>under maintenance</status>
         <type>Mechanical Machine</type>
+	<idTache>0</idTache>
     </equipment>
 </equipments>

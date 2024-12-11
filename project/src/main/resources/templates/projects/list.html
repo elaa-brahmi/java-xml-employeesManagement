@@ -43,8 +43,26 @@
                     <strong>Status:</strong> <span th:text="${task.status}"></span><br>
                     <strong>Start Date:</strong> <span th:text="${task.startDate}"></span><br>
                     <strong>End Date:</strong> <span th:text="${task.endDate}"></span><br>
-                    <strong>Employees:</strong> <span th:text="${task.employees}"></span><br>
-                    <strong>Equipments:</strong> <span th:text="${task.equipments}"></span>
+                   <strong>Employees:</strong>
+
+                        <div th:each="employee : ${task.employees}">Employee
+                            <ul>
+                           <li> Name: <span th:text="${employee.nom}"></span><br></li>
+                           <li> Surname: <span th:text="${employee.prenom}"></span><br></li>
+                            <li>Certification: <span th:text="${employee.certification}"></span><br></li>
+                           <li> Speciality: <span th:text="${employee.speciality}"></span></li>
+                            </ul>
+                        </div>
+                    <strong>Equipments:</strong>
+                    <div th:each="equipment : ${task.equipments}">Equipments
+                        <ul>
+                            <li> Name: <span th:text="${equipment.name}"></span><br></li>
+                            <li> status: <span th:text="${equipment.status}"></span><br></li>
+                            <li>category: <span th:text="${equipment.category}"></span><br></li>
+                        </ul>
+                    </div>
+
+
                 </li>
             </ul>
             <!-- Message if no tasks are available -->

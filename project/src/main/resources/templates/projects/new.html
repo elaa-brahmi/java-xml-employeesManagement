@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Add New Project</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> <!-- Bootstrap CSS -->
-    <script src="../../static/script.js"></script>
+    <script src="/script.js"></script>
 </head>
 <body class="container mt-5">
 <h1 class="mb-4">Add a New Project</h1>
@@ -40,48 +40,52 @@
         <!-- Task Assignment Template -->
         <div class="taskAssignment" id="taskAssignmentTemplate" style="'display: none;'">
             <label for="id">task ID:</label>
-            <input type="text" name="tasks[0].idTache" placeholder="Task id" required>
+            <input type="text" th:field="*{taches[0].idTache}" name="tasks[0].idTache" placeholder="Task id" required><br>
 
             <label for="description">Task Description:</label>
-            <input type="text" name="tasks[0].description" placeholder="Task description" required>
+            <input type="text" th:field="*{taches[0].description}" name="tasks[0].description" placeholder="Task description" required><br>
 
             <label for="startDate">Start date:</label>
-            <input type="text" name="tasks[0].start_date" placeholder="start_date" required>
+            <input type="text" th:field="*{taches[0].startDate}" name="tasks[0].start_date" placeholder="start_date" required><br>
 
             <label for="endDate">End date:</label>
-            <input type="text" name="tasks[0].end_date" placeholder="end_date" required>
+            <input type="text" th:field="*{taches[0].endDate}" name="tasks[0].end_date" placeholder="end_date" required><br>
+            <input type="hidden" th:field="*{taches[0].idProject}" th:value="*{idProject}">
+                <label for="status" class="form-label">Task Status:</label>
+                <select id="statust" class="form-select" th:field="*{taches[0].status}" required>
+                    <option value="" disabled selected>Select Status</option>
+                    <option value="finished">finished</option>
+                    <option value="unfinished">unfinished</option>
 
-            <label for="status">task status:</label>
-            <input type="text" name="tasks[0].status" placeholder="status" required>
+                </select>
 
             <!-- Employee Selection -->
             <label for="employeeFilter">Filter Employees by Speciality:</label>
-            <input type="text" class="employeeFilter" placeholder="Enter speciality..." oninput="filterEmployees(this)">
-            <select name="tasks[0].employees[]" class="employeeSelect" multiple>
-                <th:block th:each="employee : ${employees}">
-                    <option th:value="${employee.idEmployee}"
+<!--            <input type="text" class="employeeFilter" placeholder="Enter speciality..." oninput="filterEmployees(this)"><br>-->
+            <select onchange="selectit(this)" name="tasks[0].employees[]" th:field="*{taches[0].employees[0]}" class="employeeSelect" required>
+                <th:block th:each="employee : ${employees}" >
+                    <option th:value="${employee}"
                             th:text="${employee.nom} + ' (' + ${employee.speciality} + ')'"
-                            th:data-speciality="${employee.speciality}">
+                            data-speciality="${employee.speciality}" >
 
                     </option>
                 </th:block>
             </select>
 
             <!-- Equipment Selection -->
-            <label for="equipmentFilter">Filter Equipment by Name:</label>
-            <input type="text" class="equipmentFilter" placeholder="Enter equipment name..." oninput="filterEquipments(this)">
-            <select name="tasks[0].equipments[]" class="equipmentSelect" multiple>
+            <br><label for="equipmentFilter">Filter Equipment by Name:</label>
+<!--            <input type="text" class="equipmentFilter" placeholder="Enter equipment name..." oninput="filterEquipments(this)"><br>-->
+            <select onchange="selectit(this)" name="tasks[0].equipments[]" th:field="*{taches[0].equipments[0]}" class="equipmentSelect" required>
                 <th:block th:each="equipment : ${equipments}">
-                    <option th:value="${equipment.idEquipment}"
+                    <option th:value="${equipment}"
                             th:text="${equipment.name}"
-                            th:data-name="${equipment.name}"></option>
+                            th:data-name="${equipment.name}" ></option>
                 </th:block>
             </select>
-            <button type="button" class="removeTask btn btn-danger" onclick="removeTask(this)">Remove Task</button>
+            <br>  <button type="button" class="removeTask btn btn-danger" onclick="removeTask(this)">Remove Task</button><br>
         </div>
     </div>
-    <!-- Add Task Button -->
-    <button type="button" class="btn btn-success" id="addTaskButton" onclick="addTask()">Add Task</button>
+
     <!-- Submit Project -->
     <button type="submit" class="btn btn-primary">Add Project</button>
 </form>

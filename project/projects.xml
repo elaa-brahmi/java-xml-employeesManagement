@@ -1,40 +1,46 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <projects>
-<project>
-<idProject>1</idProject>
-<name>sample project</name>
-<status>finished</status>
-<taches> 
-<tache>
-        <idTache>1</idTache>
+    <project>
+        <idProject>5</idProject>
+        <name>sorting</name>
         <status>finished</status>
-        <description>Implement feature X</description>
-        <start_date>2024-12-01</start_date>
-        <end_date>2024-12-10</end_date>
-        <idProject>1</idProject>
-        <employees>
-            <employee>
-                <idEmployee>1</idEmployee>
-                <skills>Teamwork</skills>
-                <status>free</status>
-		<speciality>sorting</speciality>
-		<certification>Certified rubbish sorter</certification>
-		<role>employee</role>
-		<idTache>1</idTache>
-            </employee>
-                   </employees>
-        <equipments>
-            <equipment>
-                <idEquipment>1</idEquipment>
-                <name>Compactor</name>
-                <type>Heavy Machinery</type>
-		<quantity>22</quantity>
-		<status>operable</status>
-		<category>Waste Management</category>
-		<idTache>1</idTache>
-		
-            </equipment>
-                    </equipments>
-    </tache></taches>
-</project>
+        <taches>
+            <tache>
+                <idTache>5</idTache>
+                <status>finished</status>
+                <description>waste sorting</description>
+                <start_date>2024-12-10+01:00</start_date>
+                <end_date>2024-12-15+01:00</end_date>
+                <idProject>5</idProject>
+                <employees>
+                    <employee>
+                        <idUser>user001</idUser>
+                        <login>morgan</login>
+                        <email>morgan@gmail.com</email>
+                        <nom>Ella</nom>
+                        <prenom>Morgan</prenom>
+                        <password>password016</password>
+                        <idEmployee>2</idEmployee>
+                        <skills>Logistics</skills>
+                        <status>busy</status>
+                        <speciality>Logistics Coordinator</speciality>
+                        <certification>Logistics Management</certification>
+                        <role>employee</role>
+                        <idTache>0</idTache>
+                    </employee>
+                </employees>
+                <equipments>
+                    <equipment>
+                        <idEquipment>2</idEquipment>
+                        <name>Sorting Conveyor</name>
+                        <type>Automatic Machine</type>
+                        <quantity>10</quantity>
+                        <status>broken</status>
+                        <category>Waste Sorting</category>
+                        <idTache>0</idTache>
+                    </equipment>
+                </equipments>
+            </tache>
+        </taches>
+    </project>
 </projects>

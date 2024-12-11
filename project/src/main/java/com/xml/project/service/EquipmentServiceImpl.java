@@ -7,7 +7,10 @@ import com.xml.project.model.generated.ReusedIdException;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 
 public class EquipmentServiceImpl implements EquipmentService{
@@ -20,7 +23,9 @@ public class EquipmentServiceImpl implements EquipmentService{
 
         Equipments equipments = xmlService.unmarshalXML(path , Equipments.class);
 
-        return equipments.getEquipment();
+        List<Equipment> equipmentList =equipments.getEquipment();
+
+        return new ArrayList<>(equipmentList);
 
     }
 

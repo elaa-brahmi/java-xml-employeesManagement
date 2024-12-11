@@ -276,50 +276,50 @@ public class Employee
      * 
      * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "skill"
-    })
-    public static class Skills {
+//    @XmlAccessorType(XmlAccessType.FIELD)
+//    @XmlType(name = "", propOrder = {
+//        "skill"
+//    })
+//    public static class Skills {
+//
+//        @XmlElement(required = true)
+//        protected List<String> skill;
+//
+//        /**
+//         * Gets the value of the skill property.
+//         *
+//         * <p>
+//         * This accessor method returns a reference to the live list,
+//         * not a snapshot. Therefore any modification you make to the
+//         * returned list will be present inside the JAXB object.
+//         * This is why there is not a <CODE>set</CODE> method for the skill property.
+//         *
+//         * <p>
+//         * For example, to add a new item, do as follows:
+//         * <pre>
+//         *    getSkill().add(newItem);
+//         * </pre>
+//         *
+//         *
+//         * <p>
+//         * Objects of the following type(s) are allowed in the list
+//         * {@link String }
+//         *
+//         *
+//         */
+//        public List<String> getSkill() {
+//            if (skill == null) {
+//                skill = new ArrayList<String>();
+//            }
+//            return this.skill;
+//        }
+//        public void  setSkill(List<String> skill) {
+//            if (skill == null) {
+//                skill = new ArrayList<String>();
+//            }
+//             this.skill= skill;
+//        }
 
-        @XmlElement(required = true)
-        protected List<String> skill;
-
-        /**
-         * Gets the value of the skill property.
-         * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the skill property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getSkill().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link String }
-         * 
-         * 
-         */
-        public List<String> getSkill() {
-            if (skill == null) {
-                skill = new ArrayList<String>();
-            }
-            return this.skill;
-        }
-        public void  setSkill(List<String> skill) {
-            if (skill == null) {
-                skill = new ArrayList<String>();
-            }
-             this.skill= skill;
-        }
-
-    }
+//    }
 
 }

@@ -38,7 +38,6 @@ public class ProjectService {
         List<Project> projects = voirProjects();
         // Check if the ID exists in employees or users
         return projects.stream().anyMatch(p->p.getIdProject() == id);}
-
     public void addProject(Project project) throws JAXBException {
         List<Project> listeproject = voirProjects();
         if (isIdReusedProject(project.getIdProject())) {
@@ -53,6 +52,11 @@ public class ProjectService {
                 tacheService.addTache(tache);
                 logger.info("Taches for project ID " + project.getIdProject() + " are added to tache.xml");
             }
+        }
+        if(project.getStatus()==StatusProjectTache.valueOf("finished")){
+            int id=project.getTaches().get(0).getEmployees().get(0).getIdEmployee();
+            EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+            employeeService.updateStatusEmployee(id,StatusEmployee.valueOf("free"));
         }
         logger.info("Project with ID " + project.getIdProject() + " is added");
     }
@@ -86,15 +90,35 @@ public class ProjectService {
             logger.warning("Cannot update project status: provided status is null.");
             return;
         }
-        List<Project> listeprojets = voirProjects();
-        for (int i = 0; i < listeprojets.size(); i++) {
-            if (listeprojets.get(i).getIdProject() == id) {
-                listeprojets.get(i).setStatus(status);
-                saveProject(listeprojets);
-                logger.info("Status of project with ID " + id + " is updated.");
-                return;
+        if(status==StatusProjectTache.fromValue("finished")){
+            List<Project> listeprojets = voirProjects();
+            for (int i = 0; i < listeprojets.size(); i++) {
+                if (listeprojets.get(i).getIdProject() == id) {
+                    listeprojets.get(i).getTaches().get(0).setStatus(StatusProjectTache.fromValue("finished"));
+                    listeprojets.get(i).setStatus(status);
+                    saveProject(listeprojets);
+                    logger.info("Status of project with ID " + id + " is updated.");
+                    return;
+                }
             }
+
+
         }
+
+        logger.warning("Project with ID " + id + " not found.");
+    }
+    public void updateProject(int id, Project project) throws JAXBException {
+
+
+            List<Project> listeprojets = voirProjects();
+            for (int i = 0; i < listeprojets.size(); i++) {
+                if (listeprojets.get(i).getIdProject() == id) {
+                    listeprojets.set(i, project);
+                    saveProject(listeprojets);
+                    logger.info("project with ID " + id + " is updated.");
+                    return;
+                }
+            }
         logger.warning("Project with ID " + id + " not found.");
     }
 }

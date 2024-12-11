@@ -124,9 +124,9 @@ public class ObjectFactory {
      * Create an instance of {@link Employee.Skills }
      * 
      */
-    public Employee.Skills createEmployeeSkills() {
-        return new Employee.Skills();
-    }
+//    public Employee.Skills createEmployeeSkills() {
+//        return new Employee.Skills();
+//    }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}

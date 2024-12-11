@@ -10,11 +10,7 @@ package com.xml.project.model.generated;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 import com.xml.project.model.generated.*;
 
@@ -56,7 +52,6 @@ import com.xml.project.model.generated.*;
     "equipments"
 })
 public class Tache {
-
     protected int idTache;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
@@ -65,15 +60,17 @@ public class Tache {
     protected String description;
     @XmlElement(name = "start_date", required = true)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar startDate;
+    protected String startDate;
     @XmlElement(name = "end_date", required = true)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar endDate;
+    protected String endDate;
     protected int idProject;
-    @XmlElement(required = true)
-    protected List<Employee> employees;
-    @XmlElement(required = true)
-    protected List<Equipment> equipments;
+    @XmlElementWrapper(name = "employees")
+    @XmlElement(name="employee",required = true)
+    protected List<Employee> employees = new ArrayList<>();
+    @XmlElementWrapper(name = "equipments")
+    @XmlElement(required = true,name="equipment")
+    protected List<Equipment> equipments = new ArrayList<>();
 
     /**
      * Gets the value of the idTache property.
@@ -147,7 +144,7 @@ public class Tache {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
@@ -159,7 +156,7 @@ public class Tache {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setStartDate(XMLGregorianCalendar value) {
+    public void setStartDate(String value) {
         this.startDate = value;
     }
 
@@ -171,7 +168,7 @@ public class Tache {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
@@ -183,7 +180,7 @@ public class Tache {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setEndDate(XMLGregorianCalendar value) {
+    public void setEndDate(String value) {
         this.endDate = value;
     }
 
@@ -236,6 +233,7 @@ public class Tache {
             employees = new ArrayList<Employee>();
         }
          this.employees= employees;
+
     }
 
     /**

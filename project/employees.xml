@@ -114,7 +114,7 @@
         <password>password008</password>
         <idEmployee>8</idEmployee>
         <skills>Diagnostic Tools</skills>
-        <status>free</status>
+        <status>busy</status>
         <speciality>Mechanical Technician</speciality>
         <certification>Machine Diagnostics Certification</certification>
         <role>maintenance technician</role>
