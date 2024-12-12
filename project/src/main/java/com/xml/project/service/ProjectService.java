@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 @Service
 public class ProjectService {
     public ProjectService() {}
-    private final String projects = "C:\\pfaspringboot\\project\\projects.xml";
+    private final String projects = "project/projects.xml";
     private final XMLService xmlService = new XMLService();
     private static final Logger logger = Logger.getLogger(TacheService.class.getName());
 
@@ -63,24 +63,24 @@ public class ProjectService {
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Project with ID " + id + " not found"));
     }
-    public boolean deleteProject(int id) throws JAXBException {
-        List<Project> listeProjects = voirProjects();
-        Project t = findProjectById(id);
-        TacheService tacheService = new TacheService();
-       List<Tache> liste= tacheService.findTachesByIdProjet(id);
-       for(Tache tache : liste) {
-           tacheService.deleteTache(tache.getIdTache());
-       }
-       boolean removed=listeProjects.remove(t);
-        if(removed) {
-            saveProject(listeProjects);
-            logger.info("Project with ID " + id + " is deleted.");
-        }
-        else{
-            logger.warning("Project with ID " + id + " not found.");
-        }
-        return removed;
-    }
+//    public boolean deleteProject(int id) throws JAXBException {
+//        List<Project> listeProjects = voirProjects();
+//        Project t = findProjectById(id);
+//        TacheService tacheService = new TacheService();
+//       List<Tache> liste= tacheService.findTachesByIdProjet(id);
+//       for(Tache tache : liste) {
+//           tacheService.deleteTacheById(tache.getIdTache());
+//       }
+//       boolean removed=listeProjects.remove(t);
+//        if(removed) {
+//            saveProject(listeProjects);
+//            logger.info("Project with ID " + id + " is deleted.");
+//        }
+//        else{
+//            logger.warning("Project with ID " + id + " not found.");
+//        }
+//        return removed;
+//    }
     public void updateStatusProject(int id, StatusProjectTache status) throws JAXBException {
         if (status == null) {
             logger.warning("Cannot update project status: provided status is null.");

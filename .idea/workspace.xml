@@ -5,22 +5,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24ddfdc1-ac16-408f-a493-fa395475cab0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/controller/EquipmentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/service/EquipmentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/service/EquipmentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/error.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/new.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pfaspringboot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pfaspringboot.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/main/resources/templates/taches/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/main/resources/templates/taches/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/main/resources/templates/taches/new.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/schema/schema.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/employees/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/employees/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/employees/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/employees/new.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/equipments/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/equipments/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/equipments/error.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/equipments/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/equipments/new.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/greeting.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/projects/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/projects/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/projects/new.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/equipments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/equipments.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/projects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/projects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/main/java/com/xml/project/ProjectApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/ProjectApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/main/java/com/xml/project/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/controller/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/java/com/xml/project/controller/EquipmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/controller/EquipmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/java/com/xml/project/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/controller/ProjectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/java/com/xml/project/controller/TacheController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/controller/TacheController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/java/com/xml/project/model/generated/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/model/generated/Equipment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/java/com/xml/project/model/generated/StatusEquipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/model/generated/StatusEquipment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/java/com/xml/project/service/EquipmentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/service/EquipmentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/java/com/xml/project/service/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/service/ProjectService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/java/com/xml/project/service/TacheService.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/java/com/xml/project/service/TacheService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/resources/templates/equipments/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/resources/templates/projects/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/resources/templates/projects/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/tache.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/tache.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xml/project/ProjectApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xml/project/ProjectApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xml/project/controller/EquipmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xml/project/controller/EquipmentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xml/project/controller/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xml/project/controller/ProjectController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xml/project/controller/TacheController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xml/project/controller/TacheController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xml/project/model/generated/Equipment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xml/project/model/generated/Equipment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xml/project/model/generated/StatusEquipment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xml/project/model/generated/StatusEquipment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xml/project/service/EquipmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xml/project/service/EquipmentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xml/project/service/EquipmentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xml/project/service/EquipmentServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xml/project/service/ProjectService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xml/project/service/ProjectService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xml/project/service/TacheService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xml/project/service/TacheService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/test2.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +95,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Desktop/pfa-xml/project&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Desktop/pfa-xml&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
@@ -69,18 +105,6 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="QodanaHighlightedReportService">
-    <option name="localRunNotPublishedPersistedInfo">
-      <LocalReportPersistedInfo>
-        <option name="path" value="C:\Users\ASUS\AppData\Local\Temp\qodana_output\qodana.sarif.json" />
-        <option name="reportGuid" value="b26a6c16-c5f5-496c-9d61-65430e990937" />
-        <option name="reportName" value="pfa-xml/qodana/2024-12-08" />
-      </LocalReportPersistedInfo>
-    </option>
-  </component>
-  <component name="QodanaIsSelectedPersistenceService">
-    <option name="selectedOrLoading" value="true" />
-  </component>
   <component name="QodanaReportsService">
     <option name="descriptions">
       <ReportDescription localRun="true" path="C:\Users\ASUS\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="b26a6c16-c5f5-496c-9d61-65430e990937" reportId="pfa-xml/qodana/2024-12-08" />

@@ -38,7 +38,7 @@ public class EquipmentController {
             model.addAttribute(equipment);
             return "equipments/detail";
         }else {
-            model.addAttribute("error","Equipment not found");
+            model.addAttribute("error","Equipment not found !");
             return "equipments/list";
         }
     }
@@ -50,18 +50,14 @@ public class EquipmentController {
     }
 
     @PostMapping
-    public String addEquipment(@ModelAttribute Equipment equipment, RedirectAttributes redirectAttributes) {
-        try {
-            equipmentService.addEquipment(equipment);
-            redirectAttributes.addFlashAttribute("success","equipment added succcessfully");
+    public String addEquipment(@ModelAttribute Equipment equipment, RedirectAttributes redirectAttributes) throws JAXBException {
+        if (equipmentService.getEquipmentById(equipment.getIdEquipment()) != null) {
+            redirectAttributes.addFlashAttribute("error", "An equipment with the same ID already exists");
             return "redirect:/equipments";
-        }catch (ReusedIdException e){
-            redirectAttributes.addFlashAttribute("error",e.getMessage());
-            return "redirect:/equipments/new";
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
         }
-
+        equipmentService.addEquipment(equipment);
+            redirectAttributes.addFlashAttribute("success","Equipment added successfully");
+            return "redirect:/equipments";
     }
 
     @GetMapping("/{id}/edit")
@@ -72,14 +68,14 @@ public class EquipmentController {
             return "equipments/edit" ;
         }else {
             model.addAttribute("error","Equipment not found !");
-            return "equipments/error";
+            return "redirect:/equipments";
         }
 
     }
 
     @PostMapping("/{id}")
-    public String updateEquipment (@PathVariable("id") int id , @ModelAttribute Equipment updatedEquipment ,RedirectAttributes redirectAttributes){
-        try{
+    public String updateEquipment (@PathVariable("id") int id , @ModelAttribute Equipment updatedEquipment ,RedirectAttributes redirectAttributes) throws JAXBException {
+
             Equipment equipment = equipmentService.updateEquipment(id,updatedEquipment);
             if (equipment != null){
                 redirectAttributes.addFlashAttribute("success","Equipment updated successfully ! ");
@@ -87,29 +83,19 @@ public class EquipmentController {
                 redirectAttributes.addFlashAttribute("error","Employee not found");
             }
             return "redirect:/equipments";
-        }catch (ReusedIdException e){
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-            return "redirect:/equipments/" + id + "/edit";
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @GetMapping("/{id}/delete")
     public String deleteEquipment(@PathVariable("id") int id, RedirectAttributes redirectAttributes,Model model) throws JAXBException {
-        try {
             boolean removed = equipmentService.deleteEquipmentById(id);
             if (removed) {
                 redirectAttributes.addFlashAttribute("success", "Equipment deleted successfully!");
-                return "redirect:/equipments"; // Redirect to the list view after deleting
+                return "redirect:/equipments";
             } else {
                 model.addAttribute("error", "Equipment not found");
-                return "equipment/list"; // Return an error template
+                return "equipment/list";
             }
-        } catch (Exception e) {
-            model.addAttribute("error", "An error occurred while deleting the employee: " + e.getMessage());
-            return "equipment/list"; // Return an error template
-        }
     }
 
 

@@ -51,7 +51,7 @@ import com.xml.project.model.generated.*;
     "idTache"
 })
 public class Equipment {
-
+    @XmlElement(name = "id_equipment")
     protected int idEquipment;
     @XmlElement(required = true)
     protected String name;

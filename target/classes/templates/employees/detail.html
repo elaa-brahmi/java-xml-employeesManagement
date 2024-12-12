@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- profile of employee nadhmou w 7otou fi form de façon matnajemch tbadel les valeurs taahom juste trahom barka w a9samhom sur 2 bech nab9ach nscrolli louta kima aamelt fi page new.html-->
+<tr th:each="employee : ${employee}">
+    <td th:text="${employee.idEmployee}">1</td>
+    <td th:text="${employee.skills}">Skill Placeholder</td>
+    <td th:text="${employee.speciality}">Speciality Placeholder</td>
+    <td th:text="${employee.role}">Role Placeholder</td>
+    <td th:text="${employee.certification}">Role Placeholder</td>
+    <td th:text="${employee.email}">Role Placeholder</td>
+    <td th:text="${employee.status}">Role Placeholder</td>
+    <td th:text="${employee.prenom}">Role Placeholder</td>
+    <td th:text="${employee.nom}">Role Placeholder</td>
+
+    <td>
+        <a th:href="@{/employees/{id}(id=${employee.idEmployee})}">update</a>
+    </td>
+</tr>
+
+
+</body>
+</html>

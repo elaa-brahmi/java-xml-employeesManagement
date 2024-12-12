@@ -35,7 +35,7 @@ public class ProjectController {
     public String showAddProjectForm(Model model) throws JAXBException {
         model.addAttribute("project", new Project()); // or your project object
         model.addAttribute("employees", employeeService.getAllEmployees());
-       model.addAttribute("equipments", EquipmentService.getAllEquipments());
+        //model.addAttribute("equipments", EquipmentService.getAllEquipments());
         return "projects/new"; // Adjust this to the correct view name
     }
 
@@ -87,24 +87,24 @@ public class ProjectController {
 
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteProject(@PathVariable int id, Model model, RedirectAttributes redirectAttributes) {
-        try {
-            boolean removed=projectService.deleteProject(id);
-            if(removed) {
-                model.addAttribute("success", "Project deleted successfully!");
-            }
-            else{
-                model.addAttribute("error", "Project not found.");
-            }
-            return "redirect:/projects";
-        } catch (JAXBException e) {
-            model.addAttribute("error", "Error deleting project: " + e.getMessage());
-
-        }
-        model.addAttribute("projects", getProjectsSafe()); // Reload the list
-        return "projects/list";
-    }
+//    @GetMapping("/delete/{id}")
+//    public String deleteProject(@PathVariable int id, Model model, RedirectAttributes redirectAttributes) {
+//        try {
+//            boolean removed=projectService.deleteProject(id);
+//            if(removed) {
+//                model.addAttribute("success", "Project deleted successfully!");
+//            }
+//            else{
+//                model.addAttribute("error", "Project not found.");
+//            }
+//            return "redirect:/projects";
+//        } catch (JAXBException e) {
+//            model.addAttribute("error", "Error deleting project: " + e.getMessage());
+//
+//        }
+//        model.addAttribute("projects", getProjectsSafe()); // Reload the list
+//        return "projects/list";
+//    }
 
     @PostMapping("/updateStatus/{id}")
     public String updateStatus(@PathVariable int id, @RequestParam StatusProjectTache status, Model model) {

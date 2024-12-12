@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>list</title>
+    <title>List</title>
 </head>
 <body>
-<h1>Liste de tous les equipments</h1>
+<h1>Liste de tous les taches</h1>
 
 <div th:if="${error}" style="color: red; font-weight: bold;">
     <p th:text="${error}"></p>
@@ -17,17 +17,19 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Quantity</th>
+        <th>Description</th>
+        <th>Date Début</th>
+        <th>Date Fin</th>
         <th>Status</th>
-        <th>Category</th>
+        <th>Employée Assignée</th>
+        <th>Equipment Assignée</th>
+        <th>Action</th>
 
 
     </tr>
     </thead>
     <tbody>
-    <tr th:each="equipment : ${equipments}">
+    <tr th:each="tache : ${equipments}">
         <td th:text="${equipment.idEquipment}"></td>
         <td th:text="${equipment.name}"></td>
         <td th:text="${equipment.type}"></td>
@@ -41,7 +43,7 @@
         </td>
     </tr>
     </tbody>
-    </table>
-    <a href="/equipments/new">Add New Equipment</a>
+</table>
+<a href="/equipments/new">Add New Equipment</a>
 </body>
 </html>

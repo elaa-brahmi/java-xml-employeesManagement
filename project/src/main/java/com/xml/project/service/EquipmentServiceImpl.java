@@ -7,7 +7,10 @@ import com.xml.project.model.generated.ReusedIdException;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 
 public class EquipmentServiceImpl implements EquipmentService{
@@ -20,7 +23,9 @@ public class EquipmentServiceImpl implements EquipmentService{
 
         Equipments equipments = xmlService.unmarshalXML(path , Equipments.class);
 
-        return equipments.getEquipment();
+        List<Equipment> equipmentList =equipments.getEquipment();
+
+        return new ArrayList<>(equipmentList);
 
     }
 
@@ -32,24 +37,12 @@ public class EquipmentServiceImpl implements EquipmentService{
 
     @Override
     public void addEquipment(Equipment newEquipment) throws JAXBException {
-        if(isIdReused(newEquipment.getIdEquipment())){
-            throw new ReusedIdException("This ID is reused ! Try with another ID");
-        }
+
         List<Equipment> equipmentList = getAllEquipments();
         equipmentList.add(newEquipment);
         saveToXmlEquipments(equipmentList);
     }
 
-
-    public boolean isIdReused(int id) throws JAXBException {
-        List<Equipment> equipmentList = getAllEquipments();
-        for (Equipment equipment : equipmentList){
-            if (equipment.getIdEquipment()==id){
-                return true ;
-            }
-        }
-        return false ;
-    }
     public void saveToXmlEquipments(List<Equipment> equipmentList) throws JAXBException {
         Equipments equipments = new Equipments();
         equipments.setEquipment(equipmentList);
@@ -61,9 +54,6 @@ public class EquipmentServiceImpl implements EquipmentService{
     public Equipment updateEquipment(int id, Equipment updatedEquipment) throws JAXBException {
         List<Equipment> equipmentList = getAllEquipments();
         Equipment eq =null;
-        if (updatedEquipment==null){
-            throw new IllegalArgumentException("Invalid equipment data provided for update.");
-        }
         for (Equipment equipment:equipmentList){
             if (equipment.getIdEquipment()==id){
                 equipment.setIdEquipment(updatedEquipment.getIdEquipment());
@@ -92,7 +82,7 @@ public class EquipmentServiceImpl implements EquipmentService{
         }
         String eqId = String.valueOf(eq.getIdEquipment());
 
-        boolean removedEquipment = equipmentList.removeIf(eq1-> String.valueOf(eq.getIdEquipment()).equals(eqId)) ;
+        boolean removedEquipment = equipmentList.removeIf(eq1-> String.valueOf(eq1.getIdEquipment()).equals(eqId)) ;
         if (removedEquipment){
             saveToXmlEquipments(equipmentList);
             return true;
