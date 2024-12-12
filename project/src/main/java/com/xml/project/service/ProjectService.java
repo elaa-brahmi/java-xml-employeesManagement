@@ -8,9 +8,6 @@ import javax.xml.bind.JAXBException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-
-
 @Service
 public class ProjectService {
     public ProjectService() {}
@@ -43,13 +40,16 @@ public class ProjectService {
         if (isIdReusedProject(project.getIdProject())) {
             throw new ReusedIdException("This ID is reused, try with another ID");
         }
-        listeproject.add(project);
-        saveProject(listeproject);
         TacheService tacheService = new TacheService();
-        if (project.getTaches() != null) {
-            for (Tache tache : project.getTaches()) {
-                tache.setIdProject(project.getIdProject()); // Ensure the task is linked to the correct project
+        List<Tache> taches=project.getTaches();
+        if (taches != null) {
+            for (Tache tache : taches) {
+                tache.setIdProject(project.getIdProject());
+                tache.getEquipments().get(0).setIdTache(tache.getIdTache());
+                tache.getEmployees().get(0).setIdTache(tache.getIdTache());// Ensure the task is linked to the correct project
                 tacheService.addTache(tache);
+                listeproject.add(project);
+                saveProject(listeproject);
                 logger.info("Taches for project ID " + project.getIdProject() + " are added to tache.xml");
             }
         }
@@ -86,30 +86,37 @@ public class ProjectService {
         return removed;
     }
     public void updateStatusProject(int id, StatusProjectTache status) throws JAXBException {
-        if (status == null) {
-            logger.warning("Cannot update project status: provided status is null.");
-            return;
-        }
-        if(status==StatusProjectTache.fromValue("finished")){
+//        if (status == null) {
+//            logger.warning("Cannot update project status: provided status is null.");
+//            return;
+//        }
+        Project project = findProjectById(id);
+        TacheService tacheService = new TacheService();
+        List<Tache> taches=tacheService.voirTaches();
             List<Project> listeprojets = voirProjects();
             for (int i = 0; i < listeprojets.size(); i++) {
                 if (listeprojets.get(i).getIdProject() == id) {
-                    listeprojets.get(i).getTaches().get(0).setStatus(StatusProjectTache.fromValue("finished"));
+                    if(status==StatusProjectTache.fromValue("finished")){
+                        listeprojets.get(i).getTaches().get(0).setStatus(StatusProjectTache.fromValue("finished"));
+                       for (Tache tache : taches) {
+                           if(tache.getIdTache()==project.getTaches().get(0).getIdTache()){
+                               tache.setStatus(StatusProjectTache.fromValue("finished"));
+                               tacheService.saveTache(taches);
+                               break;
+                           }
+                       }
+                    }
                     listeprojets.get(i).setStatus(status);
                     saveProject(listeprojets);
                     logger.info("Status of project with ID " + id + " is updated.");
                     return;
+                    }
                 }
             }
 
 
-        }
 
-        logger.warning("Project with ID " + id + " not found.");
-    }
     public void updateProject(int id, Project project) throws JAXBException {
-
-
             List<Project> listeprojets = voirProjects();
             for (int i = 0; i < listeprojets.size(); i++) {
                 if (listeprojets.get(i).getIdProject() == id) {

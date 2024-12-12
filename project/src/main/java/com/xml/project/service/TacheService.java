@@ -46,6 +46,32 @@ public class TacheService {
 		 if (idExists) {
 			 throw new ReusedIdException("Tache with ID " + tache.getIdTache() + " already exists.");
 		 }
+		tache.getEmployees().get(0).setIdTache(tache.getIdTache());
+		 tache.getEquipments().get(0).setIdTache(tache.getIdTache());
+
+
+		 EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+		 List<Employee> employees=employeeService.getAllEmployees();
+		 for (Employee employee : employees) {
+			 if (employee.getIdEmployee() == tache.getEmployees().get(0).getIdEmployee()) {
+				 employee.setIdTache(tache.getIdTache());
+				 employee.setStatus(StatusEmployee.valueOf("busy"));
+				 employeeService.saveToXML(employees);
+
+			 }
+		 }
+		 EquipmentServiceImpl equipmentService = new EquipmentServiceImpl();
+		 List<Equipment> equipments=equipmentService.getAllEquipments();
+		 for (Equipment eq : equipments) {
+			 if (eq.getIdEquipment() == tache.getEquipments().get(0).getIdEquipment()) {
+				 eq.setIdTache(tache.getIdTache());
+				 equipmentService.saveToXmlEquipments(equipments);
+
+			 }
+		 }
+
+
+
 		 listeTaches.add(tache);
 		 saveTache(listeTaches);
 		 logger.info("Tache with ID " + tache.getIdTache() + " is added.");
@@ -79,14 +105,34 @@ public class TacheService {
 	 
 	 public boolean deleteTache(int id) throws JAXBException {
 		    List<Tache> listeTaches = voirTaches();
-			boolean removed=false;
+			boolean removed;
 		    Tache t = findTacheById(id);
-		    if (t != null  ) {
-				removed=listeTaches.remove(t);
+			System.out.println("Tache  " + t + " is found.");
+//			EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+//			List<Employee> listeEmp=employeeService.getAllEmployees();
+//			for (Employee employee : listeEmp) {
+//				if (employee.getIdTache() == id) {
+//					employee.setIdTache(0);
+//					employeeService.saveToXML(listeEmp);
+//				}
+//				break;
+//			}
+//			EquipmentServiceImpl equipmentService = new EquipmentServiceImpl();
+//			List<Equipment> listeEqu=equipmentService.getAllEquipments();
+//			for (Equipment eq : listeEqu) {
+//				if (eq.getIdTache() == id) {
+//					eq.setIdTache(0);
+//					equipmentService.saveToXmlEquipments(listeEqu);
+//				}
+//				break;
+//			}
+		    if (listeTaches.remove(t) ) {
+				removed = true;
 		        saveTache(listeTaches);
-		        System.out.println("Tache with ID " + id + " is deleted");
+				System.out.println("Tache with ID " + id + " is deleted.");
 		    } else {
 		        System.out.println("Tache with ID " + id + " not found");
+				removed=false;
 		    }
 			return removed;
 		}
@@ -109,7 +155,7 @@ public class TacheService {
 				t.setStatus(status);
 				for(int i=0;i<listeTaches.size();i++) {
 					if (listeTaches.get(i).getIdTache() == id) {
-						listeTaches.set(id,t);
+						listeTaches.set(i,t);
 					}
 				}
 				saveTache(listeTaches);

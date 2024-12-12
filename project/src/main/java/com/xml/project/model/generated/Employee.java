@@ -10,8 +10,11 @@ package com.xml.project.model.generated;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.xml.bind.annotation.*;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xml.project.model.generated.RoleEmployee;
 import com.xml.project.model.generated.*;
 
@@ -65,17 +68,17 @@ import com.xml.project.model.generated.*;
 public class Employee
     extends User
 {
-    protected int idEmployee;
-    @XmlElement(required = true)
+    public int idEmployee;
+    @XmlElement()
     protected String skills;
-    @XmlElement(required = true)
+    @XmlElement()
     @XmlSchemaType(name = "string")
     protected StatusEmployee status;
-    @XmlElement(required = true)
+    @XmlElement()
     protected String speciality;
-    @XmlElement(required = true)
+    @XmlElement()
     protected String certification;
-    @XmlElement(required = true)
+    @XmlElement()
     @XmlSchemaType(name = "string")
     protected RoleEmployee role;
     protected int idTache;
@@ -227,6 +230,20 @@ public class Employee
     public RoleEmployee getRole() {
         return role;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Employee employee = (Employee) obj;
+        return idEmployee==employee.idEmployee; // Compare unique identifier
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idEmployee); // Use the unique identifier for hashCode
+    }
+
+
 
     /**
      * Sets the value of the role property.

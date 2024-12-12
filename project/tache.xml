@@ -1,39 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taches>
     <tache>
-        <idTache>5</idTache>
+        <idTache>10</idTache>
         <status>finished</status>
-        <description>waste sorting</description>
-        <start_date>2024-12-10+01:00</start_date>
-        <end_date>2024-12-15+01:00</end_date>
-        <idProject>5</idProject>
+        <description>Integrate IoT sensors to monitor recycling bin levels in real time.</description>
+        <start_date>2024-01-12</start_date>
+        <end_date>2024-05-07</end_date>
+        <idProject>3</idProject>
         <employees>
             <employee>
-                <idUser>user001</idUser>
-                <login>morgan</login>
-                <email>morgan@gmail.com</email>
-                <nom>Ella</nom>
-                <prenom>Morgan</prenom>
-                <password>password016</password>
-                <idEmployee>2</idEmployee>
-                <skills>Logistics</skills>
-                <status>busy</status>
-                <speciality>Logistics Coordinator</speciality>
-                <certification>Logistics Management</certification>
-                <role>employee</role>
-                <idTache>0</idTache>
+                <idUser>user007</idUser>
+                <login>michael007</login>
+                <email>michael@gmail.com</email>
+                <nom>Michael</nom>
+                <prenom>Martinez</prenom>
+                <password>password007</password>
+                <idEmployee>7</idEmployee>
+                <skills>Preventive Maintenance</skills>
+                <status>free</status>
+                <speciality>Electrical Technician</speciality>
+                <certification>Preventive Maintenance Certification</certification>
+                <role>maintenance technician</role>
+                <idTache>10</idTache>
             </employee>
         </employees>
         <equipments>
-            <equipments>
+            <equipment>
                 <idEquipment>2</idEquipment>
                 <name>Sorting Conveyor</name>
                 <type>Automatic Machine</type>
                 <quantity>10</quantity>
                 <status>broken</status>
                 <category>Waste Sorting</category>
-                <idTache>0</idTache>
-            </equipments>
+                <idTache>10</idTache>
+            </equipment>
+        </equipments>
+    </tache>
+    <tache>
+        <idTache>1</idTache>
+        <status>finished</status>
+        <description>Collect recyclable waste from households in the community.</description>
+        <start_date>2024-02-07</start_date>
+        <end_date>2024-05-07</end_date>
+        <idProject>1</idProject>
+        <employees>
+            <employee>
+                <idUser>user004</idUser>
+                <login>david004</login>
+                <email>david@gmail.com</email>
+                <nom>David</nom>
+                <prenom>Johnson</prenom>
+                <password>password004</password>
+                <idEmployee>4</idEmployee>
+                <skills>Waste Management</skills>
+                <status>busy</status>
+                <speciality>Sorting Specialist</speciality>
+                <certification>Waste Management Certification</certification>
+                <role>employee</role>
+                <idTache>1</idTache>
+            </employee>
+        </employees>
+        <equipments>
+            <equipment>
+                <idEquipment>2</idEquipment>
+                <name>Sorting Conveyor</name>
+                <type>Automatic Machine</type>
+                <quantity>10</quantity>
+                <status>broken</status>
+                <category>Waste Sorting</category>
+                <idTache>1</idTache>
+            </equipment>
         </equipments>
     </tache>
 </taches>

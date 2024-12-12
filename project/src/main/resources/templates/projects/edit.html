@@ -19,7 +19,7 @@
 </div>
 
 <!-- Edit Project Form -->
-<form th:action="@{/projects/edit/{id}(id=${project.idProject})}" th:object="${project}" method="post">
+<form th:action="@{/updateStatus/{id}(id=${project.idProject})}" th:object="${project}" method="post">
   <div class="mb-3">
     <label for="idProject" class="form-label">Project ID:</label>
     <input type="number" id="idProject" class="form-control" th:field="*{idProject}" readonly>
@@ -32,7 +32,7 @@
     <label for="status" class="form-label">Status:</label>
     <select id="status" class="form-select" th:field="*{status}" required>
       <option value="" disabled>Select Status</option>
-      <option th:value="'finished''" th:text="'finished'" th:selected="${project.status == 'finished'}"></option>
+      <option th:value="'finished'" th:text="'finished'" th:selected="${project.status == 'finished'}"></option>
       <option th:value="'unfinished'" th:text="'unfinished'" th:selected="${project.status == 'unfinished'}"></option>
     </select>
   </div>

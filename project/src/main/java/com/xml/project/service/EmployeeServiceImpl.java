@@ -166,7 +166,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println("New Employee with id" + newEmployee.getIdEmployee() + " and User with id" + newEmployee.getIdUser() + " added successfully.");
     }
 
-    private void saveToXML(List<Employee> employees) {
+    public void saveToXML(List<Employee> employees) {
         try {
             Employees wrapper = new Employees();
             wrapper.setEmployee(employees);

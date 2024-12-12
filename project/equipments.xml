@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <equipments>
     <equipment>
-        <category>Waste Management</category>
         <idEquipment>1</idEquipment>
         <name>Compactor</name>
+        <type>Heavy Machinery</type>
         <quantity>22</quantity>
         <status>operable</status>
-        <type>Heavy Machinery</type>
-	<idTache>0</idTache>
+        <category>Waste Management</category>
+        <idTache>0</idTache>
     </equipment>
     <equipment>
-        <category>Waste Sorting</category>
         <idEquipment>2</idEquipment>
         <name>Sorting Conveyor</name>
+        <type>Automatic Machine</type>
         <quantity>10</quantity>
         <status>broken</status>
-        <type>Automatic Machine</type>
-	<idTache>0</idTache>
+        <category>Waste Sorting</category>
+        <idTache>1</idTache>
     </equipment>
     <equipment>
-        <category>Equipment Maintenance</category>
         <idEquipment>3</idEquipment>
         <name>Shredder</name>
+        <type>Mechanical Machine</type>
         <quantity>10</quantity>
         <status>under maintenance</status>
-        <type>Mechanical Machine</type>
-	<idTache>0</idTache>
+        <category>Equipment Maintenance</category>
+        <idTache>0</idTache>
     </equipment>
 </equipments>

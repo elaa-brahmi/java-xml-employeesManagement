@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.xml.project.model.generated.*;
 import com.xml.project.model.generated.Tache;
@@ -50,22 +51,34 @@ public class TacheController {
             return "redirect:/taches"; // Redirect if the task doesn't exist
         }
     }
-    @PostMapping("/{id}")
-    public String updateTache(@PathVariable("id") int id, @ModelAttribute Tache updatedTache, RedirectAttributes redirectAttributes) throws JAXBException {
-        tacheService.updateTache(id, updatedTache);
-        if (updatedTache != null) {
-            redirectAttributes.addFlashAttribute("success", "task updated successfully!");
-            return "redirect:/taches"; // Redirect to the list view after updating
-        } else {
-            redirectAttributes.addFlashAttribute("error", "task not found");
-            return "redirect:/taches"; // Return an error template
+    @PostMapping("edit/{id}")
+    public String updateTache(@PathVariable("id") int id, @ModelAttribute Tache updatedTache, BindingResult result, RedirectAttributes redirectAttributes) throws JAXBException {
+        System.out.println("Controller method reached for ID: " + id);
+        if (result.hasErrors()) {
+            result.getAllErrors().forEach(error -> {
+                System.out.println("Validation error: " + error.getDefaultMessage());
+                System.out.println("Validation error value: " + result);
+            });
+            redirectAttributes.addFlashAttribute("index", "Invalid form data. Please fix the errors and try again.");
+            return "redirect:/tache/updateForm";
+        }
+        else {
+            System.out.println("heloooo");
+            if (updatedTache != null) {
+                tacheService.updateStatusTache(id, updatedTache.getStatus());
+                redirectAttributes.addFlashAttribute("success", "task updated successfully!");
+                return "redirect:/taches"; // Redirect to the list view after updating
+            } else {
+                redirectAttributes.addFlashAttribute("error", "task not found");
+                return "redirect:/taches"; // Return an error template
+            }
         }
     }
     // Add a new task
     @GetMapping("/new")
     public String showAddTaskForm(Model model) {
-        model.addAttribute("tache", new Tache()); // Bind a new empty task object
-        return "taches/new"; // Return the "new.html" form
+            model.addAttribute("tache", new Tache()); // Bind a new empty task object
+        return "tache/new"; // Return the "new.html" form
     }
 
     // Handle adding a new employee
@@ -94,7 +107,7 @@ public class TacheController {
             return "redirect:/taches"; // Redirect to the list view after deleting
         } else {
             model.addAttribute("error", "Employee not found");
-            return "taches/list"; // Return an error template
+            return "tache/list"; // Return an error template
         }
     }
 }

@@ -58,7 +58,7 @@
         <speciality>Sorting Specialist</speciality>
         <certification>Waste Management Certification</certification>
         <role>employee</role>
-        <idTache>0</idTache>
+        <idTache>1</idTache>
     </employee>
     <employee>
         <idUser>user005</idUser>
@@ -99,7 +99,7 @@
         <password>password007</password>
         <idEmployee>7</idEmployee>
         <skills>Preventive Maintenance</skills>
-        <status>busy</status>
+        <status>free</status>
         <speciality>Electrical Technician</speciality>
         <certification>Preventive Maintenance Certification</certification>
         <role>maintenance technician</role>
@@ -118,7 +118,7 @@
         <speciality>Mechanical Technician</speciality>
         <certification>Machine Diagnostics Certification</certification>
         <role>maintenance technician</role>
-        <idTache>0</idTache>
+        <idTache>6</idTache>
     </employee>
     <employee>
         <idUser>user009</idUser>
@@ -144,7 +144,7 @@
         <password>password010</password>
         <idEmployee>10</idEmployee>
         <skills>Electrical Repairs</skills>
-        <status>busy</status>
+        <status>free</status>
         <speciality>Equipment Technician</speciality>
         <certification>Mechanical Repairs Certification</certification>
         <role>maintenance technician</role>

@@ -6,10 +6,17 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div th:if="${success}" class="alert alert-success">
+  <p th:text="${success}"></p>
+</div>
+<div th:if="${error}" class="alert alert-danger">
+  <p th:text="${error}"></p>
+</div>
+
 <div class="container">
   <h1 class="mt-4">List of tasks</h1>
-  <table class="table table-bordered mt-4">
-    <thead>
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
     <tr>
       <th>ID task</th>
       <th>Status</th>
@@ -40,25 +47,24 @@
         </div>
       </td>
       <td>
-        <strong>Equipments:</strong>
-        <div th:each="equipment : ${tache.equipments}">Equipments
+        <div th:each="equipment : ${tache?.equipments}">Equipments
           <ul>
-            <li> Name: <span th:text="${equipment.name}"></span><br></li>
-            <li> status: <span th:text="${equipment.status}"></span><br></li>
-            <li>category: <span th:text="${equipment.category}"></span><br></li>
+            <li> Name: <span th:text="${equipment?.name}"></span><br></li>
+            <li> status: <span th:text="${equipment?.status}"></span><br></li>
+            <li>category: <span th:text="${equipment?.category}"></span><br></li>
           </ul>
         </div>
       </td>
       <td>
-        <a th:href="@{/taches/edit/{id}/(id=${tache.idTache})}">update</a>
-        <a th:href="@{/taches/delete/{id}/(id=${tache.idTache})}">delete</a>
+        <a th:href="@{/taches/edit/{id}(id=${tache.idTache})}">update</a>
+        <a th:href="@{/taches/delete/{id}(id=${tache.idTache})}">delete</a>
 
       </td>
 
     </tr>
     </tbody>
   </table>
-  <a th:href="@{/taches/new}">add a project</a>
+  <a th:href="@{/taches/new}">add a task</a>
 
 </div>
 </body>

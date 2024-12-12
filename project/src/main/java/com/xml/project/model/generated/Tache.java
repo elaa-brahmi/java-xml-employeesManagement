@@ -10,8 +10,12 @@ package com.xml.project.model.generated;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xml.project.model.generated.*;
 
 /**
@@ -53,23 +57,23 @@ import com.xml.project.model.generated.*;
 })
 public class Tache {
     protected int idTache;
-    @XmlElement(required = true)
+    @XmlElement()
     @XmlSchemaType(name = "string")
     protected StatusProjectTache status;
-    @XmlElement(required = true)
+    @XmlElement()
     protected String description;
-    @XmlElement(name = "start_date", required = true)
+    @XmlElement(name = "start_date")
     @XmlSchemaType(name = "date")
     protected String startDate;
-    @XmlElement(name = "end_date", required = true)
+    @XmlElement(name = "end_date")
     @XmlSchemaType(name = "date")
     protected String endDate;
     protected int idProject;
     @XmlElementWrapper(name = "employees")
-    @XmlElement(name="employee",required = true)
+    @XmlElement(name="employee")
     protected List<Employee> employees = new ArrayList<>();
     @XmlElementWrapper(name = "equipments")
-    @XmlElement(required = true,name="equipment")
+    @XmlElement(name="equipment")
     protected List<Equipment> equipments = new ArrayList<>();
 
     /**
@@ -84,8 +88,31 @@ public class Tache {
      * Sets the value of the idTache property.
      * 
      */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true; // Same reference
+        if (obj == null || getClass() != obj.getClass()) return false; // Null or different class
+
+        Tache tache = (Tache) obj;
+        return this.idTache == tache.idTache; // Compare by id (or other relevant fields)
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idTache); // Generate hash code based on id
+    }
+
     public void setIdTache(int value) {
         this.idTache = value;
+    }
+    public String getEmployeeJson() {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "{}"; // Return empty JSON on error
+        }
     }
 
     /**

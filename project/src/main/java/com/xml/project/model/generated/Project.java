@@ -10,6 +10,7 @@ package com.xml.project.model.generated;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.xml.bind.annotation.*;
 
 import com.xml.project.model.generated.*;
@@ -52,7 +53,7 @@ public class Project {
     @XmlSchemaType(name = "string")
     protected StatusProjectTache status;
     @XmlElementWrapper(name = "taches")
-    @XmlElement(name="tache",required = true)
+    @XmlElement(name="tache")
     protected List<Tache> taches;
     public Project(){
         this.taches = new ArrayList<>();
@@ -159,5 +160,19 @@ public class Project {
     public void setTaches(List<Tache> taches) {
         this.taches = taches;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true; // Same reference
+        if (obj == null || getClass() != obj.getClass()) return false; // Null or different class
+
+        Project project = (Project) obj;
+        return this.idProject == project.idProject; // Compare by id (or other relevant fields)
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idProject); // Generate hash code based on id
+    }
+
 
 }
