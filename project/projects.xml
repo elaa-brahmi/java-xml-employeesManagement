@@ -3,41 +3,77 @@
     <project>
         <idProject>3</idProject>
         <name>Smart Recycling Management System</name>
-        <status>finished</status>
+        <status>unfinished</status>
         <taches>
             <tache>
                 <idTache>10</idTache>
-                <status>finished</status>
+                <status>unfinished</status>
                 <description>Integrate IoT sensors to monitor recycling bin levels in real time.</description>
                 <start_date>2024-01-12</start_date>
                 <end_date>2024-05-07</end_date>
                 <idProject>3</idProject>
                 <employees>
                     <employee>
-                        <idUser>user007</idUser>
-                        <login>michael007</login>
-                        <email>michael@gmail.com</email>
-                        <nom>Michael</nom>
-                        <prenom>Martinez</prenom>
-                        <password>password007</password>
-                        <idEmployee>7</idEmployee>
-                        <skills>Preventive Maintenance</skills>
-                        <status>free</status>
-                        <speciality>Electrical Technician</speciality>
-                        <certification>Preventive Maintenance Certification</certification>
+                        <idUser>user010</idUser>
+                        <login>olivia010</login>
+                        <email>olivia@gmail.com</email>
+                        <nom>Olivia</nom>
+                        <prenom>anderson</prenom>
+                        <password>password010</password>
+                        <idEmployee>10</idEmployee>
+                        <skills>Electrical Repairs</skills>
+                        <status>busy</status>
+                        <speciality>Equipment Technician</speciality>
+                        <certification>Mechanical Repairs Certification</certification>
                         <role>maintenance technician</role>
-                        <idTache>10</idTache>
+                        <idTache>4</idTache>
                     </employee>
                 </employees>
                 <equipments>
                     <equipment>
-                        <idEquipment>2</idEquipment>
-                        <name>Sorting Conveyor</name>
-                        <type>Automatic Machine</type>
+                        <idEquipment>3</idEquipment>
+                        <name>Shredder</name>
+                        <type>Mechanical Machine</type>
                         <quantity>10</quantity>
-                        <status>broken</status>
-                        <category>Waste Sorting</category>
-                        <idTache>10</idTache>
+                        <status>under maintenance</status>
+                        <category>Equipment Maintenance</category>
+                        <idTache>4</idTache>
+                    </equipment>
+                </equipments>
+            </tache>
+            <tache>
+                <idTache>11</idTache>
+                <status>finished</status>
+                <description>aaaaa</description>
+                <start_date>2024-01-12</start_date>
+                <end_date>2024-12-01</end_date>
+                <idProject>3</idProject>
+                <employees>
+                    <employee>
+                        <idUser>user008</idUser>
+                        <login>john008</login>
+                        <email>john@gmail.com</email>
+                        <nom>John</nom>
+                        <prenom>Lee</prenom>
+                        <password>password008</password>
+                        <idEmployee>8</idEmployee>
+                        <skills>Diagnostic Tools</skills>
+                        <status>free</status>
+                        <speciality>Mechanical Technician</speciality>
+                        <certification>Machine Diagnostics Certification</certification>
+                        <role>maintenance technician</role>
+                        <idTache>11</idTache>
+                    </employee>
+                </employees>
+                <equipments>
+                    <equipment>
+                        <idEquipment>5</idEquipment>
+                        <name>Composting Bin</name>
+                        <type>Storage Container</type>
+                        <quantity>50</quantity>
+                        <status>operable</status>
+                        <category>Composting</category>
+                        <idTache>11</idTache>
                     </equipment>
                 </equipments>
             </tache>
@@ -46,15 +82,101 @@
     <project>
         <idProject>1</idProject>
         <name>Community Recycling Initiative</name>
-        <status>finished</status>
+        <status>unfinished</status>
         <taches>
             <tache>
                 <idTache>1</idTache>
-                <status>finished</status>
+                <status>unfinished</status>
                 <description>Collect recyclable waste from households in the community.</description>
                 <start_date>2024-02-07</start_date>
                 <end_date>2024-05-07</end_date>
                 <idProject>1</idProject>
+                <employees>
+                    <employee>
+                        <idUser>user009</idUser>
+                        <login>william009</login>
+                        <email>william@gmail.com</email>
+                        <nom>William</nom>
+                        <prenom>Anderson</prenom>
+                        <password>password009</password>
+                        <idEmployee>9</idEmployee>
+                        <skills>Machine Operation</skills>
+                        <status>busy</status>
+                        <speciality>Electrical Technician</speciality>
+                        <certification>Electrical Systems Certification</certification>
+                        <role>maintenance technician</role>
+                        <idTache>11</idTache>
+                    </employee>
+                </employees>
+                <equipments>
+                    <equipment>
+                        <idEquipment>1</idEquipment>
+                        <name>Compactor</name>
+                        <type>Heavy Machinery</type>
+                        <quantity>22</quantity>
+                        <status>operable</status>
+                        <category>Waste Management</category>
+                        <idTache>0</idTache>
+                    </equipment>
+                </equipments>
+            </tache>
+        </taches>
+    </project>
+    <project>
+        <idProject>2</idProject>
+        <name>Neighborhood Plastic Recycling Drive</name>
+        <status>unfinished</status>
+        <taches>
+            <tache>
+                <idTache>2</idTache>
+                <status>unfinished</status>
+                <description>Manually inspect and clean collected plastic materials to remove contaminants.</description>
+                <start_date>2024-11-07</start_date>
+                <end_date>2024-12-01</end_date>
+                <idProject>2</idProject>
+                <employees>
+                    <employee>
+                        <idUser>user003</idUser>
+                        <login>jason003</login>
+                        <email>jason@gmail.com</email>
+                        <nom>jason</nom>
+                        <prenom>smith</prenom>
+                        <password>password003</password>
+                        <idEmployee>3</idEmployee>
+                        <skills>Sorting</skills>
+                        <status>busy</status>
+                        <speciality>Sorting Specialist</speciality>
+                        <certification>Recycling Process Certification</certification>
+                        <role>employee</role>
+                        <idTache>2</idTache>
+                    </employee>
+                </employees>
+                <equipments>
+                    <equipment>
+                        <idEquipment>3</idEquipment>
+                        <name>Shredder</name>
+                        <type>Mechanical Machine</type>
+                        <quantity>10</quantity>
+                        <status>under maintenance</status>
+                        <category>Equipment Maintenance</category>
+                        <idTache>2</idTache>
+                    </equipment>
+                </equipments>
+            </tache>
+        </taches>
+    </project>
+    <project>
+        <idProject>4</idProject>
+        <name>School Recycling Awareness Program</name>
+        <status>unfinished</status>
+        <taches>
+            <tache>
+                <idTache>4</idTache>
+                <status>unfinished</status>
+                <description>Distribute collection bins in classrooms for paper, plastic, and metal waste.</description>
+                <start_date>2024-02-07</start_date>
+                <end_date>2024-05-07</end_date>
+                <idProject>4</idProject>
                 <employees>
                     <employee>
                         <idUser>user004</idUser>
@@ -80,7 +202,7 @@
                         <quantity>10</quantity>
                         <status>broken</status>
                         <category>Waste Sorting</category>
-                        <idTache>1</idTache>
+                        <idTache>12</idTache>
                     </equipment>
                 </equipments>
             </tache>

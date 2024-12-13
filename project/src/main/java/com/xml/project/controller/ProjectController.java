@@ -95,6 +95,14 @@ public class ProjectController {
                 redirectAttributes.addFlashAttribute("error", "Error adding project: " + e.getMessage());
                 return "redirect:/projects/new";
         }
+            catch(BusyEmployeeException e){
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                return "redirect:/projects/new";
+            }
+            catch(BrokenEquipmentException e){
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                return "redirect:/projects/new";
+            }
         }
         catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Error adding project: " + e.getMessage());
@@ -116,12 +124,15 @@ public class ProjectController {
             }
 
     }
+
     @PostMapping("/updateStatus/{id}")
-    public String updateStatus(@PathVariable("id") int id, @RequestParam StatusProjectTache status, Model model) {
+    public String updateStatus(@PathVariable("id") int id, @RequestParam("status") StatusProjectTache status,RedirectAttributes redirectAttributes, Model model) {
         try {
+            System.out.println("here update status "+id);
+
             projectService.updateStatusProject(id, status);
-            model.addAttribute("success", "Project status updated successfully!");
-            return "projects/list";
+            redirectAttributes.addFlashAttribute("success", "Project status updated successfully!");
+            return "redirect:/projects";
         } catch (JAXBException e) {
             model.addAttribute("error", "Error updating status: " + e.getMessage());
             return "projects/list";

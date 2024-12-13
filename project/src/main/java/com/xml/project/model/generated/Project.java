@@ -157,9 +157,7 @@ public class Project {
         }
         return this.taches;
     }
-    public void setTaches(List<Tache> taches) {
-        this.taches = taches;
-    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true; // Same reference

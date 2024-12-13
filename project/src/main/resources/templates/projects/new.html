@@ -65,7 +65,7 @@
                 <th:block th:each="employee : ${employees}">
                     <option th:value="${employee.idEmployee}"
                             th:data-employee="${employee.idEmployee}"
-                            th:text="${employee.nom} + ' (' + ${employee.speciality} + ')'">
+                            th:text="${employee.nom} + ' (' + ${employee.speciality} + ')  '+ ${employee.status}">
                     </option>
                 </th:block>
             </select>
@@ -76,7 +76,7 @@
             <select name="tasks[0].equipments[]" id="equipmentSelect" oninput="updateEquipmentData(this)"  required >
                 <th:block th:each="equipment : ${equipments}">
                     <option th:data-equipment="${equipment.idEquipment}"
-                            th:text="${equipment.name}"
+                            th:text="${equipment.name} +'( '+${equipment.status}+ ' )'"
                             th:value="${equipment.idEquipment}" ></option>
                 </th:block>
             </select>

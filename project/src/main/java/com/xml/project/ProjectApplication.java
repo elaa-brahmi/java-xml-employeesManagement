@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.xml.project.controller.TacheController;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -22,12 +23,10 @@ public class ProjectApplication {
 	public static void main(String[] args) throws JAXBException, DatatypeConfigurationException {
 
 		SpringApplication.run(ProjectApplication.class, args);
+		File file = new File("C:\\pfaspringboot\\project\\employees.xml");
+		System.out.println(file.exists() ? "File found!" : "File not found.");
 
-		ProjectService projectService = new ProjectService();
-		TacheService tacheService = new TacheService();
-	//System.out.println("tache"+	tacheService.findTacheById(55));
-		//tacheService.deleteTache(55);
-		//projectService.updateStatusProject(1,StatusProjectTache.finished);
+
 
 	}
 	}

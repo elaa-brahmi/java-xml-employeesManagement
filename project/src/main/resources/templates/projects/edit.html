@@ -19,7 +19,8 @@
 </div>
 
 <!-- Edit Project Form -->
-<form th:action="@{/updateStatus/{id}(id=${project.idProject})}" th:object="${project}" method="post">
+<form th:action="@{/projects/updateStatus/{id}(id=${project.idProject})}" th:object="${project}" method="post">
+
   <div class="mb-3">
     <label for="idProject" class="form-label">Project ID:</label>
     <input type="number" id="idProject" class="form-control" th:field="*{idProject}" readonly>

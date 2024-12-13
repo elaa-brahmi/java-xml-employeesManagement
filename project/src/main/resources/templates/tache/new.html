@@ -1,16 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Task List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>Task List</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div th:if="${success}" class="alert alert-success">
-    <p th:text="${success}"></p>
-</div>
+
 <div th:if="${error}" class="alert alert-danger">
-    <p th:text="${error}"></p>
+  <p th:text="${error}"></p>
 </div>
+
+<form th:action="@{/taches/new/{id}(id=${tache.idTache})}" th:object="${tache}" method="post">
+  <label for="idTache">id Task</label>
+  <input type="text" th:field="*{idTache}" ><br>
+  <div class="mb-3">
+    <label for="status" class="form-label">Status:</label>
+    <select id="status" class="form-select" th:field="*{status}" >
+      <option value="" disabled selected>Select Status</option>
+      <option value="finished">finished</option>
+      <option value="unfinished">unfinished</option>
+
+    </select>
+  </div>
+  <label for="description">Task description</label>
+
+  <textarea th:field="*{description}"></textarea><br>
+  <label for="startdate">Start date</label>
+
+  <input type="text" th:field="*{startDate}"><br>
+  <label for="endDate">End Date</label>
+
+  <input type="text" th:field="*{endDate}"><br>
+  <label for="idProject">id Project</label>
+
+  <input type="number" th:field="*{idProject}"><br>
+  <label for="employeeFilter">Filter Employees by Speciality:</label>
+  <select name="tasks[0].employees[]" id="employeeSelect" oninput="updateEmployeeData(this)" required >
+    <th:block th:each="employee : ${employees}">
+      <option th:value="${employee.idEmployee}"
+              th:data-employee="${employee.idEmployee}"
+              th:text="${employee.nom} + ' (' + ${employee.speciality} + ')  ' + ${employee.status}">
+      </option>
+    </th:block>
+  </select>
+  <input type="hidden" id="selectedEmployeeData" name="tasks[0].employee" th:field="*{employees[0].idEmployee}"/>
+
+  <!-- Equipment Selection -->
+  <br><label for="equipmentFilter">Filter Equipment by Name:</label>
+  <select name="tasks[0].equipments[]" id="equipmentSelect" oninput="updateEquipmentData(this)"  required >
+    <th:block th:each="equipment : ${equipments}">
+      <option th:data-equipment="${equipment.idEquipment}"
+              th:text="${equipment.name} +'( '+${equipment.status}+ ' )'"
+              th:value="${equipment.idEquipment}" ></option>
+    </th:block>
+  </select>
+  <input type="hidden" id="selectedEquiData" name="tasks[0].employee" th:field="*{equipments[0].idEquipment}"/>
+  <button type="submit" class="btn btn-primary">Update task</button>
+
+</form>
+<script>
+  function updateEmployeeData(selectElement) {
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    console.log(selectedOption);
+    var employeet = selectedOption.getAttribute('data-employee');
+    console.log(employeet);
+    document.getElementById('selectedEmployeeData').value = employeet;
+  }
+  function updateEquipmentData(selectElement) {
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    console.log(selectedOption);
+    var equi = selectedOption.getAttribute('data-equipment');
+    console.log(equi);
+    document.getElementById('selectedEquiData').value = equi;
+  }
+</script>
+
 </body>
 </html>

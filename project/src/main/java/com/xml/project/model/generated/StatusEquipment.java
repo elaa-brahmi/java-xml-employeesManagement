@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlType;
 public enum StatusEquipment {
 
     @XmlEnumValue("under maintenance")
-    uder_maintenance("under maintenance"),
+    under_maintenance("under maintenance"),
     @XmlEnumValue("broken")
     broken("broken"),
     @XmlEnumValue("operable")

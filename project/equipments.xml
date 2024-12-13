@@ -16,7 +16,7 @@
         <quantity>10</quantity>
         <status>broken</status>
         <category>Waste Sorting</category>
-        <idTache>1</idTache>
+        <idTache>3</idTache>
     </equipment>
     <equipment>
         <idEquipment>3</idEquipment>
@@ -25,6 +25,42 @@
         <quantity>10</quantity>
         <status>under maintenance</status>
         <category>Equipment Maintenance</category>
+        <idTache>4</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>4</idEquipment>
+        <name>Manual Collection Cart</name>
+        <type>Transport Equipment</type>
+        <quantity>100</quantity>
+        <status>operable</status>
+        <category>Waste Collection</category>
+        <idTache>0</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>5</idEquipment>
+        <name>Composting Bin</name>
+        <type>Storage Container</type>
+        <quantity>50</quantity>
+        <status>operable</status>
+        <category>Composting</category>
+        <idTache>0</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>6</idEquipment>
+        <name>Glass Crusher</name>
+        <type>Processing Equipment</type>
+        <quantity>5</quantity>
+        <status>operable</status>
+        <category>Recycling</category>
+        <idTache>12</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>7</idEquipment>
+        <name>Waste Collection Truck</name>
+        <type>Transport Equipment</type>
+        <quantity>12</quantity>
+        <status>operable</status>
+        <category>Waste Collection</category>
         <idTache>0</idTache>
     </equipment>
 </equipments>

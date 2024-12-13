@@ -36,9 +36,65 @@ public class TacheService {
 	        } catch (Exception e) {
 			 logger.severe("Error saving Tache: " + e.getMessage());
 	        }
+	 }
+
+	 public void addTacheToAproject(Tache tache,int idProject) throws JAXBException {
+		List<Tache> listeTaches=voirTaches();
+		boolean idExist=listeTaches.stream().anyMatch(t->t.getIdTache()==tache.getIdTache());
+		if(idExist) {
+			throw new ReusedIdException("tache with id"+tache.getIdTache()+" already exists");
+		}
+		if(tache.getEmployees().get(0).getStatus()==StatusEmployee.busy){
+			throw new BusyEmployeeException("this employee is busy, please choose another employee");
+		}
+		if(tache.getEquipments().get(0).getStatus()==StatusEquipment.broken){
+			throw new BrokenEquipmentException("this equipment is broken, please choose another equipment");
+		}
+		tache.getEmployees().get(0).setIdTache(tache.getIdTache());
+		tache.getEquipments().get(0).setIdTache(tache.getIdTache());
+		 EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+		 List<Employee> employees = employeeService.getAllEmployees();
+		 for (Employee employee : employees) {
+			 if (employee.getIdEmployee() == tache.getEmployees().get(0).getIdEmployee()) {
+				 employee.setIdTache(tache.getIdTache());
+				 employee.setStatus(StatusEmployee.busy);
+				 employeeService.saveToXML(employees);
+
+			 }
+			 break;
+		 }
+		 EquipmentServiceImpl equipmentService = new EquipmentServiceImpl();
+		 List<Equipment> equipments = equipmentService.getAllEquipments();
+		 for (Equipment eq : equipments) {
+			 if (eq.getIdEquipment() == tache.getEquipments().get(0).getIdEquipment()) {
+				 eq.setIdTache(tache.getIdTache());
+				 equipmentService.saveToXmlEquipments(equipments);
+
+			 }
+			 break;
+		 }
+		 listeTaches.add(tache);
+		 saveTache(listeTaches);
+		 logger.info("tache with id "+tache.getIdTache()+" is added");
+		 ProjectService projectService=new ProjectService();
+		 List<Project> listeProjects=projectService.voirProjects();
+		 boolean projectFound = false;
+		 for (Project project : listeProjects) {
+			 if (project.getIdProject() == idProject) {
+				 project.getTaches().add(tache);
+				 projectFound = true;
+				 break;
+			 }
+		 }
+		 if(projectFound) {
+			 projectService.saveProject(listeProjects);
+			 logger.info("tache with id "+tache.getIdTache()+" is added to the project with id "+idProject);
+		 }
+		 else{
+			 logger.warning("project with id"+idProject+"is not found ");
+		 }
 		 
 	 }
-	 
 	 public void addTache(Tache tache) throws JAXBException {
 		 List<Tache> listeTaches=voirTaches();
 		 boolean idExists = listeTaches.stream()
@@ -46,10 +102,16 @@ public class TacheService {
 		 if (idExists) {
 			 throw new ReusedIdException("Tache with ID " + tache.getIdTache() + " already exists.");
 		 }
+		 if(tache.getEmployees().get(0).getStatus()==StatusEmployee.busy){
+			 throw new BusyEmployeeException("this employee is busy , please choose another one");
+
+		 }
+		 if(tache.getEquipments().get(0).getStatus()==StatusEquipment.broken){
+			 throw new BrokenEquipmentException("this equipment is broken , please choose another one");
+		 }
+
 		tache.getEmployees().get(0).setIdTache(tache.getIdTache());
 		 tache.getEquipments().get(0).setIdTache(tache.getIdTache());
-
-
 		 EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
 		 List<Employee> employees=employeeService.getAllEmployees();
 		 for (Employee employee : employees) {
@@ -57,7 +119,6 @@ public class TacheService {
 				 employee.setIdTache(tache.getIdTache());
 				 employee.setStatus(StatusEmployee.valueOf("busy"));
 				 employeeService.saveToXML(employees);
-
 			 }
 		 }
 		 EquipmentServiceImpl equipmentService = new EquipmentServiceImpl();
@@ -66,31 +127,27 @@ public class TacheService {
 			 if (eq.getIdEquipment() == tache.getEquipments().get(0).getIdEquipment()) {
 				 eq.setIdTache(tache.getIdTache());
 				 equipmentService.saveToXmlEquipments(equipments);
-
 			 }
 		 }
-
-
-
 		 listeTaches.add(tache);
 		 saveTache(listeTaches);
 		 logger.info("Tache with ID " + tache.getIdTache() + " is added.");
 	 }
 		 
 
-	public void assignResourcesToTask(int taskId, List<Employee> employees, List<Equipment> equipments) throws JAXBException {
-		List<Tache> taches = voirTaches();
-		for (Tache tache : taches) {
-			if (tache.getIdTache() == taskId) {
-				tache.setEmployees(employees);
-				tache.setEquipments(equipments);
-				saveTache(taches);
-				logger.info("Resources assigned to Tache ID " + taskId);
-				return;
-			}
-		}
-		logger.warning("Tache with ID " + taskId + " not found.");
-	}
+//	public void assignResourcesToTask(int taskId, List<Employee> employees, List<Equipment> equipments) throws JAXBException {
+//		List<Tache> taches = voirTaches();
+//		for (Tache tache : taches) {
+//			if (tache.getIdTache() == taskId) {
+//				tache.setEmployees(employees);
+//				tache.setEquipments(equipments);
+//				saveTache(taches);
+//				logger.info("Resources assigned to Tache ID " + taskId);
+//				return;
+//			}
+//		}
+//		logger.warning("Tache with ID " + taskId + " not found.");
+//	}
 
 
 	public List<Tache> findTachesByIdProjet(int id) throws JAXBException {
@@ -137,31 +194,50 @@ public class TacheService {
 			return removed;
 		}
 	 public Tache updateTache(int id,Tache updatedTache) throws JAXBException {
+
+		if(updatedTache.getEquipments().get(0).getStatus()==StatusEquipment.broken){
+			throw new BrokenEquipmentException("this equipment is broken , please choose another one");
+		}
+		if(updatedTache.getEmployees().get(0).getStatus()==StatusEmployee.busy){
+			throw new BusyEmployeeException("this employee is busy , please choose another one");
+		}
+
+
+		ProjectService projectService=new ProjectService();
 		    List<Tache> listeTaches = voirTaches();
+			List<Project> listeProjects=projectService.voirProjects();
 		    for (int i = 0; i < listeTaches.size(); i++) {
 		        if (listeTaches.get(i).getIdTache() == id) {
 		            listeTaches.set(i, updatedTache);
 		            saveTache(listeTaches);
 					logger.info("Tache with ID " + id + " is updated");
-
+					break;
 		        }
 		    }
+		 for(Project p:listeProjects){
+			 if(p.getTaches().get(0).getIdTache()==id){
+				 p.getTaches().clear();
+				 p.getTaches().add(updatedTache);
+				 projectService.saveProject(listeProjects);
+				 break;
+			 }
+		 }
 		 return updatedTache;
 	}
 
-	public void updateStatusTache(int id,StatusProjectTache status) throws JAXBException {
-		List<Tache> listeTaches = voirTaches();
-		Tache t=findTacheById(id);
-				t.setStatus(status);
-				for(int i=0;i<listeTaches.size();i++) {
-					if (listeTaches.get(i).getIdTache() == id) {
-						listeTaches.set(i,t);
-					}
-				}
-				saveTache(listeTaches);
-				logger.info("Tache with ID " + id + " is updated");
-				return;
-	}
+//	public void updateStatusTache(int id,StatusProjectTache status) throws JAXBException {
+//		List<Tache> listeTaches = voirTaches();
+//		Tache t=findTacheById(id);
+//				t.setStatus(status);
+//				for(int i=0;i<listeTaches.size();i++) {
+//					if (listeTaches.get(i).getIdTache() == id) {
+//						listeTaches.set(i,t);
+//					}
+//				}
+//				saveTache(listeTaches);
+//				logger.info("Tache with ID " + id + " is updated");
+//				return;
+//	}
 
 
 }

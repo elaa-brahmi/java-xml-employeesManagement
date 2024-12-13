@@ -36,6 +36,12 @@ public class ProjectService {
         // Check if the ID exists in employees or users
         return projects.stream().anyMatch(p->p.getIdProject() == id);}
     public void addProject(Project project) throws JAXBException {
+        if(project.getTaches().get(0).getEmployees().get(0).getStatus()==StatusEmployee.busy){
+            throw new BusyEmployeeException("this employee is busy , please choose another one");
+        }
+        if(project.getTaches().get(0).getEquipments().get(0).getStatus()==StatusEquipment.broken){
+            throw new BrokenEquipmentException("this equipment is broken , please choose another one");
+        }
         List<Project> listeproject = voirProjects();
         if (isIdReusedProject(project.getIdProject())) {
             throw new ReusedIdException("This ID is reused, try with another ID");
@@ -116,16 +122,16 @@ public class ProjectService {
 
 
 
-    public void updateProject(int id, Project project) throws JAXBException {
-            List<Project> listeprojets = voirProjects();
-            for (int i = 0; i < listeprojets.size(); i++) {
-                if (listeprojets.get(i).getIdProject() == id) {
-                    listeprojets.set(i, project);
-                    saveProject(listeprojets);
-                    logger.info("project with ID " + id + " is updated.");
-                    return;
-                }
-            }
-        logger.warning("Project with ID " + id + " not found.");
-    }
+//    public void updateProject(int id, Project project) throws JAXBException {
+//            List<Project> listeprojets = voirProjects();
+//            for (int i = 0; i < listeprojets.size(); i++) {
+//                if (listeprojets.get(i).getIdProject() == id) {
+//                    listeprojets.set(i, project);
+//                    saveProject(listeprojets);
+//                    logger.info("project with ID " + id + " is updated.");
+//                    return;
+//                }
+//            }
+//        logger.warning("Project with ID " + id + " not found.");
+//    }
 }

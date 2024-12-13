@@ -6,7 +6,7 @@
         <email>ines@gmail.com</email>
         <nom>Ines</nom>
         <prenom>dream</prenom>
-        <password>azerty</password>
+        <password>azerty11</password>
         <idEmployee>1</idEmployee>
         <skills>Teamwork</skills>
         <status>free</status>
@@ -28,7 +28,7 @@
         <speciality>Logistics Coordinator</speciality>
         <certification>Logistics Management</certification>
         <role>employee</role>
-        <idTache>0</idTache>
+        <idTache>3</idTache>
     </employee>
     <employee>
         <idUser>user003</idUser>
@@ -43,7 +43,7 @@
         <speciality>Sorting Specialist</speciality>
         <certification>Recycling Process Certification</certification>
         <role>employee</role>
-        <idTache>0</idTache>
+        <idTache>2</idTache>
     </employee>
     <employee>
         <idUser>user004</idUser>
@@ -114,11 +114,11 @@
         <password>password008</password>
         <idEmployee>8</idEmployee>
         <skills>Diagnostic Tools</skills>
-        <status>busy</status>
+        <status>free</status>
         <speciality>Mechanical Technician</speciality>
         <certification>Machine Diagnostics Certification</certification>
         <role>maintenance technician</role>
-        <idTache>6</idTache>
+        <idTache>777</idTache>
     </employee>
     <employee>
         <idUser>user009</idUser>
@@ -129,11 +129,11 @@
         <password>password009</password>
         <idEmployee>9</idEmployee>
         <skills>Machine Operation</skills>
-        <status>free</status>
+        <status>busy</status>
         <speciality>Electrical Technician</speciality>
         <certification>Electrical Systems Certification</certification>
         <role>maintenance technician</role>
-        <idTache>0</idTache>
+        <idTache>11</idTache>
     </employee>
     <employee>
         <idUser>user010</idUser>
@@ -144,10 +144,85 @@
         <password>password010</password>
         <idEmployee>10</idEmployee>
         <skills>Electrical Repairs</skills>
-        <status>free</status>
+        <status>busy</status>
         <speciality>Equipment Technician</speciality>
         <certification>Mechanical Repairs Certification</certification>
         <role>maintenance technician</role>
+        <idTache>4</idTache>
+    </employee>
+    <employee>
+        <idUser>user011</idUser>
+        <login>user011</login>
+        <email>Ryan@gmail.com</email>
+        <nom>Ryan</nom>
+        <prenom>Doe</prenom>
+        <password>ryan123456</password>
+        <idEmployee>11</idEmployee>
+        <skills>waste management</skills>
+        <status>busy</status>
+        <speciality>Environmental Engineer</speciality>
+        <certification>Expertise in waste management systems, recycling techniques, and environmental compliance.</certification>
+        <role>employee</role>
+        <idTache>12</idTache>
+    </employee>
+    <employee>
+        <idUser>user012</idUser>
+        <login>Jacklin111</login>
+        <email>Jacklin@gmail.com</email>
+        <nom>Jacklin</nom>
+        <prenom>Dawson</prenom>
+        <password>jacklin123</password>
+        <idEmployee>12</idEmployee>
+        <skills>Recycling Technician</skills>
+        <status>busy</status>
+        <speciality>Recycling Technician</speciality>
+        <certification>Specializes in operating and maintaining recycling equipment and manual processes for waste segregation.</certification>
+        <role>employee</role>
+        <idTache>11</idTache>
+    </employee>
+    <employee>
+        <idUser>user013</idUser>
+        <login>emily013</login>
+        <email>emily@gmail.com</email>
+        <nom>Emily</nom>
+        <prenom>Clark</prenom>
+        <password>emily013</password>
+        <idEmployee>13</idEmployee>
+        <skills>Community Engagement Specialist</skills>
+        <status>busy</status>
+        <speciality>Community Engagement Specialist</speciality>
+        <certification>Expertise in public awareness campaigns and training for recycling and composting initiatives.</certification>
+        <role>employee</role>
+        <idTache>11</idTache>
+    </employee>
+    <employee>
+        <idUser>user014</idUser>
+        <login>jake111</login>
+        <email>jake@gmail.com</email>
+        <nom>jake</nom>
+        <prenom>prince</prenom>
+        <password>jake1452</password>
+        <idEmployee>14</idEmployee>
+        <skills>planning</skills>
+        <status>free</status>
+        <speciality>Project Manager Recycling Industry</speciality>
+        <certification>Skilled in planning, coordinating, and executing recycling-related projects.</certification>
+        <role>employee</role>
+        <idTache>0</idTache>
+    </employee>
+    <employee>
+        <idUser>user015</idUser>
+        <login>smith</login>
+        <email>john@gmail.com</email>
+        <nom>john</nom>
+        <prenom>Simbson</prenom>
+        <password>john12354</password>
+        <idEmployee>15</idEmployee>
+        <skills>Specializes in composting and soil enrichment techniques for agriculture</skills>
+        <status>free</status>
+        <speciality>Horticulturist or Urban Agriculture Specialist</speciality>
+        <certification>Composting Certification</certification>
+        <role>employee</role>
         <idTache>0</idTache>
     </employee>
 </employees>
