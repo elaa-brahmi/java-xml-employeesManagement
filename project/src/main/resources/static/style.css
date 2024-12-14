@@ -1,0 +1,9 @@
+.navbar {
+    background-color: #343a40; /* Dark background */
+}
+.navbar .nav-link {
+    color: white; /* White text */
+}
+.navbar .nav-link:hover, .navbar .dropdown-item:hover {
+    color: #d9534f; /* Highlight color */
+}

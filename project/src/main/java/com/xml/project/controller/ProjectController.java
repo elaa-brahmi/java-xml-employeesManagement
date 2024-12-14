@@ -103,6 +103,10 @@ public class ProjectController {
                 redirectAttributes.addFlashAttribute("error", e.getMessage());
                 return "redirect:/projects/new";
             }
+            catch(UnderMaintenanceException e){
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                return "redirect:/projects/new";
+            }
         }
         catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Error adding project: " + e.getMessage());

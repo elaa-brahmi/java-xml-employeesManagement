@@ -99,11 +99,11 @@
         <password>password007</password>
         <idEmployee>7</idEmployee>
         <skills>Preventive Maintenance</skills>
-        <status>free</status>
+        <status>busy</status>
         <speciality>Electrical Technician</speciality>
         <certification>Preventive Maintenance Certification</certification>
         <role>maintenance technician</role>
-        <idTache>0</idTache>
+        <idTache>77</idTache>
     </employee>
     <employee>
         <idUser>user008</idUser>
@@ -118,7 +118,7 @@
         <speciality>Mechanical Technician</speciality>
         <certification>Machine Diagnostics Certification</certification>
         <role>maintenance technician</role>
-        <idTache>777</idTache>
+        <idTache>0</idTache>
     </employee>
     <employee>
         <idUser>user009</idUser>
@@ -133,7 +133,7 @@
         <speciality>Electrical Technician</speciality>
         <certification>Electrical Systems Certification</certification>
         <role>maintenance technician</role>
-        <idTache>11</idTache>
+        <idTache>3</idTache>
     </employee>
     <employee>
         <idUser>user010</idUser>

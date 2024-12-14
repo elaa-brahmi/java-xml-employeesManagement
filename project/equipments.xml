@@ -52,7 +52,7 @@
         <quantity>5</quantity>
         <status>operable</status>
         <category>Recycling</category>
-        <idTache>12</idTache>
+        <idTache>0</idTache>
     </equipment>
     <equipment>
         <idEquipment>7</idEquipment>

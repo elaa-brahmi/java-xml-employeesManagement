@@ -3,11 +3,11 @@
     <project>
         <idProject>3</idProject>
         <name>Smart Recycling Management System</name>
-        <status>unfinished</status>
+        <status>finished</status>
         <taches>
             <tache>
                 <idTache>10</idTache>
-                <status>unfinished</status>
+                <status>finished</status>
                 <description>Integrate IoT sensors to monitor recycling bin levels in real time.</description>
                 <start_date>2024-01-12</start_date>
                 <end_date>2024-05-07</end_date>
@@ -38,42 +38,6 @@
                         <status>under maintenance</status>
                         <category>Equipment Maintenance</category>
                         <idTache>4</idTache>
-                    </equipment>
-                </equipments>
-            </tache>
-            <tache>
-                <idTache>11</idTache>
-                <status>finished</status>
-                <description>aaaaa</description>
-                <start_date>2024-01-12</start_date>
-                <end_date>2024-12-01</end_date>
-                <idProject>3</idProject>
-                <employees>
-                    <employee>
-                        <idUser>user008</idUser>
-                        <login>john008</login>
-                        <email>john@gmail.com</email>
-                        <nom>John</nom>
-                        <prenom>Lee</prenom>
-                        <password>password008</password>
-                        <idEmployee>8</idEmployee>
-                        <skills>Diagnostic Tools</skills>
-                        <status>free</status>
-                        <speciality>Mechanical Technician</speciality>
-                        <certification>Machine Diagnostics Certification</certification>
-                        <role>maintenance technician</role>
-                        <idTache>11</idTache>
-                    </employee>
-                </employees>
-                <equipments>
-                    <equipment>
-                        <idEquipment>5</idEquipment>
-                        <name>Composting Bin</name>
-                        <type>Storage Container</type>
-                        <quantity>50</quantity>
-                        <status>operable</status>
-                        <category>Composting</category>
-                        <idTache>11</idTache>
                     </equipment>
                 </equipments>
             </tache>

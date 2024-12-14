@@ -4,14 +4,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <title>Project List</title>
-
+<style>
+    .navbar {
+        background-color: #343a40; /* Dark background */
+    }
+    .navbar .nav-link {
+        color: white; /* White text */
+    }
+    .navbar .nav-link:hover, .navbar .dropdown-item:hover {
+        color: #d9534f; /* Highlight color */
+    }
+</style>
 </head>
 <body>
-<a href="/export-xml?filename=projects.xml" download>export projects.xml</a>
 
-<h1 class="text-center text">List of Projects</h1>
+<div th:replace="navbar.html"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Success Message -->
 <div th:if="${success}" class="alert alert-success">
     <p th:text="${success}"></p>
 </div>
@@ -19,9 +28,18 @@
 <!-- Error Message -->
 <div th:if="${error}" class="alert alert-danger">
     <p th:text="${error}"></p>
-</div><button class=" btn btn-primary mb-1 text-center ms-4 p-2" >
+</div><br>
+<a style="text-decoration: none; color:black;" href="/export-xml?filename=projects.xml" download>export projects.xml</a>
+<br>
+
+<!-- Success Message -->
+
+
+<button class=" btn btn-primary mb-1 text-center ms-2 mt-2 p-1" >
 <a th:href="@{/projects/new}" style="text-decoration:none; color:white;">add a project</a></button>
 <br>
+<h1 class="text-center text">List of Projects</h1>
+
 <!-- Projects Table -->
 <table border="1" class="table table-bordered table-striped table-hover">
     <thead class="table-dark">
@@ -43,13 +61,14 @@
             <!-- Check if tasks exist -->
             <ul>
                 <li th:each="task : ${project.taches}">
+                    <h4>task</h4>
                     <strong>Description:</strong> <span th:text="${task.description}"></span><br>
                     <strong>Status:</strong> <span th:text="${task.status}"></span><br>
                     <strong>Start Date:</strong> <span th:text="${task.startDate}"></span><br>
                     <strong>End Date:</strong> <span th:text="${task.endDate}"></span><br>
-                   <strong>Employees:</strong>
+                   <strong>Employee</strong>
 
-                        <div th:each="employee : ${task.employees}">Employee
+                        <div th:each="employee : ${task.employees}">
                             <ul>
                            <li> Name: <span th:text="${employee.nom}"></span><br></li>
                            <li> Surname: <span th:text="${employee.prenom}"></span><br></li>
@@ -57,8 +76,8 @@
                            <li> Speciality: <span th:text="${employee.speciality}"></span></li>
                             </ul>
                         </div>
-                    <strong>Equipments:</strong>
-                    <div th:each="equipment : ${task.equipments}">Equipments
+                    <strong>Equipment:</strong>
+                    <div th:each="equipment : ${task.equipments}">
                         <ul>
                             <li> Name: <span th:text="${equipment.name}"></span><br></li>
                             <li> status: <span th:text="${equipment.status}"></span><br></li>
@@ -80,5 +99,6 @@
     </tr>
     </tbody>
 </table>
+<div th:replace="footer.html"></div>
 </body>
 </html>

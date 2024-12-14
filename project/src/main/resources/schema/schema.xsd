@@ -71,8 +71,8 @@
             <xs:element name="idTache" type="xs:int"/>
             <xs:element name="status" type="statusProjectTache"/>
             <xs:element name="description" type="xs:string"/>
-            <xs:element name="start_date" type="xs:date"/>
-            <xs:element name="end_date" type="xs:date"/>
+            <xs:element name="start_date" type="xs:string"/>
+            <xs:element name="end_date" type="xs:string"/>
             <xs:element name="idProject" type="xs:int"/>
             <xs:element name="employees" type="Employee" maxOccurs="unbounded"/>
             <xs:element name="equipments" type="equipment" maxOccurs="unbounded"/>
@@ -86,7 +86,6 @@
                 <xs:sequence>
                     <xs:element name="idEmployee" type="xs:int"/>
                     <xs:element name="skills" type="xs:string">
-
                     </xs:element>
                     <xs:element name="status" type="statusEmployee"/>
                     <xs:element name="speciality" type="xs:string"/>
@@ -174,5 +173,4 @@
             <xs:field xpath="idTache"/>
         </xs:keyref>
     </xs:element>
-
 </xs:schema>

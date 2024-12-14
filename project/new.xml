@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taches>
+  <tache>
+    <idTache>5</idTache>
+    <status>unfinished</status>
+    <description>Conduct a training session on proper waste segregation techniques.</description>
+    <start_date>2024-06-01</start_date>
+    <end_date>2024-06-15</end_date>
+    <idProject>4</idProject>
+    <employees>
+      <employee>
+        <idUser>user005</idUser>
+        <login>linda005</login>
+        <email>linda@gmail.com</email>
+        <nom>Linda</nom>
+        <prenom>Smith</prenom>
+        <password>password005</password>
+        <idEmployee>5</idEmployee>
+        <skills>Training</skills>
+        <status>available</status>
+        <speciality>Environmental Education</speciality>
+        <certification>Environmental Education Certification</certification>
+        <role>employee</role>
+        <idTache>5</idTache>
+      </employee>
+    </employees>
+    <equipments>
+      <equipment>
+        <idEquipment>3</idEquipment>
+        <name>Projector</name>
+        <type>Electrical</type>
+        <quantity>2</quantity>
+        <status>working</status>
+        <category>Training</category>
+        <idTache>5</idTache>
+      </equipment>
+    </equipments>
+  </tache>
+</taches>

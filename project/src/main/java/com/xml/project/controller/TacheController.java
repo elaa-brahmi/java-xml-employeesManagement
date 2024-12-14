@@ -1,10 +1,13 @@
 package com.xml.project.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-import com.xml.project.service.EmployeeServiceImpl;
-import com.xml.project.service.EquipmentServiceImpl;
-import com.xml.project.service.ProjectService;
+import com.xml.project.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,10 +16,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.xml.project.model.generated.*;
 import com.xml.project.model.generated.Tache;
-import com.xml.project.service.TacheService;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.xml.bind.JAXBException;
+
 
 @Controller
 @RequestMapping("/taches")
@@ -32,6 +36,8 @@ public class TacheController {
         this.employeeService = employeeService;
         this.equipmentService = equipmentService;
         this.projectService = projectService;
+
+
     }
 
     // Get all tasks
@@ -98,6 +104,10 @@ public class TacheController {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/taches/edit/" + id;
         }
+        catch(UnderMaintenanceException e){
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/taches/edit/" + id;
+        }
         }
 
     // Add a new task
@@ -126,7 +136,7 @@ public class TacheController {
             tacheService.addTacheToAproject(tache,idProject);
 //            Project project=projectService.findProjectById(idProject);
 //            project.getTaches().add(tache);
-            redirectAttributes.addFlashAttribute("success", "task added successfully to the project having id"+idProject);
+            redirectAttributes.addFlashAttribute("success", "task added successfully to the project having ID "+idProject);
             return "redirect:/taches"; // Redirect to the list view after adding
         }
         catch (ReusedIdException e) {
@@ -138,6 +148,14 @@ public class TacheController {
             return "redirect:/taches/new";
         }
         catch(BrokenEquipmentException e){
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/taches/new";
+        }
+        catch(UnfoundIdException e){
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/taches/new";
+        }
+        catch(UnderMaintenanceException e){
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/taches/new";
         }
@@ -157,4 +175,7 @@ public class TacheController {
             return "tache/list"; // Return an error template
         }
     }
+
+
+
 }

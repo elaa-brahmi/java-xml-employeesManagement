@@ -1,27 +1,79 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="ISO-8859-1">
+    <title>Employee Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<!-- profile of employee nadhmou w 7otou fi form de façon matnajemch tbadel les valeurs taahom juste trahom barka w a9samhom sur 2 bech nab9ach nscrolli louta kima aamelt fi page new.html-->
-<tr th:each="employee : ${employee}">
-    <td th:text="${employee.idEmployee}">1</td>
-    <td th:text="${employee.skills}">Skill Placeholder</td>
-    <td th:text="${employee.speciality}">Speciality Placeholder</td>
-    <td th:text="${employee.role}">Role Placeholder</td>
-    <td th:text="${employee.certification}">Role Placeholder</td>
-    <td th:text="${employee.email}">Role Placeholder</td>
-    <td th:text="${employee.status}">Role Placeholder</td>
-    <td th:text="${employee.prenom}">Role Placeholder</td>
-    <td th:text="${employee.nom}">Role Placeholder</td>
+<div th:replace="navbar.html"></div>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Employee Details</h1>
 
-    <td>
-        <a th:href="@{/employees/{id}(id=${employee.idEmployee})}">update</a>
-    </td>
-</tr>
+    <div class="row g-3">
+        <div th:each="employee : ${employee}" class="col-12">
+            <div class="row">
+                <!-- Employee ID -->
+                <div class="col-md-6">
+                    <label for="idEmployee" class="form-label">Employee ID</label>
+                    <input type="text" id="idEmployee" class="form-control" th:value="${employee.idEmployee}" readonly>
+                </div>
+                <!-- Skills -->
+                <div class="col-md-6">
+                    <label for="skills" class="form-label">Skills</label>
+                    <input type="text" id="skills" class="form-control" th:value="${employee.skills}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Speciality -->
+                <div class="col-md-6">
+                    <label for="speciality" class="form-label">Speciality</label>
+                    <input type="text" id="speciality" class="form-control" th:value="${employee.speciality}" readonly>
+                </div>
+                <!-- Role -->
+                <div class="col-md-6">
+                    <label for="role" class="form-label">Role</label>
+                    <input type="text" id="role" class="form-control" th:value="${employee.role}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Certification -->
+                <div class="col-md-6">
+                    <label for="certification" class="form-label">Certification</label>
+                    <input type="text" id="certification" class="form-control" th:value="${employee.certification}" readonly>
+                </div>
+                <!-- Email -->
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" id="email" class="form-control" th:value="${employee.email}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Status -->
+                <div class="col-md-6">
+                    <label for="status" class="form-label">Status</label>
+                    <input type="text" id="status" class="form-control" th:value="${employee.status}" readonly>
+                </div>
+                <!-- First Name -->
+                <div class="col-md-6">
+                    <label for="prenom" class="form-label">First Name</label>
+                    <input type="text" id="prenom" class="form-control" th:value="${employee.prenom}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Last Name -->
+                <div class="col-md-6">
+                    <label for="nom" class="form-label">Last Name</label>
+                    <input type="text" id="nom" class="form-control" th:value="${employee.nom}" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+<div th:replace="footer.html"></div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
