@@ -42,7 +42,7 @@ public class TacheController {
     // Get all tasks
     @GetMapping
     public String getAllTaches(Model model) throws JAXBException {
-        List<Tache> taches = tacheService.voirTaches();
+        List<Tache> taches = tacheService.getAllTaches();
         model.addAttribute("taches", taches);
         return "tache/list";
     }

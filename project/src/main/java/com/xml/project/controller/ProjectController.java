@@ -1,5 +1,4 @@
 package com.xml.project.controller;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xml.project.model.generated.*;
@@ -12,11 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.xml.bind.JAXBException;
 import java.util.ArrayList;
 import java.util.List;
-
 @Controller
 @RequestMapping("/projects")
 public class ProjectController {
@@ -30,9 +27,6 @@ public class ProjectController {
         this.equipmentService = equipmentService;
         this.projectService = projectService;
     }
-
-
-
     @GetMapping
     public String listProjects(Model model) {
         try {
@@ -130,9 +124,7 @@ public class ProjectController {
                 redirectAttributes.addFlashAttribute("error", "project not found!");
                 return "index"; // Redirect if the project doesn't exist
             }
-
     }
-
     @PostMapping("/updateStatus/{id}")
     public String updateStatus(@PathVariable("id") int id, @RequestParam("status") StatusProjectTache status,RedirectAttributes redirectAttributes, Model model) {
         try {
@@ -147,19 +139,6 @@ public class ProjectController {
 
         }
     }
-//    @PostMapping("/edit/{id}")
-//    public String editProject(@PathVariable("id") int id, @ModelAttribute Project project, RedirectAttributes redirectAttributes) {
-//        try {
-//            System.out.println("here2 "+id);
-//            projectService.updateStatusProject(id,project.getStatus());
-//            redirectAttributes.addFlashAttribute("success", "project updated successfully!");
-//            return "redirect:/projects/list"; // Redirect to the list view after updating
-//        }  catch (JAXBException e) {
-//            redirectAttributes.addFlashAttribute("error", "Error updating project: " + e.getMessage());
-//            return "redirect:/projects/edit";
-//        }
-//    }
-
     @GetMapping("/delete/{id}")
     public String deleteProject(@PathVariable("id") int id, Model model,  RedirectAttributes redirectAttributes) {
         try {
@@ -179,9 +158,6 @@ public class ProjectController {
         model.addAttribute("projects", getProjectsSafe()); // Reload the list
         return "projects/list";
     }
-
-
-
     // Helper method to safely retrieve the project list
     private List<Project> getProjectsSafe() {
         try {

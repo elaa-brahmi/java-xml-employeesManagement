@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 @Service
 public class ProjectService {
     public ProjectService() {}
-    private final String projects = "project/projects.xml";
+    private final String projects = "projects.xml";
     private final XMLService xmlService = new XMLService();
     private static final Logger logger = Logger.getLogger(TacheService.class.getName());
 
@@ -40,7 +40,7 @@ public class ProjectService {
         return projects.stream().anyMatch(p->p.getIdProject() == id);}
     public void addProject(Project project) throws JAXBException {
         TacheService tacheService = new TacheService();
-        List<Tache> listeTaches=tacheService.voirTaches();
+        List<Tache> listeTaches=tacheService.getAllTaches();
         for(Tache t : listeTaches) {
             LocalDate newStartDate = LocalDate.parse(project.getTaches().get(0).getStartDate(), DateTimeFormatter.ISO_DATE);
             LocalDate newEndDate = LocalDate.parse(project.getTaches().get(0).getEndDate(), DateTimeFormatter.ISO_DATE);
@@ -113,7 +113,7 @@ public class ProjectService {
 
         List<Employee> listeEmp = employeeService.getAllEmployees();
         List<Equipment> listeEqu = equipmentService.getAllEquipments();
-        List<Tache> listeTaches = tacheService.voirTaches();
+        List<Tache> listeTaches = tacheService.getAllTaches();
 
         // Delete tasks associated with the project
         boolean tasksDeleted = false;
@@ -169,7 +169,7 @@ public class ProjectService {
 
         List<Employee> listeEmp = employeeService.getAllEmployees();
         List<Equipment> listeEqu = equipmentService.getAllEquipments();
-        List<Tache> taches = tacheService.voirTaches();
+        List<Tache> taches = tacheService.getAllTaches();
         List<Project> listeprojets = voirProjects();
 
         // Find the project to update

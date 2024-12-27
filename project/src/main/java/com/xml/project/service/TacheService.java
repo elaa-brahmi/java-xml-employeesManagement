@@ -10,17 +10,21 @@ import java.util.stream.Collectors;
 
 import com.xml.project.model.generated.*;
 import org.springframework.stereotype.Service;
-
 import javax.xml.bind.JAXBException;
+import java.util.logging.Logger;
 @Service
 public class TacheService {
 
-	 private final String path = "project/tache.xml";
+	 private final String path = "tache.xml";
+	private static final Logger logger = Logger.getLogger(TacheService.class.getName());
 
 	public List<Tache> getAllTaches() throws JAXBException {
 		XMLService xmlService = new XMLService();
-
-		Taches taches = xmlService.unmarshalXML(path , Taches.class);
+		Taches taches = xmlService.unmarshalXML(path ,Taches.class);
+		return (taches != null && taches.getTache() != null)
+				? taches.getTache()
+				: new ArrayList<>();
+	}
 
 	 
 	 public void saveTache(List<Tache> liste) {
@@ -28,13 +32,13 @@ public class TacheService {
 	            Taches wrapper = new Taches();
 	            wrapper.setTache(liste);
 	            XMLService xmlService = new XMLService();
-	            xmlService.generateXMLFromObjects(wrapper, taches);
+	            xmlService.generateXMLFromObjects(wrapper,path );
 	        } catch (Exception e) {
 			 logger.severe("Error saving Tache: " + e.getMessage());
 	        }
 	 }
 	public void addTacheToAproject(Tache tache, int idProject) throws JAXBException {
-		List<Tache> listeTaches = voirTaches();
+		List<Tache> listeTaches = getAllTaches();
 		boolean idExist = listeTaches.stream().anyMatch(t -> t.getIdTache() == tache.getIdTache());
 		if (idExist) {
 			throw new ReusedIdException("Tache with ID " + tache.getIdTache() + " already exists");
@@ -108,7 +112,7 @@ public class TacheService {
 	}
 
 	public void addTache(Tache tache) throws JAXBException {
-		 List<Tache> listeTaches=voirTaches();
+		 List<Tache> listeTaches=getAllTaches();
 		 boolean idExists = listeTaches.stream()
 				 .anyMatch(existingTache -> existingTache.getIdTache() == tache.getIdTache());
 		 if (idExists) {
@@ -151,16 +155,15 @@ public class TacheService {
 		 logger.info("Tache with ID " + tache.getIdTache() + " is added.");
 	 }
 
-
-
-
-
-	public boolean deleteTacheById(int id) throws JAXBException {
-		List<Tache> tacheList = getAllTaches();
-
-		Tache t = getTacheById(id);
-
-	 
+	 public Tache findTacheById(int id) throws JAXBException {
+		 List<Tache> taches = getAllTaches();
+		 for (Tache tache : taches) {
+			 if (tache.getIdTache() == id) {
+				 return tache;
+			 }
+		 }
+         return null;
+     }
 	 public boolean deleteTache(int id) throws JAXBException {
 		    Tache t = findTacheById(id);
 			if(t==null){
@@ -204,7 +207,7 @@ public class TacheService {
 			if(updatedProject){
 				projectService.saveProject(listeProjects);
 			}
-		 List<Tache> listeTaches = voirTaches();
+		 List<Tache> listeTaches = getAllTaches();
 			boolean removed=listeTaches.remove(t);
 			if(removed){
 				saveTache(listeTaches);
@@ -217,7 +220,7 @@ public class TacheService {
 		}
 	 public Tache updateTache(int id,Tache updatedTache) throws JAXBException {
 
-		List<Tache> listeTaches = voirTaches();
+		List<Tache> listeTaches = getAllTaches();
 		 for(Tache t: listeTaches) {
 			 LocalDate newStartDate = LocalDate.parse(updatedTache.getStartDate(), DateTimeFormatter.ISO_DATE);
 			 LocalDate newEndDate = LocalDate.parse(updatedTache.getEndDate(), DateTimeFormatter.ISO_DATE);
