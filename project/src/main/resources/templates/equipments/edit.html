@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/style.css">
     <title>Modifier</title>
@@ -71,5 +72,33 @@
 <div th:replace="~{navbar.html}"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+=======
+    <title>Modifier</title>
+</head>
+<body>
+<h1>Modifier un equipment</h1>
+
+<form th:action="@{/equipments/{id}(id=${equipment.idEquipment})}" th:object="${equipment}" method="post">
+
+    ID: <input type="text" id="idEquipment" th:field="*{idEquipment}" required >
+    Name: <input type="text" id="nom" th:field="*{name}" required >
+    Type: <input type="text" id="type" th:field="*{type}" required >
+    Quantity: <input type="text" id="quantity" th:field="*{quantity}" required >
+
+    Status :
+    <select id="status" th:field="*{status}" required>
+        <option th:value="'operable'" th:selected="${equipment.status.value() == 'operable'}">Operable</option>
+        <option th:value="'broken'" th:selected="${equipment.status.value() == 'broken'}">Broken</option>
+        <option th:value="'under maintenance'" th:selected="${equipment.status.value() == 'under maintenance'}">Under maintenance</option>
+    </select>
+
+
+
+    Category: <input type="text" id="category" th:field="*{category}" required >
+    <button type="submit">Update</button>
+
+
+</form>
+>>>>>>> 4bb3248ef7e623d91af9b6302ca88d129fa5d33c
 </body>
 </html>

@@ -52,7 +52,7 @@ import javax.xml.bind.annotation.XmlType;
     "idTache"
 })
 public class Equipment {
-
+    @XmlElement(name = "id_equipment")
     protected int idEquipment;
     @XmlElement(required = true,name="name")
     protected String name;

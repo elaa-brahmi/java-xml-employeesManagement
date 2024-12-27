@@ -15,19 +15,12 @@ import javax.xml.bind.JAXBException;
 @Service
 public class TacheService {
 
+	 private final String path = "project/tache.xml";
 
-	 private final String taches = "tache.xml";
-	private static final Logger logger = Logger.getLogger(TacheService.class.getName());
+	public List<Tache> getAllTaches() throws JAXBException {
+		XMLService xmlService = new XMLService();
 
-	public TacheService() {}
-	 
-	 public List<Tache> voirTaches() throws JAXBException {
-		    XMLService xmlService = new XMLService();
-		    Taches listeTaches = xmlService.unmarshalXML(taches, Taches.class);
-		    return (listeTaches != null && listeTaches.getTache() != null)
-		        ? listeTaches.getTache()
-		        : new ArrayList<>();
-		}
+		Taches taches = xmlService.unmarshalXML(path , Taches.class);
 
 	 
 	 public void saveTache(List<Tache> liste) {
@@ -162,14 +155,10 @@ public class TacheService {
 
 
 
-	public List<Tache> findTachesByIdProjet(int id) throws JAXBException {
-		    return voirTaches().stream()
-		        .filter(t -> t.getIdProject() == id).collect(Collectors.toList());
+	public boolean deleteTacheById(int id) throws JAXBException {
+		List<Tache> tacheList = getAllTaches();
 
-		}
-		public Tache findTacheById(int id) throws JAXBException {
-			return voirTaches().stream().filter(t-> t.getIdTache() == id).findFirst().orElseThrow(() -> new RuntimeException("Tache with ID " + id + " not found"));
-		}
+		Tache t = getTacheById(id);
 
 	 
 	 public boolean deleteTache(int id) throws JAXBException {

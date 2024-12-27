@@ -21,7 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.xml.bind.JAXBException;
 
-
 @Controller
 @RequestMapping("/taches")
 public class TacheController {
