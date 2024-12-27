@@ -63,14 +63,14 @@
                 </div>
                 <div class="mb-3">
                     <label for="startDate" class="form-label">Start Date:</label>
-                    <input type="text" th:field="*{taches[0].startDate}" name="tasks[0].start_date" class="form-control" placeholder="Start Date" required>
+                    <input type="date" th:field="*{taches[0].startDate}" name="tasks[0].start_date" class="form-control" placeholder="Start Date" required>
                 </div>
             </div>
             <!-- Right Column -->
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="endDate" class="form-label">End Date:</label>
-                    <input type="text" th:field="*{taches[0].endDate}" name="tasks[0].end_date" class="form-control" placeholder="End Date" required>
+                    <input type="date" th:field="*{taches[0].endDate}" name="tasks[0].end_date" class="form-control" placeholder="End Date" required>
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Task Status:</label>

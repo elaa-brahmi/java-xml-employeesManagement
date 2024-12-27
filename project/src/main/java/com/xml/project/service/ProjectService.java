@@ -5,7 +5,10 @@ import com.xml.project.model.generated.*;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 @Service
@@ -36,8 +39,20 @@ public class ProjectService {
         // Check if the ID exists in employees or users
         return projects.stream().anyMatch(p->p.getIdProject() == id);}
     public void addProject(Project project) throws JAXBException {
-        if(project.getTaches().get(0).getEmployees().get(0).getStatus()==StatusEmployee.busy){
-            throw new BusyEmployeeException("this employee is busy , please choose another one");
+        TacheService tacheService = new TacheService();
+        List<Tache> listeTaches=tacheService.voirTaches();
+        for(Tache t : listeTaches) {
+            LocalDate newStartDate = LocalDate.parse(project.getTaches().get(0).getStartDate(), DateTimeFormatter.ISO_DATE);
+            LocalDate newEndDate = LocalDate.parse(project.getTaches().get(0).getEndDate(), DateTimeFormatter.ISO_DATE);
+            LocalDate existingStartDate = LocalDate.parse(t.getStartDate(), DateTimeFormatter.ISO_DATE);
+            LocalDate existingEndDate = LocalDate.parse(t.getEndDate(), DateTimeFormatter.ISO_DATE);
+            if (project.getTaches().get(0).getEmployees().get(0).getIdEmployee() == t.getEmployees().get(0).getIdEmployee() && !(newEndDate.isBefore(existingStartDate) || newStartDate.isAfter(existingEndDate))) {
+                throw new BusyEmployeeException("this employee is busy at that period of time , please choose another one");
+            }
+            if (project.getTaches().get(0).getEquipments().get(0).getIdEquipment() == t.getEquipments().get(0).getIdEquipment() && !(newEndDate.isBefore(existingStartDate) || newStartDate.isAfter(existingEndDate))) {
+                throw new NotAvailableEquipement("this equipment is not available at that period of time ");
+
+            }
         }
         if(project.getTaches().get(0).getEquipments().get(0).getStatus()==StatusEquipment.broken){
             throw new BrokenEquipmentException("this equipment is broken , please choose another one");
@@ -46,7 +61,6 @@ public class ProjectService {
         if (isIdReusedProject(project.getIdProject())) {
             throw new ReusedIdException("This ID is reused, try with another ID");
         }
-        TacheService tacheService = new TacheService();
         List<Tache> taches=project.getTaches();
         if (taches != null) {
             for (Tache tache : taches) {
@@ -74,64 +88,146 @@ public class ProjectService {
                 .orElseThrow(() -> new RuntimeException("Project with ID " + id + " not found"));
     }
     public boolean deleteProject(int id) throws JAXBException {
-        List<Project> listeProjects = voirProjects();
-        Project t = findProjectById(id);
-        TacheService tacheService = new TacheService();
-       List<Tache> liste= tacheService.findTachesByIdProjet(id);
-       for(Tache tache : liste) {
-           tacheService.deleteTache(tache.getIdTache());
-       }
-       boolean removed=listeProjects.remove(t);
-        if(removed) {
-            saveProject(listeProjects);
-            logger.info("Project with ID " + id + " is deleted.");
+        // Fetch the project
+        ProjectService projectService = new ProjectService();
+        List<Project> listeProjects = projectService.voirProjects();
+        Project projectToDelete = null;
+
+        for (Project project : listeProjects) {
+            if (project.getIdProject() == id) {
+                projectToDelete = project;
+                break;
+            }
         }
-        else{
-            logger.warning("Project with ID " + id + " not found.");
+
+        if (projectToDelete == null) {
+            System.out.println("Project with ID " + id + " not found.");
+            return false;
         }
-        return removed;
-    }
-    public void updateStatusProject(int id, StatusProjectTache status) throws JAXBException {
-//        if (status == null) {
-//            logger.warning("Cannot update project status: provided status is null.");
-//            return;
-//        }
-        Project project = findProjectById(id);
+        System.out.println("Project " + projectToDelete + " is found.");
+
+        // Initialize services
         TacheService tacheService = new TacheService();
-        List<Tache> taches=tacheService.voirTaches();
-            List<Project> listeprojets = voirProjects();
-            for (int i = 0; i < listeprojets.size(); i++) {
-                if (listeprojets.get(i).getIdProject() == id) {
-                    if(status==StatusProjectTache.fromValue("finished")){
-                        listeprojets.get(i).getTaches().get(0).setStatus(StatusProjectTache.fromValue("finished"));
-                       for (Tache tache : taches) {
-                           if(tache.getIdTache()==project.getTaches().get(0).getIdTache()){
-                               tache.setStatus(StatusProjectTache.fromValue("finished"));
-                               tacheService.saveTache(taches);
-                               break;
-                           }
-                       }
-                    }
-                    listeprojets.get(i).setStatus(status);
-                    saveProject(listeprojets);
-                    logger.info("Status of project with ID " + id + " is updated.");
-                    return;
-                    }
+        EquipmentServiceImpl equipmentService = new EquipmentServiceImpl();
+        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+
+        List<Employee> listeEmp = employeeService.getAllEmployees();
+        List<Equipment> listeEqu = equipmentService.getAllEquipments();
+        List<Tache> listeTaches = tacheService.voirTaches();
+
+        // Delete tasks associated with the project
+        boolean tasksDeleted = false;
+
+        List<Tache> projectTaches = new ArrayList<>(projectToDelete.getTaches()); // Avoid modifying the original list during iteration
+        for (Tache tache : projectTaches) {
+            // Release employees associated with the task
+            for (Employee employee : listeEmp) {
+                if (employee.getIdTache() == tache.getIdTache()) {
+                    employee.setIdTache(0);
+                    employee.setStatus(StatusEmployee.free);
                 }
             }
+            employeeService.saveToXML(listeEmp);
 
+            // Release equipment associated with the task
+            for (Equipment eq : listeEqu) {
+                if (eq.getIdTache() == tache.getIdTache()) {
+                    eq.setIdTache(0);
+                }
+            }
+            equipmentService.saveToXmlEquipments(listeEqu);
+            // Remove the task from the global task list
+            Tache taskToRemove = tacheService.findTacheById(tache.getIdTache());
+            if (taskToRemove != null && listeTaches.remove(taskToRemove)) {
+                tasksDeleted = true;
+            }
+        }
+        if (tasksDeleted) {
+            tacheService.saveTache(listeTaches);
+            System.out.println("All tasks associated with Project ID " + id + " have been deleted.");
+        }
 
+        // Remove the project itself
+        boolean removed = listeProjects.remove(projectToDelete);
+        if (removed) {
+            projectService.saveProject(listeProjects);
+            System.out.println("Project with ID " + id + " is deleted.");
+        } else {
+            System.out.println("Project with ID " + id + " not found in the list.");
+        }
 
-//    public void updateProject(int id, Project project) throws JAXBException {
-//            List<Project> listeprojets = voirProjects();
-//            for (int i = 0; i < listeprojets.size(); i++) {
-//                if (listeprojets.get(i).getIdProject() == id) {
-//                    listeprojets.set(i, project);
-//                    saveProject(listeprojets);
-//                    logger.info("project with ID " + id + " is updated.");
-//                    return;
-//                }
-//            }
-//        logger.warning("Project with ID " + id + " not found.");
-//    }
+        return removed;
+    }
+
+    public void updateStatusProject(int id, StatusProjectTache status) throws JAXBException {
+
+        // Retrieve services and all relevant data
+        Project project = findProjectById(id);
+        TacheService tacheService = new TacheService();
+        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+        EquipmentServiceImpl equipmentService = new EquipmentServiceImpl();
+
+        List<Employee> listeEmp = employeeService.getAllEmployees();
+        List<Equipment> listeEqu = equipmentService.getAllEquipments();
+        List<Tache> taches = tacheService.voirTaches();
+        List<Project> listeprojets = voirProjects();
+
+        // Find the project to update
+        for (Project proj : listeprojets) {
+            if (proj.getIdProject() == id) {
+
+                // Update the project status to "finished"
+                if (status == StatusProjectTache.finished) {
+                    // Iterate over tasks of the project and update status
+                    for (Tache tache : proj.getTaches()) {
+                        // Update employee status and clear idTache
+                        for (Employee employee : listeEmp) {
+                            if (employee.getIdTache() == tache.getIdTache()) {
+                                employee.setIdTache(0);  // Unassign the employee from the task
+                                employee.setStatus(StatusEmployee.free);  // Set employee status to free
+                            }
+                        }
+
+                        // Update equipment status and clear idTache
+                        for (Equipment eq : listeEqu) {
+                            if (eq.getIdTache() == tache.getIdTache()) {
+                                eq.setIdTache(0);  // Unassign the equipment from the task
+                            }
+                        }
+
+                        // Update task status and clear its employees and equipment references
+                        tache.setStatus(StatusProjectTache.finished);  // Set task status to finished
+                        tache.getEmployees().get(0).setIdTache(0);  // Unassign employee
+                        tache.getEmployees().get(0).setStatus(StatusEmployee.free);  // Set employee status to free
+                        tache.getEquipments().get(0).setIdTache(0);  // Unassign equipment
+                    }
+
+                    // Update tasks' status in the taches list as well
+                    for (Tache tache : taches) {
+                        if (tache.getIdProject() == id) {
+                            tache.setStatus(StatusProjectTache.finished);  // Set task status to finished
+                            // Make sure employees and equipment are also updated in the taches list
+                            tache.getEmployees().get(0).setIdTache(0);  // Unassign employee
+                            tache.getEmployees().get(0).setStatus(StatusEmployee.free);  // Set employee status to free
+                            tache.getEquipments().get(0).setIdTache(0);  // Unassign equipment
+                        }
+                    }
+                    // Save updated tasks
+                    tacheService.saveTache(taches);
+                }
+                // Save updated employees and equipment
+                employeeService.saveToXML(listeEmp);
+                equipmentService.saveToXmlEquipments(listeEqu);
+
+                // Update project status
+                proj.setStatus(status);
+                saveProject(listeprojets);
+
+                logger.info("Status of project with ID " + id + " is updated.");
+                return;
+            }
+        }
+        // If project with the given ID was not found
+        logger.warning("Project with ID " + id + " not found.");
+    }
 }

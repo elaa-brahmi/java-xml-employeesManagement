@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div th:replace="navbar.html"></div>
+<div th:replace="~{navbar.html}"></div>
 
 <div th:if="${success}" class="alert alert-success">
   <p th:text="${success}"></p>
@@ -86,7 +86,7 @@
 
 </div>
 <br><br><br>
-<div th:replace="footer.html"></div>
+<div th:replace="~{footer.html}"></div>
 
 </body>
 </html>

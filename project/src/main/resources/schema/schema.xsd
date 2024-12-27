@@ -71,8 +71,8 @@
             <xs:element name="idTache" type="xs:int"/>
             <xs:element name="status" type="statusProjectTache"/>
             <xs:element name="description" type="xs:string"/>
-            <xs:element name="start_date" type="xs:string"/>
-            <xs:element name="end_date" type="xs:string"/>
+            <xs:element name="start_date" type="xs:date"/>
+            <xs:element name="end_date" type="xs:date"/>
             <xs:element name="idProject" type="xs:int"/>
             <xs:element name="employees" type="Employee" maxOccurs="unbounded"/>
             <xs:element name="equipments" type="equipment" maxOccurs="unbounded"/>

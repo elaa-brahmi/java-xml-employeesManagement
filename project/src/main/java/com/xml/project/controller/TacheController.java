@@ -79,7 +79,7 @@ public class TacheController {
             if (updatedTache != null) {
                 Employee employee = employeeService.findEmployeeById(updatedTache.getEmployees().get(0).getIdEmployee());
                 Equipment equipment = equipmentService.getEquipmentById(updatedTache.getEquipments().get(0).getIdEquipment());
-                if(updatedTache.getEmployees().contains(employee)) {
+                if(!updatedTache.getEmployees().contains(employee)) {
                     updatedTache.getEmployees().clear();
                     updatedTache.getEmployees().add(employee);
                 }
@@ -108,6 +108,10 @@ public class TacheController {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/taches/edit/" + id;
         }
+        catch(NotAvailableEquipement e){
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/taches/edit/" + id;
+        }
         }
 
     // Add a new task
@@ -125,7 +129,7 @@ public class TacheController {
         try {
             Employee employee = employeeService.findEmployeeById(tache.getEmployees().get(0).getIdEmployee());
             Equipment equipment = equipmentService.getEquipmentById(tache.getEquipments().get(0).getIdEquipment());
-            if(tache.getEmployees().contains(employee)) {
+            if(!tache.getEmployees().contains(employee)) {
                 tache.getEmployees().clear();
                 tache.getEmployees().add(employee);
             }
@@ -156,6 +160,10 @@ public class TacheController {
             return "redirect:/taches/new";
         }
         catch(UnderMaintenanceException e){
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/taches/new";
+        }
+        catch(NotAvailableEquipement e){
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/taches/new";
         }

@@ -77,7 +77,7 @@ public class ProjectController {
             Tache tache = project.getTaches().get(0);
             Employee employee = employeeService.findEmployeeById(tache.getEmployees().get(0).getIdEmployee());
             Equipment equipment = equipmentService.getEquipmentById(tache.getEquipments().get(0).getIdEquipment());
-            if(tache.getEmployees().contains(employee)) {
+            if(!tache.getEmployees().contains(employee)) {
                 tache.getEmployees().clear();
                 tache.getEmployees().add(employee);
             }
@@ -104,6 +104,10 @@ public class ProjectController {
                 return "redirect:/projects/new";
             }
             catch(UnderMaintenanceException e){
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                return "redirect:/projects/new";
+            }
+            catch(NotAvailableEquipement e){
                 redirectAttributes.addFlashAttribute("error", e.getMessage());
                 return "redirect:/projects/new";
             }
