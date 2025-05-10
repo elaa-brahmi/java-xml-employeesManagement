@@ -1,30 +1,138 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <equipments>
     <equipment>
-        <category>Waste Management</category>
         <idEquipment>1</idEquipment>
         <name>Compactor</name>
+        <type>Heavy Machinery</type>
         <quantity>22</quantity>
         <status>operable</status>
-        <type>Heavy Machinery</type>
-	<idTache>0</idTache>
+        <category>Waste Management</category>
+        <idTache>0</idTache>
     </equipment>
     <equipment>
-        <category>Waste Sorting</category>
         <idEquipment>2</idEquipment>
         <name>Sorting Conveyor</name>
+        <type>Automatic Machine</type>
         <quantity>10</quantity>
         <status>broken</status>
-        <type>Automatic Machine</type>
-	<idTache>0</idTache>
+        <category>Waste Sorting</category>
+        <idTache>0</idTache>
     </equipment>
     <equipment>
-        <category>Equipment Maintenance</category>
         <idEquipment>3</idEquipment>
         <name>Shredder</name>
-        <quantity>10</quantity>
-        <status>under maintenance</status>
         <type>Mechanical Machine</type>
-	<idTache>0</idTache>
+        <quantity>10</quantity>
+        <status>under_maintenance</status>
+        <category>Equipment Maintenance</category>
+        <idTache>0</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>4</idEquipment>
+        <name>Manual Collection Cart</name>
+        <type>Transport Equipment</type>
+        <quantity>100</quantity>
+        <status>operable</status>
+        <category>Waste Collection</category>
+        <idTache>0</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>5</idEquipment>
+        <name>Composting Bin</name>
+        <type>Storage Container</type>
+        <quantity>50</quantity>
+        <status>operable</status>
+        <category>Composting</category>
+        <idTache>2</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>6</idEquipment>
+        <name>Glass Crusher</name>
+        <type>Processing Equipment</type>
+        <quantity>5</quantity>
+        <status>operable</status>
+        <category>Recycling</category>
+        <idTache>0</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>7</idEquipment>
+        <name>Waste Collection Truck</name>
+        <type>Transport Equipment</type>
+        <quantity>12</quantity>
+        <status>operable</status>
+        <category>Waste Collection</category>
+        <idTache>0</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>8</idEquipment>
+        <name>Plastic Granulator</name>
+        <type>Processing Equipment</type>
+        <quantity>7</quantity>
+        <status>operable</status>
+        <category>Plastic Recycling</category>
+        <idTache>1</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>9</idEquipment>
+        <name>Magnetic Separator</name>
+        <type>Processing Equipment</type>
+        <quantity>4</quantity>
+        <status>operable</status>
+        <category>Metal Sorting</category>
+        <idTache>5</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>10</idEquipment>
+        <name>Wood Chipper</name>
+        <type>Processing Equipment</type>
+        <quantity>6</quantity>
+        <status>operable</status>
+        <category>Organic Waste Management</category>
+        <idTache>0</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>11</idEquipment>
+        <name>Drum Screen</name>
+        <type>Sorting Equipment</type>
+        <quantity>3</quantity>
+        <status>operable</status>
+        <category>Waste Screening</category>
+        <idTache>0</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>12</idEquipment>
+        <name>Hydraulic Press</name>
+        <type>Heavy Machinery</type>
+        <quantity>2</quantity>
+        <status>operable</status>
+        <category>Material Compression</category>
+        <idTache>0</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>13</idEquipment>
+        <name>Biogas Digester</name>
+        <type>Processing Equipment</type>
+        <quantity>5</quantity>
+        <status>operable</status>
+        <category>Organic Waste Recycling</category>
+        <idTache>3</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>14</idEquipment>
+        <name>Paper Pulping Machine</name>
+        <type>Processing Equipment</type>
+        <quantity>4</quantity>
+        <status>operable</status>
+        <category>Paper Recycling</category>
+        <idTache>0</idTache>
+    </equipment>
+    <equipment>
+        <idEquipment>15</idEquipment>
+        <name>Foam Densifier</name>
+        <type>Processing Equipment</type>
+        <quantity>3</quantity>
+        <status>operable</status>
+        <category>Plastic Recycling</category>
+        <idTache>0</idTache>
     </equipment>
 </equipments>

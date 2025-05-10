@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>list</title>
+</head>
+<body>
+<h1>Liste de tous les equipments</h1>
+
+<div th:if="${error}" style="color: red; font-weight: bold;">
+    <p th:text="${error}"></p>
+</div>
+<div th:if="${success}" style="color: red; font-weight: bold;">
+    <p th:text="${success}"></p>
+</div>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Quantity</th>
+        <th>Status</th>
+        <th>Category</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="equipment : ${equipments}">
+        <td th:text="${equipment.idEquipment}"></td>
+        <td th:text="${equipment.name}"></td>
+        <td th:text="${equipment.type}"></td>
+        <td th:text="${equipment.quantity}"></td>
+        <td th:text="${equipment.status.value()}"></td>
+        <td th:text="${equipment.category}"></td>
+        <td>
+            <a th:href="@{/equipments/{id}/edit(id=${equipment.idEquipment})}">update</a>
+            <a th:href="@{/equipments/{id}/delete(id=${equipment.idEquipment})}">delete</a>
+            <a th:href="@{/equipments/equipment/{id}(id=${equipment.idEquipment})}">view</a>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+    <a href="/equipments/new">Add New Equipment</a>
+</body>
+</html>

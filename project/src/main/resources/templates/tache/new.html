@@ -1,10 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Task List</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<div th:replace="~{navbar.html}"></div>
 
+<div th:if="${error}" class="alert alert-danger">
+  <p th:text="${error}"></p>
+</div>
+
+<div class="container mt-4">
+  <h2 class="text-center">Task Form</h2>
+  <form th:action="@{/taches/new/{id}(id=${tache.idTache})}" th:object="${tache}" method="post">
+    <div class="row">
+      <!-- Left Column -->
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="idTache">ID Task</label>
+          <input type="text" class="form-control" th:field="*{idTache}">
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="status" class="form-label">Status:</label>
+          <select id="status" class="form-select" th:field="*{status}">
+            <option value="" disabled selected>Select Status</option>
+            <option value="finished">Finished</option>
+            <option value="unfinished">Unfinished</option>
+          </select>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="description">Task Description</label>
+          <textarea class="form-control" th:field="*{description}"></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="startdate">Start Date</label>
+          <input type="date" class="form-control" th:field="*{startDate}">
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="endDate">End Date</label>
+          <input type="date" class="form-control" th:field="*{endDate}">
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="idProject">ID Project</label>
+          <input type="number" class="form-control" th:field="*{idProject}">
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="employeeFilter">Filter Employees by Speciality:</label>
+          <select name="tasks[0].employees[]" id="employeeSelect" class="form-select" oninput="updateEmployeeData(this)" required>
+            <th:block th:each="employee : ${employees}">
+              <option th:value="${employee.idEmployee}"
+                      th:data-employee="${employee.idEmployee}"
+                      th:text="${employee.nom} + ' (' + ${employee.speciality} + ')  ' + ${employee.status}">
+              </option>
+            </th:block>
+          </select>
+          <input type="hidden" id="selectedEmployeeData" name="tasks[0].employee" th:field="*{employees[0].idEmployee}"/>
+        </div>
+
+        <!-- Equipment Selection -->
+        <div class="form-group mb-3">
+          <label for="equipmentFilter">Filter Equipment by Name:</label>
+          <select name="tasks[0].equipments[]" id="equipmentSelect" class="form-select" oninput="updateEquipmentData(this)" required>
+            <th:block th:each="equipment : ${equipments}">
+              <option th:data-equipment="${equipment.idEquipment}"
+                      th:text="${equipment.name} + ' (' + ${equipment.status} + ')'"
+                      th:value="${equipment.idEquipment}">
+              </option>
+            </th:block>
+          </select>
+          <input type="hidden" id="selectedEquiData" name="tasks[0].employee" th:field="*{equipments[0].idEquipment}"/>
+        </div>
+<br><div class="text-center">
+        <button type="submit" class=" ms-1 btn btn-primary">Update Task</button></div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  function updateEmployeeData(selectElement) {
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    var employeet = selectedOption.getAttribute('data-employee');
+    document.getElementById('selectedEmployeeData').value = employeet;
+  }
+
+  function updateEquipmentData(selectElement) {
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    var equi = selectedOption.getAttribute('data-equipment');
+    document.getElementById('selectedEquiData').value = equi;
+  }
+</script><br><br><br>
+
+<div th:replace="~{footer.html}"></div>
 </body>
 </html>

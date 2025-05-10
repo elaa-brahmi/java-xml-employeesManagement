@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>new</title>
+</head>
+<body>
+<h1>Ajouter nouveau equipment</h1>
+
+<form th:action="@{/equipments}" th:object="${equipment}" method="post">
+
+    ID: <input type="text" id="idEquipment" th:field="*{idEquipment}" required >
+    Name: <input type="text" id="nom" th:field="*{name}" required >
+    Type: <input type="text" id="type" th:field="*{type}" required >
+    Quantity: <input type="text" id="quantity" th:field="*{quantity}" required >
+
+    Status :
+        <select id="status" th:field="*{status}" required>
+            <option th:value="'operable'" th:selected="${equipment.status != null and equipment.status.value() == 'operable'}">Operable</option>
+            <option th:value="'broken'" th:selected="${equipment.status != null and equipment.status.value() == 'broken'}">Broken</option>
+            <option th:value="'under maintenance'" th:selected="${equipment.status != null and equipment.status.value() == 'under maintenance'}">Under maintenance</option>
+        </select>
+
+
+
+    Category: <input type="text" id="category" th:field="*{category}" required >
+    <button type="submit">Add New Equipment</button>
+
+
+</form>
+</body>
+</html>

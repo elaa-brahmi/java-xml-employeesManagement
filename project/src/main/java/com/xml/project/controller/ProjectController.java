@@ -1,5 +1,6 @@
 package com.xml.project.controller;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xml.project.model.generated.*;
 import com.xml.project.service.EmployeeServiceImpl;
 import com.xml.project.service.EquipmentServiceImpl;
@@ -10,11 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.xml.bind.JAXBException;
 import java.util.ArrayList;
 import java.util.List;
-
 @Controller
 @RequestMapping("/projects")
 public class ProjectController {
@@ -28,9 +27,6 @@ public class ProjectController {
         this.equipmentService = equipmentService;
         this.projectService = projectService;
     }
-
-
-
     @GetMapping
     public String listProjects(Model model) {
         try {
@@ -55,16 +51,14 @@ public class ProjectController {
         return "projects/new"; // Adjust this to the correct view name
     }
     @PostMapping
-    public String addProject(@ModelAttribute Project project, BindingResult result, RedirectAttributes redirectAttributes) {
-        if (result.hasErrors()) {
+    public String addProject(@ModelAttribute Project project,BindingResult result, RedirectAttributes redirectAttributes) {
+       if (result.hasErrors()) {
             result.getAllErrors().forEach(error -> {
-                System.out.println("Validation error: " + error.getDefaultMessage());
-                System.out.println("Validation error value: " + result);
-
+               System.out.println("Validation error: " + error.getDefaultMessage());
             });
             redirectAttributes.addFlashAttribute("error", "Invalid form data. Please fix the errors and try again.");
             return "redirect:/projects/new";
-        }
+       }
         try {
             System.out.println("Validation error: i am here ");
             if (project.getTaches().isEmpty() ||
@@ -73,18 +67,21 @@ public class ProjectController {
                 redirectAttributes.addFlashAttribute("error", "Please select an employee and equipment.");
                 return "redirect:/projects/new";
             }
+            try {
             Tache tache = project.getTaches().get(0);
             Employee employee = employeeService.findEmployeeById(tache.getEmployees().get(0).getIdEmployee());
             Equipment equipment = equipmentService.getEquipmentById(tache.getEquipments().get(0).getIdEquipment());
-                if (employee == null || equipment == null) {
-                    redirectAttributes.addFlashAttribute("error", "Invalid employee or equipment selected.");
-                    return "redirect:/projects/new";
-                }
-            tache.getEmployees().add(employee);
-            tache.getEquipments().add(equipment);
+            if(!tache.getEmployees().contains(employee)) {
+                tache.getEmployees().clear();
+                tache.getEmployees().add(employee);
+            }
+            if(!tache.getEquipments().contains(equipment)) {
+                tache.getEquipments().clear();
+                tache.getEquipments().add(equipment);
+            }
             projectService.addProject(project);
             redirectAttributes.addFlashAttribute("success", "project added successfully!");
-                return "redirect:/projects/list"; // Redirect to the list view after adding
+                return "redirect:/projects"; // Redirect to the list view after adding
         } catch (ReusedIdException e) {
                 redirectAttributes.addFlashAttribute("error", e.getMessage());
                 return "redirect:/projects/new";
@@ -92,50 +89,68 @@ public class ProjectController {
                 redirectAttributes.addFlashAttribute("error", "Error adding project: " + e.getMessage());
                 return "redirect:/projects/new";
         }
+            catch(BusyEmployeeException e){
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                return "redirect:/projects/new";
+            }
+            catch(BrokenEquipmentException e){
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                return "redirect:/projects/new";
+            }
+            catch(UnderMaintenanceException e){
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                return "redirect:/projects/new";
+            }
+            catch(NotAvailableEquipement e){
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                return "redirect:/projects/new";
+            }
+        }
+        catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error adding project: " + e.getMessage());
+            return "redirect:/projects/new";
+        }
     }
     @GetMapping("/edit/{id}")
-    public String showEditProjectForm(@PathVariable("id") int id, Model model) {
-        try {
+    public String showEditProjectForm(@PathVariable("id") int id,RedirectAttributes redirectAttributes, Model model) throws JAXBException {
+
             Project project = projectService.findProjectById(id);
+            System.out.println("here1 "+id);
+            System.out.println("here1 "+project);
             if (project != null) {
                 model.addAttribute("project", project);
                 return "projects/edit";
             } else {
-                model.addAttribute("error", "Project not found.");
-                return "redirect:/projects"; // Redirect if the project doesn't exist
+                redirectAttributes.addFlashAttribute("error", "project not found!");
+                return "index"; // Redirect if the project doesn't exist
             }
-        } catch (JAXBException e) {
-            model.addAttribute("error", "Error loading project: " + e.getMessage());
-            return "redirect:/projects";
-        }
-
     }
-
-    @PostMapping("/edit/{id}")
-    public String editProject(@PathVariable("id") int id, @ModelAttribute Project project, RedirectAttributes redirectAttributes) {
+    @PostMapping("/updateStatus/{id}")
+    public String updateStatus(@PathVariable("id") int id, @RequestParam("status") StatusProjectTache status,RedirectAttributes redirectAttributes, Model model) {
         try {
-            projectService.updateStatusProject(id,project.getStatus()); // Remove the old project
-            redirectAttributes.addFlashAttribute("success", "project updated successfully!");
-            return "redirect:/projects"; // Redirect to the list view after updating
-        }  catch (JAXBException e) {
-            redirectAttributes.addFlashAttribute("error", "Error updating project: " + e.getMessage());
-            return "redirect:/projects/edit";
+            System.out.println("here update status "+id);
+
+            projectService.updateStatusProject(id, status);
+            redirectAttributes.addFlashAttribute("success", "Project status updated successfully!");
+            return "redirect:/projects";
+        } catch (JAXBException e) {
+            model.addAttribute("error", "Error updating status: " + e.getMessage());
+            return "projects/list";
+
         }
-
-
     }
-
     @GetMapping("/delete/{id}")
-    public String deleteProject(@PathVariable("id") int id, Model model, RedirectAttributes redirectAttributes) {
+    public String deleteProject(@PathVariable("id") int id, Model model,  RedirectAttributes redirectAttributes) {
         try {
             boolean removed=projectService.deleteProject(id);
             if(removed) {
-                model.addAttribute("success", "Project deleted successfully!");
+                redirectAttributes.addFlashAttribute("success", "Project deleted successfully!");
+                return "redirect:/projects";
             }
             else{
                 model.addAttribute("error", "Project not found.");
+                return "redirect:/projects";
             }
-            return "redirect:/projects";
         } catch (JAXBException e) {
             model.addAttribute("error", "Error deleting project: " + e.getMessage());
 
@@ -143,19 +158,6 @@ public class ProjectController {
         model.addAttribute("projects", getProjectsSafe()); // Reload the list
         return "projects/list";
     }
-
-    @PostMapping("/updateStatus/{id}")
-    public String updateStatus(@PathVariable("id") int id, @RequestParam StatusProjectTache status, Model model) {
-        try {
-            projectService.updateStatusProject(id, status);
-            model.addAttribute("success", "Project status updated successfully!");
-        } catch (JAXBException e) {
-            model.addAttribute("error", "Error updating status: " + e.getMessage());
-        }
-        model.addAttribute("projects", getProjectsSafe()); // Reload the list
-        return "projects/list";
-    }
-
     // Helper method to safely retrieve the project list
     private List<Project> getProjectsSafe() {
         try {

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>detail</title>
+</head>
+<body>
+<h1>Equipment Details</h1>
+<tr th:each="equipment : ${equipment}">
+    <div> ID:<td th:text="${equipment.idEquipment}"></td></div>
+    <div>Name:<td th:text="${equipment.name}"></td></div>
+    <div>Type:<td th:text="${equipment.type}"></td></div>
+    <div>Quantity:<td th:text="${equipment.quantity}"></td></div>
+    <div>Status:<td th:text="${equipment.status.value()}"></td></div>
+    <div>Category<td th:text="${equipment.category}"></td></div>
+
+
+
+    <td>
+        <a th:href="@{/equipments}">Retour</a>
+    </td>
+</tr>
+
+</body>
+</html>

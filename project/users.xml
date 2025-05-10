@@ -6,7 +6,7 @@
         <email>ines@gmail.com</email>
         <nom>Ines</nom>
         <prenom>dream</prenom>
-        <password>azerty</password>
+        <password>azerty1122</password>
     </user>
     <user>
         <idUser>user001</idUser>
@@ -21,7 +21,7 @@
         <login>jason003</login>
         <email>jason@gmail.com</email>
         <nom>jason</nom>
-        <prenom>smith</prenom>
+        <prenom>smithh</prenom>
         <password>password003</password>
     </user>
     <user>
@@ -79,5 +79,52 @@
         <nom>Olivia</nom>
         <prenom>anderson</prenom>
         <password>password010</password>
+    </user>
+    <user>
+        <idUser>user011</idUser>
+        <login>user011</login>
+        <email>Ryan@gmail.com</email>
+        <nom>Ryan</nom>
+        <prenom>Doe</prenom>
+        <password>ryan123456</password>
+    </user>
+    <user>
+        <idUser>user012</idUser>
+        <login>Jacklin111</login>
+        <email>Jacklin@gmail.com</email>
+        <nom>Jacklin</nom>
+        <prenom>Dawson</prenom>
+        <password>jacklin123</password>
+    </user>
+    <user>
+        <idUser>user013</idUser>
+        <login>emily013</login>
+        <email>emily@gmail.com</email>
+        <nom>Emily</nom>
+        <prenom>Clark</prenom>
+        <password>emily013</password>
+    </user>
+    <user>
+        <idUser>user014</idUser>
+        <login>jake111</login>
+        <email>jake@gmail.com</email>
+        <nom>jake</nom>
+        <prenom>prince</prenom>
+        <password>jake1452</password>
+    </user>
+    <user>
+        <idUser>user015</idUser>
+        <login>smith</login>
+        <email>john@gmail.com</email>
+        <nom>john</nom>
+        <prenom>Simbson</prenom>
+        <password>john12354</password>
+    </user>
+    <user>
+        <idUser>user232</idUser>
+        <login>dfdgh</login>
+        <email>alabrahmi12340@gmail.com</email>
+        <nom>ela</nom>
+        <prenom>brahmi</prenom>
     </user>
 </users>

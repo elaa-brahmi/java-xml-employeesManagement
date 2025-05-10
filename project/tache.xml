@@ -1,39 +1,182 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taches>
     <tache>
-        <idTache>5</idTache>
-        <status>finished</status>
-        <description>waste sorting</description>
-        <start_date>2024-12-10+01:00</start_date>
-        <end_date>2024-12-15+01:00</end_date>
-        <idProject>5</idProject>
+        <idTache>1</idTache>
+        <status>unfinished</status>
+        <description>Integrate IoT sensors to monitor recycling bin levels in real time.</description>
+        <start_date>2024-01-12</start_date>
+        <end_date>2024-04-01</end_date>
+        <idProject>1</idProject>
         <employees>
             <employee>
-                <idUser>user001</idUser>
-                <login>morgan</login>
-                <email>morgan@gmail.com</email>
-                <nom>Ella</nom>
-                <prenom>Morgan</prenom>
-                <password>password016</password>
-                <idEmployee>2</idEmployee>
-                <skills>Logistics</skills>
+                <idUser>user010</idUser>
+                <login>olivia010</login>
+                <email>olivia@gmail.com</email>
+                <nom>Olivia</nom>
+                <prenom>anderson</prenom>
+                <password>password010</password>
+                <idEmployee>10</idEmployee>
+                <skills>Electrical Repairs</skills>
                 <status>busy</status>
-                <speciality>Logistics Coordinator</speciality>
-                <certification>Logistics Management</certification>
+                <speciality>Equipment Technician</speciality>
+                <certification>Mechanical Repairs Certification</certification>
+                <idTache>1</idTache>
+            </employee>
+        </employees>
+        <equipments>
+            <equipment>
+                <idEquipment>8</idEquipment>
+                <name>Plastic Granulator</name>
+                <type>Processing Equipment</type>
+                <quantity>7</quantity>
+                <status>operable</status>
+                <category>Plastic Recycling</category>
+                <idTache>1</idTache>
+            </equipment>
+        </equipments>
+    </tache>
+    <tache>
+        <idTache>2</idTache>
+        <status>unfinished</status>
+        <description> Community Engagement and Awareness</description>
+        <start_date>2024-01-12</start_date>
+        <end_date>2024-04-01</end_date>
+        <idProject>1</idProject>
+        <employees>
+            <employee>
+                <idUser>user013</idUser>
+                <login>emily013</login>
+                <email>emily@gmail.com</email>
+                <nom>Emily</nom>
+                <prenom>Clark</prenom>
+                <password>emily013</password>
+                <idEmployee>13</idEmployee>
+                <skills>Community Engagement Specialist</skills>
+                <status>busy</status>
+                <speciality>Community Engagement Specialist</speciality>
+                <certification>Expertise in public awareness campaigns and training for recycling and composting initiatives.</certification>
+                <role>employee</role>
+                <idTache>2</idTache>
+            </employee>
+        </employees>
+        <equipments>
+            <equipment>
+                <idEquipment>5</idEquipment>
+                <name>Composting Bin</name>
+                <type>Storage Container</type>
+                <quantity>50</quantity>
+                <status>operable</status>
+                <category>Composting</category>
+                <idTache>2</idTache>
+            </equipment>
+        </equipments>
+    </tache>
+    <tache>
+        <idTache>3</idTache>
+        <status>unfinished</status>
+        <description>Create a Recycling Collection System</description>
+        <start_date>2024-01-12</start_date>
+        <end_date>2024-04-01</end_date>
+        <idProject>2</idProject>
+        <employees>
+            <employee>
+                <idUser>user006</idUser>
+                <login>ava006</login>
+                <email>ava@gmail.com</email>
+                <nom>Ava</nom>
+                <prenom>Jones</prenom>
+                <password>password006</password>
+                <idEmployee>6</idEmployee>
+                <skills>Heavy Equipment</skills>
+                <status>busy</status>
+                <speciality>Heavy Equipment Technician</speciality>
+                <certification>Heavy Equipment Maintenance Certification</certification>
+                <role>employee</role>
+                <idTache>3</idTache>
+            </employee>
+        </employees>
+        <equipments>
+            <equipment>
+                <idEquipment>13</idEquipment>
+                <name>Biogas Digester</name>
+                <type>Processing Equipment</type>
+                <quantity>5</quantity>
+                <status>operable</status>
+                <category>Organic Waste Recycling</category>
+                <idTache>3</idTache>
+            </equipment>
+        </equipments>
+    </tache>
+    <tache>
+        <idTache>4</idTache>
+        <status>finished</status>
+        <description>ee</description>
+        <start_date>2024-12-20</start_date>
+        <end_date>2025-01-02</end_date>
+        <idProject>3</idProject>
+        <employees>
+            <employee>
+                <idUser>user012</idUser>
+                <login>Jacklin111</login>
+                <email>Jacklin@gmail.com</email>
+                <nom>Jacklin</nom>
+                <prenom>Dawson</prenom>
+                <password>jacklin123</password>
+                <idEmployee>12</idEmployee>
+                <skills>Recycling Technician</skills>
+                <status>free</status>
+                <speciality>Recycling Technician</speciality>
+                <certification>Specializes in operating and maintaining recycling equipment and manual processes for waste segregation.</certification>
                 <role>employee</role>
                 <idTache>0</idTache>
             </employee>
         </employees>
         <equipments>
-            <equipments>
-                <idEquipment>2</idEquipment>
-                <name>Sorting Conveyor</name>
-                <type>Automatic Machine</type>
-                <quantity>10</quantity>
-                <status>broken</status>
-                <category>Waste Sorting</category>
+            <equipment>
+                <idEquipment>14</idEquipment>
+                <name>Paper Pulping Machine</name>
+                <type>Processing Equipment</type>
+                <quantity>4</quantity>
+                <status>operable</status>
+                <category>Paper Recycling</category>
                 <idTache>0</idTache>
-            </equipments>
+            </equipment>
+        </equipments>
+    </tache>
+    <tache>
+        <idTache>5</idTache>
+        <status>unfinished</status>
+        <description>bb</description>
+        <start_date>2024-12-04</start_date>
+        <end_date>2024-12-15</end_date>
+        <idProject>2</idProject>
+        <employees>
+            <employee>
+                <idUser>user008</idUser>
+                <login>john008</login>
+                <email>john@gmail.com</email>
+                <nom>John</nom>
+                <prenom>Lee</prenom>
+                <password>password008</password>
+                <idEmployee>8</idEmployee>
+                <skills>Diagnostic Tools</skills>
+                <status>busy</status>
+                <speciality>Mechanical Technician</speciality>
+                <certification>Machine Diagnostics Certification</certification>
+                <role>employee</role>
+                <idTache>5</idTache>
+            </employee>
+        </employees>
+        <equipments>
+            <equipment>
+                <idEquipment>9</idEquipment>
+                <name>Magnetic Separator</name>
+                <type>Processing Equipment</type>
+                <quantity>4</quantity>
+                <status>operable</status>
+                <category>Metal Sorting</category>
+                <idTache>5</idTache>
+            </equipment>
         </equipments>
     </tache>
 </taches>

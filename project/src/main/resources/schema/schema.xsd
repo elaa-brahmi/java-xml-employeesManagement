@@ -86,7 +86,6 @@
                 <xs:sequence>
                     <xs:element name="idEmployee" type="xs:int"/>
                     <xs:element name="skills" type="xs:string">
-
                     </xs:element>
                     <xs:element name="status" type="statusEmployee"/>
                     <xs:element name="speciality" type="xs:string"/>
@@ -174,5 +173,4 @@
             <xs:field xpath="idTache"/>
         </xs:keyref>
     </xs:element>
-
 </xs:schema>
